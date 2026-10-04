@@ -263,7 +263,7 @@ async function submitRegistration() {
     const globalError = document.getElementById('form-global-error');
 
     try {
-        const response = await fetch('${API_BASE_URL}/api/registrations', {
+        const response = await fetch(`${API_BASE_URL}/api/registrations`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
