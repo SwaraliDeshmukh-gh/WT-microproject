@@ -2,6 +2,7 @@ require("dotenv").config({ path: ".env" });
 
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 const eventRoutes = require("../routes/events");
 const registrationRoutes = require("../routes/registrations");
 const authRoutes = require("../routes/auth"); // Added auth routes import
@@ -15,9 +16,10 @@ const PORT = process.env.PORT || 8000;
 // Middleware to parse incoming JSON payloads
 app.use(express.json());
 app.use(cors());
+app.use(express.static(path.join(__dirname, "..")));
 
 app.get("/", (req, res) => {
-    res.send("College Events Backend is running!");
+    res.sendFile(path.join(__dirname, "..", "index.html"));
 });
 
 // Mount Event, Registration, and Auth APIs
