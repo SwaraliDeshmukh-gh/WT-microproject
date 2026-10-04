@@ -26,7 +26,7 @@ async function initRegistrationsPage() {
 
     // 2. Fetch registrations from backend API
     try {
-        const response = await fetch('http://localhost:8000/api/registrations/my', {
+        const response = await fetch(`${API_BASE_URL}/api/registrations/my`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -293,7 +293,7 @@ async function handleConfirmCancel() {
     isCancelling = true;
 
     try {
-        const response = await fetch(`http://localhost:8000/api/registrations/${selectedRegIdToCancel}`, {
+        const response = await fetch(`${API_BASE_URL}/api/registrations/${selectedRegIdToCancel}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

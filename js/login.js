@@ -111,7 +111,7 @@ localStorage.removeItem('user');
                 const password = document.getElementById('student-login-pass').value;
 
                 try {
-                    const response = await fetch('http://localhost:8000/api/auth/login', {
+                    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -163,7 +163,7 @@ if (redirect === 'register' && eventId) {
                 const password = document.getElementById('admin-login-pass').value;
 
                 try {
-                    const response = await fetch('http://localhost:8000/api/auth/login', {
+                    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -209,7 +209,7 @@ if (redirect === 'register' && eventId) {
                 const password = document.getElementById('signup-pass').value;
 
                 try {
-                    const response = await fetch('http://localhost:8000/api/auth/signup', {
+                    const response = await fetch(`${API_BASE_URL}/api/auth/signup`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

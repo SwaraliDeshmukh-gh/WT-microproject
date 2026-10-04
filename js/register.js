@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 2. Fetch real event from backend API
     try {
-        const response = await fetch(`http://localhost:8000/api/events/${eventId}`);
+        const response = await fetch(`${API_BASE_URL}/api/events/${eventId}`);
         if (!response.ok) {
             showNotFoundState();
             return;
@@ -263,7 +263,7 @@ async function submitRegistration() {
     const globalError = document.getElementById('form-global-error');
 
     try {
-        const response = await fetch('http://localhost:8000/api/registrations', {
+        const response = await fetch('${API_BASE_URL}/api/registrations', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

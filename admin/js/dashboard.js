@@ -94,8 +94,8 @@ async function fetchDashboardData() {
     
     // Fetch Events and Registrations concurrently
     const [eventsRes, regsRes] = await Promise.all([
-        fetch('http://localhost:8000/api/events'),
-        fetch('http://localhost:8000/api/registrations', {
+        fetch(`${API_BASE_URL}/api/events`),
+        fetch(`${API_BASE_URL}/api/registrations`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

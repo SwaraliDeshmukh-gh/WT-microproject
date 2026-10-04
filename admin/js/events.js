@@ -83,7 +83,7 @@ async function initManageEvents() {
  */
 async function fetchEvents() {
     try {
-        const response = await fetch('http://localhost:8000/api/events');
+        const response = await fetch(`${API_BASE_URL}/api/events`);
         if (!response.ok) {
             throw new Error('Failed to fetch events');
         }
@@ -472,7 +472,7 @@ async function handleFormSubmit(e) {
         let response;
         if (eventId) {
             // PUT /api/events/:id
-            response = await fetch(`http://localhost:8000/api/events/${eventId}`, {
+            response = await fetch(`${API_BASE_URL}/api/events/${eventId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -482,7 +482,7 @@ async function handleFormSubmit(e) {
             });
         } else {
             // POST /api/events
-            response = await fetch('http://localhost:8000/api/events', {
+            response = await fetch(`${API_BASE_URL}/api/events`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -541,7 +541,7 @@ async function confirmDeleteEvent() {
     }
 
     try {
-        const response = await fetch(`http://localhost:8000/api/events/${deleteTargetId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/events/${deleteTargetId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`

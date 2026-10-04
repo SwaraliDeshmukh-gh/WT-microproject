@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
  */
 async function fetchAndPopulateUserData(token) {
     try {
-        const response = await fetch('http://localhost:8000/api/auth/me', {
+        const response = await fetch('${API_BASE_URL}/api/auth/me', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -69,7 +69,7 @@ function setupFormListeners(token) {
         };
 
         try {
-            const response = await fetch('http://localhost:8000/api/auth/profile', {
+            const response = await fetch('${API_BASE_URL}/api/auth/profile', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ function setupFormListeners(token) {
         }
 
         try {
-            const response = await fetch('http://localhost:8000/api/auth/password', {
+            const response = await fetch(`${API_BASE_URL}/api/auth/password`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

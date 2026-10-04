@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 4. Fetch authenticated registration details from backend API
     try {
-        const response = await fetch(`http://localhost:8000/api/registrations/${regId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/registrations/${regId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`

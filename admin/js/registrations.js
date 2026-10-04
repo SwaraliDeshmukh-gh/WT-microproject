@@ -69,7 +69,7 @@ async function initRegistrationsPage() {
 
     // 2. Fetch real registrations from backend API with improved error handling
     try {
-        const response = await fetch('http://localhost:8000/api/registrations', {
+        const response = await fetch(`${API_BASE_URL}/api/registrations`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -425,7 +425,7 @@ async function confirmCancelRegistration() {
     if (confirmBtn) confirmBtn.disabled = true;
 
     try {
-        const response = await fetch(`http://localhost:8000/api/registrations/${cancelTargetId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/registrations/${cancelTargetId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -484,7 +484,7 @@ async function confirmPermanentDeletion() {
     if (confirmBtn) confirmBtn.disabled = true;
 
     try {
-        const response = await fetch(`http://localhost:8000/api/registrations/${deleteTargetId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/registrations/${deleteTargetId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -533,7 +533,7 @@ window.confirmRegistrationStatus = async function(regId) {
     renderDashboard(); // Re-render to disable buttons
 
     try {
-        const response = await fetch(`http://localhost:8000/api/registrations/${regId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/registrations/${regId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const response = await fetch(`http://localhost:8000/api/events/${eventId}`);
+        const response = await fetch(`${API_BASE_URL}/api/events/${eventId}`);
         if (!response.ok) {
             showNotFoundState();
             return;

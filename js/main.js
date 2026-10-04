@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch('http://localhost:8000/api/events');
+            const response = await fetch(`${API_BASE_URL}/0/api/events`);
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);

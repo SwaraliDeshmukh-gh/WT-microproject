@@ -77,7 +77,7 @@ async function initUsersPage() {
 async function fetchUsers() {
     const token = localStorage.getItem('token');
     try {
-        const response = await fetch('http://localhost:8000/api/users', {
+        const response = await fetch(`${API_BASE_URL}/api/users`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -508,7 +508,7 @@ async function handleUserFormSubmit(e) {
         let response;
         if (isEdit) {
             // PUT /api/users/:id
-            response = await fetch(`http://localhost:8000/api/users/${userId}`, {
+            response = await fetch(`${API_BASE_URL}/api/users/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -518,7 +518,7 @@ async function handleUserFormSubmit(e) {
             });
         } else {
             // POST /api/users
-            response = await fetch('http://localhost:8000/api/users', {
+            response = await fetch(`${API_BASE_URL}/api/users`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -599,7 +599,7 @@ async function confirmDeleteUser() {
     if (confirmBtn) confirmBtn.disabled = true;
 
     try {
-        const response = await fetch(`http://localhost:8000/api/users/${deleteTargetId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/users/${deleteTargetId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
