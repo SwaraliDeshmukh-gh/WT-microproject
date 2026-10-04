@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Registration Confirmation | College Events & Registration System</title>
+    <meta name="description" content="Your registration for the college event has been successfully confirmed.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Main & Page CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/confirmation.css">
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar-header" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <span class="logo-text">College Events</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="events.html" class="nav-link active">Events</a></li>
+                    <li class="nav-item"><a href="my-registrations.html" class="nav-link">My Registrations</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link btn-nav-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- BREADCRUMB -->
+        <section class="breadcrumb-section">
+            <div class="container">
+                <div class="breadcrumb-wrapper">
+                    <a href="events.html" class="btn-back">
+                        <i class="fa-solid fa-arrow-left"></i> Back to Events
+                    </a>
+                    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+                        <a href="index.html">Home</a>
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <a href="events.html">Events</a>
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <span>Confirmation</span>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONFIRMATION CONTENT SECTION -->
+        <section class="section confirmation-section">
+            <div class="container">
+                
+                <!-- Fallback Container if no registration data is found -->
+                <div id="no-registration-card" class="no-data-card text-center" style="display: none;">
+                    <i class="fa-solid fa-folder-open no-data-icon"></i>
+                    <h2>No Registration Found</h2>
+                    <p>We couldn't find any recent event registration details. Please select an event to register.</p>
+                    <a href="events.html" class="btn btn-primary"><i class="fa-solid fa-compass"></i> Explore Events</a>
+                </div>
+
+                <!-- Active Confirmation Content Container -->
+                <div id="confirmation-content" class="confirmation-wrapper">
+                    
+                    <!-- Success Header Card -->
+                    <div class="success-banner-card">
+                        <div class="success-icon-wrapper">
+                            <i class="fa-solid fa-circle-check success-icon"></i>
+                        </div>
+                        <h1 class="success-title font-heading">Registration Successful!</h1>
+                        <p class="success-subtitle">Your registration has been successfully completed and confirmed.</p>
+                        <div class="status-badge-wrapper">
+                            <span class="status-label">Status:</span>
+                            <span id="display-status" class="badge-status-confirmed">Confirmed</span>
+                        </div>
+                    </div>
+
+                    <!-- Summary Grid -->
+                    <div class="summary-details-grid">
+                        
+                        <!-- Card 1: Registration Details -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-id-card-clip card-icon"></i>
+                                <h3 class="card-title font-heading">Registration Details</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="detail-row">
+                                    <span class="detail-label">Registration ID</span>
+                                    <span id="display-reg-id" class="detail-value highlight-id">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Student Name</span>
+                                    <span id="display-student-name" class="detail-value">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Student ID / PRN</span>
+                                    <span id="display-student-id" class="detail-value">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Class / Year</span>
+                                    <span id="display-class" class="detail-value">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Division</span>
+                                    <span id="display-division" class="detail-value">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Email Address</span>
+                                    <span id="display-email" class="detail-value">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Registration Date</span>
+                                    <span id="display-reg-date" class="detail-value">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Event Details -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-calendar-check card-icon"></i>
+                                <h3 class="card-title font-heading">Event Details</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="detail-row">
+                                    <span class="detail-label">Event Title</span>
+                                    <span id="display-event-title" class="detail-value highlight-event">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Category</span>
+                                    <span id="display-event-category" class="detail-value">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Date</span>
+                                    <span id="display-event-date" class="detail-value">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Time</span>
+                                    <span id="display-event-time" class="detail-value">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Venue</span>
+                                    <span id="display-event-venue" class="detail-value">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Action Navigation Buttons -->
+                    <div class="action-buttons-group">
+                        <a href="my-registrations.html" class="btn btn-primary">
+                            <i class="fa-solid fa-list-check"></i> View My Registrations
+                        </a>
+                        <a href="events.html" class="btn btn-secondary">
+                            <i class="fa-solid fa-compass"></i> Explore More Events
+                        </a>
+                        <a href="index.html" class="btn btn-outline">
+                            <i class="fa-solid fa-house"></i> Back to Home
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-top">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand-logo footer-logo">
+                    <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                    <span class="logo-text">College Events</span>
+                </a>
+                <p class="footer-desc">
+                    Discover, participate and experience everything happening around campus. Your central hub for campus engagements.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="my-registrations.html">My Registrations</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Event Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="events.html?category=technical">Technical</a></li>
+                    <li><a href="events.html?category=cultural">Cultural</a></li>
+                    <li><a href="events.html?category=sports">Sports</a></li>
+                    <li><a href="events.html?category=workshops">Workshops</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact</h4>
+                <ul class="footer-contact-list">
+                    <li><i class="fa-regular fa-envelope"></i> events@college.edu</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</li>
+                    <li><i class="fa-solid fa-location-dot"></i> College Campus, Pune</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; <span id="current-year">2026</span> College Events and Registration System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/confirmation.js"></script>
+</body>
+</html>

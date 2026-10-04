@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrations | Admin Panel</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Registrations CSS -->
+    <link rel="stylesheet" href="css/registrations.css">
+</head>
+<body>
+
+    <div class="admin-wrapper">
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="dashboard.html" class="sidebar-brand">
+                    <i class="fa-solid fa-graduation-cap brand-icon"></i>
+                    <div class="brand-text">
+                        <span class="brand-title">College Events</span>
+                        <span class="brand-subtitle">Admin Panel</span>
+                    </div>
+                </a>
+                <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close Sidebar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <i class="fa-solid fa-chart-line nav-icon"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="events.html" class="nav-link">
+                            <i class="fa-solid fa-calendar-days nav-icon"></i>
+                            <span>Manage Events</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="registrations.html" class="nav-link active">
+                            <i class="fa-solid fa-id-card nav-icon"></i>
+                            <span>Registrations</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="users.html" class="nav-link">
+                            <i class="fa-solid fa-users nav-icon"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="events.html?action=add" class="nav-link">
+                            <i class="fa-solid fa-square-plus nav-icon"></i>
+                            <span>Add Event</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../login.html" class="sidebar-logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <div class="admin-main">
+            <!-- TOP HEADER -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="mobile-toggle-btn" id="sidebar-toggle-btn" aria-label="Toggle Sidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div>
+                        <h1 class="header-title">Registrations</h1>
+                        <p class="header-subtitle">View and manage student registrations for college events.</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="admin-profile" id="admin-profile-toggle" style="cursor: pointer;" title="Open Profile Menu">
+                        <div class="profile-avatar">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <div class="profile-info">
+                            <span class="profile-name">Administrator</span>
+                            <span class="profile-role">System Admin</span>
+                        </div>
+                    </div>
+                    <a href="../login.html" class="header-logout-btn" title="Logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </header>
+
+            <!-- PAGE CONTENT -->
+            <main class="registrations-body">
+                
+                <!-- NOTIFICATION ALERT BANNER -->
+                <div id="alert-banner" class="alert-banner hidden">
+                    <i class="fa-solid fa-circle-check alert-icon"></i>
+                    <span id="alert-message">Action completed successfully.</span>
+                    <button class="alert-close" id="alert-close-btn">&times;</button>
+                </div>
+
+                <!-- OVERVIEW & STATS HEADER STRIP -->
+                <section class="overview-cards-wrapper">
+                    <div class="overview-card">
+                        <div class="ov-icon ov-blue"><i class="fa-solid fa-id-card"></i></div>
+                        <div class="ov-data">
+                            <span class="ov-label">Total Registrations</span>
+                            <span class="ov-value" id="stat-total">148</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-card">
+                        <div class="ov-icon ov-green"><i class="fa-solid fa-circle-check"></i></div>
+                        <div class="ov-data">
+                            <span class="ov-label">Confirmed</span>
+                            <span class="ov-value" id="stat-confirmed">140</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-card">
+                        <div class="ov-icon ov-red"><i class="fa-solid fa-circle-xmark"></i></div>
+                        <div class="ov-data">
+                            <span class="ov-label">Cancelled</span>
+                            <span class="ov-value" id="stat-cancelled">8</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-card">
+                        <div class="ov-icon ov-amber"><i class="fa-solid fa-clock"></i></div>
+                        <div class="ov-data">
+                            <span class="ov-label">Active Registrations</span>
+                            <span class="ov-value" id="stat-upcoming">112</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SEARCH & FILTERS TOOLBAR -->
+                <section class="toolbar-card">
+                    <div class="toolbar-grid">
+                        <!-- Search Box -->
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" id="search-input" placeholder="Search by student, ID, event or email..." aria-label="Search Registrations">
+                        </div>
+
+                        <!-- Event Filter -->
+                        <div class="filter-group">
+                            <label for="filter-event" class="filter-label"><i class="fa-solid fa-calendar-day"></i> Event:</label>
+                            <select id="filter-event" class="filter-select">
+                                <option value="all">All Events</option>
+                                <option value="Web Development Workshop">Web Development Workshop</option>
+                                <option value="Inter-College Hackathon">Inter-College Hackathon</option>
+                                <option value="Cultural Fest 2026">Cultural Fest 2026</option>
+                                <option value="Inter-Department Cricket Tournament">Inter-Department Cricket Tournament</option>
+                                <option value="Coding Competition">Coding Competition</option>
+                                <option value="Career Guidance Seminar">Career Guidance Seminar</option>
+                            </select>
+                        </div>
+
+                        <!-- Status Filter -->
+                        <div class="filter-group">
+                            <label for="filter-status" class="filter-label"><i class="fa-solid fa-filter"></i> Status:</label>
+                            <select id="filter-status" class="filter-select">
+                                <option value="all">All Status</option>
+                                <option value="Confirmed">Confirmed</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </div>
+
+                        <!-- Sort Options -->
+                        <div class="filter-group">
+                            <label for="sort-by" class="filter-label"><i class="fa-solid fa-arrow-down-wide-short"></i> Sort By:</label>
+                            <select id="sort-by" class="filter-select">
+                                <option value="newest">Newest Registration</option>
+                                <option value="oldest">Oldest Registration</option>
+                                <option value="student-asc">Student Name A-Z</option>
+                                <option value="student-desc">Student Name Z-A</option>
+                                <option value="event-asc">Event Name A-Z</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Clear Filters Action Strip -->
+                    <div class="toolbar-actions">
+                        <button type="button" class="btn btn-secondary btn-sm" id="clear-filters-btn">
+                            <i class="fa-solid fa-rotate-left"></i> Clear Filters
+                        </button>
+                    </div>
+                </section>
+
+                <!-- REGISTRATIONS TABLE CARD -->
+                <section class="admin-card">
+                    <div class="card-header space-between">
+                        <div class="header-info">
+                            <h3 class="card-title"><i class="fa-solid fa-list-check"></i> All Registrations</h3>
+                            <span class="results-count" id="results-count-text">Showing 0 of 0 registrations</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body no-padding">
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Registration ID</th>
+                                        <th>Student</th>
+                                        <th>Student ID</th>
+                                        <th>Event</th>
+                                        <th>Event Date</th>
+                                        <th>Reg. Date</th>
+                                        <th>Status</th>
+                                        <th class="text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="registrations-tbody">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- EMPTY STATE -->
+                        <div id="empty-state" class="empty-state hidden">
+                            <i class="fa-solid fa-folder-open empty-icon"></i>
+                            <h4>No registrations found</h4>
+                            <p>Try changing your search or filters.</p>
+                            <button class="btn btn-secondary btn-sm" id="reset-filters-btn">Clear Filters</button>
+                        </div>
+                    </div>
+
+                    <!-- PAGINATION FOOTER -->
+                    <div class="card-footer pagination-footer" id="pagination-wrapper">
+                        <span class="pagination-info" id="pagination-info">Showing page 1 of 1</span>
+                        <div class="pagination-controls" id="pagination-controls">
+                            <!-- Dynamic pagination controls -->
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- FOOTER -->
+            <footer class="admin-footer">
+                <p>&copy; <span id="current-year">2026</span> College Events Management System. Frontend prototype preview.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- VIEW REGISTRATION DETAILS MODAL -->
+    <div class="modal-overlay" id="view-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fa-solid fa-id-card"></i> Registration Details</h3>
+                <button class="modal-close-btn" id="view-close-btn">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Registration Meta Banner -->
+                <div class="modal-meta-strip">
+                    <div class="meta-item">
+                        <span class="meta-label">Registration ID</span>
+                        <span class="meta-val highlight" id="view-reg-id">REG-1001</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Registration Date</span>
+                        <span class="meta-val" id="view-reg-date">Sep 10, 2026</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Status</span>
+                        <span id="view-reg-status-badge" class="status-badge status-confirmed">Confirmed</span>
+                    </div>
+                </div>
+
+                <div class="details-grid">
+                    <!-- Student Info Card -->
+                    <div class="details-section">
+                        <h4 class="details-section-title"><i class="fa-solid fa-user"></i> Student Information</h4>
+                        <div class="info-list">
+                            <div class="info-row">
+                                <span class="info-label">Full Name:</span>
+                                <span class="info-value" id="view-student-name">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Student ID:</span>
+                                <span class="info-value" id="view-student-id">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Class & Div:</span>
+                                <span class="info-value" id="view-student-class-div">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Email:</span>
+                                <span class="info-value" id="view-student-email">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Phone:</span>
+                                <span class="info-value" id="view-student-phone">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event Info Card -->
+                    <div class="details-section">
+                        <h4 class="details-section-title"><i class="fa-solid fa-calendar-days"></i> Event Information</h4>
+                        <div class="info-list">
+                            <div class="info-row">
+                                <span class="info-label">Event Name:</span>
+                                <span class="info-value bold" id="view-event-name">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Category:</span>
+                                <span class="info-value" id="view-event-category">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Event Date:</span>
+                                <span class="info-value" id="view-event-date">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Time:</span>
+                                <span class="info-value" id="view-event-time">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Venue:</span>
+                                <span class="info-value" id="view-event-venue">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="view-modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CANCEL CONFIRMATION DIALOG -->
+    <div class="modal-overlay" id="cancel-modal">
+        <div class="modal-container modal-sm">
+            <div class="modal-header modal-header-danger">
+                <h3 class="modal-title"><i class="fa-solid fa-triangle-exclamation"></i> Cancel Registration?</h3>
+                <button class="modal-close-btn" id="cancel-close-btn">&times;</button>
+            </div>
+            <div class="modal-body text-center-modal">
+                <i class="fa-solid fa-ban delete-warning-icon"></i>
+                <h4 class="delete-heading">Are you sure you want to cancel this registration?</h4>
+                <p class="delete-text">
+                    This will set the registration status for <strong id="cancel-student-name">Student</strong> 
+                    (<span id="cancel-reg-id">REG-0000</span>) to <strong>Cancelled</strong>.
+                </p>
+                <div class="modal-footer center-footer">
+                    <button class="btn btn-secondary" id="cancel-keep-btn">Keep Registration</button>
+                    <button class="btn btn-danger" id="cancel-confirm-btn">
+                        <i class="fa-solid fa-xmark"></i> Confirm Cancellation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PERMANENT DELETE CONFIRMATION DIALOG -->
+    <div class="modal-overlay" id="delete-modal">
+        <div class="modal-container modal-sm">
+            <div class="modal-header modal-header-danger">
+                <h3 class="modal-title"><i class="fa-solid fa-triangle-exclamation"></i> Permanent Deletion</h3>
+                <button class="modal-close-btn" id="delete-close-btn">&times;</button>
+            </div>
+            <div class="modal-body text-center-modal">
+                <i class="fa-solid fa-trash-can delete-warning-icon"></i>
+                <h4 class="delete-heading">Delete Permanently?</h4>
+                <p class="delete-text">
+                    This will permanently delete the cancelled registration for <strong id="delete-student-name">Student</strong> 
+                    (<span id="delete-reg-id">REG-0000</span>). This action cannot be undone.
+                </p>
+                <div class="modal-footer center-footer">
+                    <button class="btn btn-secondary" id="delete-keep-btn">Keep Registration</button>
+                    <button class="btn btn-danger" id="delete-confirm-btn">
+                        <i class="fa-solid fa-trash-can"></i> Delete Permanently
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFILE DRAWER (SLIDE-IN MENU) -->
+    <div class="profile-drawer-overlay" id="profile-drawer-overlay"></div>
+    <div class="profile-drawer" id="profile-drawer">
+        <div class="profile-drawer-header">
+            <div class="drawer-user-info">
+                <div class="d-name" id="drawer-admin-name">Administrator</div>
+                <div class="d-role">System Admin</div>
+            </div>
+            <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close profile menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="drawer-divider"></div>
+        <div class="profile-drawer-body">
+            <a href="profile.html" class="profile-drawer-link">
+                <i class="fa-solid fa-user"></i> <span>My Profile</span><i class="fa-solid fa-arrow-right ms-auto"></i>
+            </a>
+            <a href="account-settings.html" class="profile-drawer-link">
+                <i class="fa-solid fa-gear"></i> <span>Account Settings</span><i class="fa-solid fa-arrow-right ms-auto"></i>
+            </a>
+            <div class="drawer-divider"></div>
+            <button class="profile-drawer-link profile-drawer-logout" id="drawer-logout-btn">
+                <i class="fa-solid fa-door-open"></i> <span>Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Registrations JavaScript -->
+    <script src="js/registrations.js"></script>
+</body>
+</html>

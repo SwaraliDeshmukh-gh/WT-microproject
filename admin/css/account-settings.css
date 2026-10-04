@@ -1,0 +1,165 @@
+/* ==========================================================================
+   ADMIN ACCOUNT SETTINGS STYLES
+   Inherits global variables and styling from css/dashboard.css
+   ========================================================================== */
+
+.settings-page {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.section-header {
+    margin-bottom: 2rem;
+}
+
+/* Base Card Styling */
+.settings-card {
+    background-color: var(--admin-card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.card-header-basic {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.settings-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.settings-card-title i {
+    color: var(--primary);
+}
+
+/* Alert Banner Styling */
+.settings-alert {
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: none;
+    text-align: center;
+}
+
+.settings-alert.show {
+    display: block;
+}
+
+.settings-alert.success {
+    background-color: var(--success-light);
+    border: 1px solid #86efac;
+    color: var(--success);
+}
+
+.settings-alert.error {
+    background-color: var(--danger-light);
+    border: 1px solid #fca5a5;
+    color: var(--danger);
+}
+
+/* Form Styling */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    background-color: var(--admin-bg);
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.full-row {
+    grid-column: 1 / -1;
+}
+
+.form-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+    .settings-card {
+        padding: 1.5rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width-mobile {
+        grid-column: 1 / -1;
+    }
+    
+    .form-actions {
+        justify-content: center;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}

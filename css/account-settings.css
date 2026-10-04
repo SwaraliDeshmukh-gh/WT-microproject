@@ -1,0 +1,162 @@
+/* ==========================================================================
+   ACCOUNT SETTINGS STYLES
+   Inherits global variables and styling from css/style.css
+   ========================================================================== */
+
+.settings-page {
+    background-color: var(--color-bg-light);
+    min-height: calc(100vh - 72px - 300px); /* Fill screen min minus navbar & footer */
+}
+
+.settings-section {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+}
+
+.settings-container {
+    max-width: 800px;
+}
+
+/* Base Card Styling */
+.settings-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    transition: var(--transition-base);
+}
+
+.settings-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(15, 23, 42, 0.1);
+}
+
+.card-header-basic {
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.settings-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.settings-card-title i {
+    color: var(--color-accent);
+}
+
+/* Alert Banner Styling */
+.settings-alert {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: none;
+    text-align: center;
+}
+
+.settings-alert.show {
+    display: block;
+}
+
+.settings-alert.success {
+    background-color: #ECFDF5;
+    border: 1px solid #A7F3D0;
+    color: #065F46;
+}
+
+.settings-alert.error {
+    background-color: #FEF2F2;
+    border: 1px solid #FECACA;
+    color: #DC2626;
+}
+
+/* Form Styling */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+    background-color: var(--color-bg-alt);
+    transition: var(--transition-base);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+}
+
+.form-control[readonly] {
+    background-color: var(--color-bg-light);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+    border-color: var(--color-border-subtle);
+}
+
+.full-row {
+    grid-column: 1 / -1;
+}
+
+.form-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+    .settings-section {
+        padding-top: 2rem;
+    }
+    
+    .settings-card {
+        padding: 1.5rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width-mobile {
+        grid-column: 1 / -1;
+    }
+    
+    .form-actions {
+        justify-content: center;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}

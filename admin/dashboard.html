@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | College Events System</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <div class="admin-wrapper">
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="dashboard.html" class="sidebar-brand">
+                    <i class="fa-solid fa-graduation-cap brand-icon"></i>
+                    <div class="brand-text">
+                        <span class="brand-title">College Events</span>
+                        <span class="brand-subtitle">Admin Panel</span>
+                    </div>
+                </a>
+                <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close Sidebar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link active">
+                            <i class="fa-solid fa-chart-line nav-icon"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="events.html" class="nav-link">
+                            <i class="fa-solid fa-calendar-days nav-icon"></i>
+                            <span>Manage Events</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="registrations.html" class="nav-link">
+                            <i class="fa-solid fa-id-card nav-icon"></i>
+                            <span>Registrations</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="users.html" class="nav-link">
+                            <i class="fa-solid fa-users nav-icon"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="events.html?action=add" class="nav-link">
+                            <i class="fa-solid fa-square-plus nav-icon"></i>
+                            <span>Add Event</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../login.html" class="sidebar-logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <div class="admin-main">
+            <!-- TOP HEADER -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="mobile-toggle-btn" id="sidebar-toggle-btn" aria-label="Toggle Sidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div>
+                        <h1 class="header-title">Dashboard</h1>
+                        <p class="header-subtitle">Welcome back, Admin</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="admin-profile" id="admin-profile-toggle" style="cursor: pointer;" title="Open Profile Menu">
+                        <div class="profile-avatar">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <div class="profile-info">
+                            <span class="profile-name">Administrator</span>
+                            <span class="profile-role">System Admin</span>
+                        </div>
+                    </div>
+                    <a href="../login.html" class="header-logout-btn" title="Logout" id="header-logout-btn">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </header>
+
+            <!-- DASHBOARD BODY CONTENT -->
+            <main class="dashboard-body">
+                <!-- 1. SUMMARY STATISTIC CARDS -->
+                <section class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon icon-blue">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-title">Total Events</span>
+                            <h2 class="stat-number" id="stat-total-events">6</h2>
+                            <span class="stat-info">Published activities</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon icon-amber">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-title">Upcoming Events</span>
+                            <h2 class="stat-number" id="stat-upcoming-events">6</h2>
+                            <span class="stat-info">Active registration state</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon icon-green">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-title">Total Registrations</span>
+                            <h2 class="stat-number" id="stat-total-registrations">148</h2>
+                            <span class="stat-info">Active student passes</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon icon-purple">
+                            <i class="fa-solid fa-chair"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-title">Available Seats</span>
+                            <h2 class="stat-number" id="stat-available-seats">216</h2>
+                            <span class="stat-info">Open registration slots</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. QUICK ACTIONS & CATEGORY DISTRIBUTION -->
+                <div class="dashboard-grid-two">
+                    <!-- Quick Actions -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title"><i class="fa-solid fa-bolt"></i> Quick Actions</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="quick-actions-grid">
+                                <a href="events.html?action=add" class="action-btn action-primary">
+                                    <i class="fa-solid fa-plus-circle"></i>
+                                    <span>Add New Event</span>
+                                </a>
+                                <a href="events.html" class="action-btn action-secondary">
+                                    <i class="fa-solid fa-list-check"></i>
+                                    <span>Manage Events</span>
+                                </a>
+                                <a href="registrations.html" class="action-btn action-secondary">
+                                    <i class="fa-solid fa-users-viewfinder"></i>
+                                    <span>View Registrations</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event Category Breakdown -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title"><i class="fa-solid fa-chart-pie"></i> Registrations by Category</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="category-stats-list" id="category-stats-container">
+                                <!-- Rendered dynamically by js/dashboard.js -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. UPCOMING EVENTS TABLE -->
+                <div class="dashboard-card">
+                    <div class="card-header space-between">
+                        <h3 class="card-title"><i class="fa-solid fa-calendar-day"></i> Upcoming Events</h3>
+                        <a href="events.html" class="card-action-link">Manage Events <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                    <div class="card-body no-padding">
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Event Name</th>
+                                        <th>Category</th>
+                                        <th>Date</th>
+                                        <th>Venue</th>
+                                        <th>Registrations</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="upcoming-events-tbody">
+                                    <!-- Rendered dynamically by js/dashboard.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. RECENT REGISTRATIONS TABLE -->
+                <div class="dashboard-card">
+                    <div class="card-header space-between">
+                        <h3 class="card-title"><i class="fa-solid fa-user-check"></i> Recent Registrations</h3>
+                        <a href="registrations.html" class="card-action-link">View All <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                    <div class="card-body no-padding">
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Student Name</th>
+                                        <th>Student ID</th>
+                                        <th>Event</th>
+                                        <th>Date Registered</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-registrations-tbody">
+                                    <!-- Rendered dynamically by js/dashboard.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- SIMPLE FOOTER -->
+            <footer class="admin-footer">
+                <p>&copy; <span id="current-year">2026</span> College Events Management System. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- PROFILE DRAWER (SLIDE-IN MENU) -->
+    <div class="profile-drawer-overlay" id="profile-drawer-overlay"></div>
+    <div class="profile-drawer" id="profile-drawer">
+        <div class="profile-drawer-header">
+            <div class="drawer-user-info">
+                <div class="d-name" id="drawer-admin-name">Administrator</div>
+                <div class="d-role">System Admin</div>
+            </div>
+            <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close profile menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="drawer-divider"></div>
+        <div class="profile-drawer-body">
+            <a href="profile.html" class="profile-drawer-link">
+                <i class="fa-solid fa-user"></i> <span>My Profile</span><i class="fa-solid fa-arrow-right ms-auto"></i>
+            </a>
+            <a href="account-settings.html" class="profile-drawer-link">
+                <i class="fa-solid fa-gear"></i> <span>Account Settings</span><i class="fa-solid fa-arrow-right ms-auto"></i>
+            </a>
+            <div class="drawer-divider"></div>
+            <button class="profile-drawer-link profile-drawer-logout" id="drawer-logout-btn">
+                <i class="fa-solid fa-door-open"></i> <span>Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Dashboard JavaScript -->
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings | Admin Panel</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/account-settings.css">
+</head>
+<body>
+
+    <div class="admin-wrapper">
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="dashboard.html" class="sidebar-brand">
+                    <i class="fa-solid fa-graduation-cap brand-icon"></i>
+                    <div class="brand-text">
+                        <span class="brand-title">College Events</span>
+                        <span class="brand-subtitle">Admin Panel</span>
+                    </div>
+                </a>
+                <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close Sidebar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <i class="fa-solid fa-chart-line nav-icon"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="events.html" class="nav-link">
+                            <i class="fa-solid fa-calendar-days nav-icon"></i>
+                            <span>Manage Events</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="registrations.html" class="nav-link">
+                            <i class="fa-solid fa-id-card nav-icon"></i>
+                            <span>Registrations</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="users.html" class="nav-link">
+                            <i class="fa-solid fa-users nav-icon"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="events.html?action=add" class="nav-link">
+                            <i class="fa-solid fa-square-plus nav-icon"></i>
+                            <span>Add Event</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../login.html" class="sidebar-logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <div class="admin-main">
+            <!-- TOP HEADER -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="mobile-toggle-btn" id="sidebar-toggle-btn" aria-label="Toggle Sidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div>
+                        <h1 class="header-title">Account Settings</h1>
+                        <p class="header-subtitle">Administrative settings</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="admin-profile" id="admin-profile-toggle" style="cursor: pointer;" title="Open Profile Menu">
+                        <div class="profile-avatar">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <div class="profile-info">
+                            <span class="profile-name">Administrator</span>
+                            <span class="profile-role">System Admin</span>
+                        </div>
+                    </div>
+                    <a href="../login.html" class="header-logout-btn" title="Logout" id="header-logout-btn">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </header>
+
+            <!-- SETTINGS BODY CONTENT -->
+            <main class="dashboard-body settings-page">
+                <div class="section-header text-center">
+                    <h1 class="header-title" style="font-size: 1.75rem; margin-bottom: 0.5rem;">Account Settings</h1>
+                    <p class="header-subtitle">Update your personal information and account security.</p>
+                </div>
+
+                <!-- PERSONAL INFORMATION CARD -->
+                <div class="settings-card">
+                    <div class="card-header-basic">
+                        <h2 class="settings-card-title"><i class="fa-solid fa-user-pen"></i> Personal Information</h2>
+                    </div>
+                    
+                    <div id="profile-alert" class="settings-alert"></div>
+
+                    <form id="profile-form">
+                        <div class="form-grid">
+                            <div class="form-group full-width-mobile">
+                                <label for="profile-name" class="form-label">Full Name</label>
+                                <input type="text" id="profile-name" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group full-width-mobile">
+                                <label for="profile-email" class="form-label">Email Address</label>
+                                <input type="email" id="profile-email" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="btn-save-profile">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- CHANGE PASSWORD CARD -->
+                <div class="settings-card">
+                    <div class="card-header-basic">
+                        <h2 class="settings-card-title"><i class="fa-solid fa-shield-halved"></i> Change Password</h2>
+                    </div>
+
+                    <div id="password-alert" class="settings-alert"></div>
+
+                    <form id="password-form">
+                        <div class="form-grid password-grid">
+                            <div class="form-group full-row">
+                                <label for="current-password" class="form-label">Current Password</label>
+                                <input type="password" id="current-password" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="new-password" class="form-label">New Password</label>
+                                <input type="password" id="new-password" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirm-password" class="form-label">Confirm New Password</label>
+                                <input type="password" id="confirm-password" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="btn-update-password">Update Password</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+
+            <!-- SIMPLE FOOTER -->
+            <footer class="admin-footer">
+                <p>&copy; <span id="current-year">2026</span> College Events Management System. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- PROFILE DRAWER (SLIDE-IN MENU) -->
+    <div class="profile-drawer-overlay" id="profile-drawer-overlay"></div>
+    <div class="profile-drawer" id="profile-drawer">
+        <div class="profile-drawer-header">
+            <div class="drawer-user-info">
+                <div class="d-name" id="drawer-admin-name">Administrator</div>
+                <div class="d-role">System Admin</div>
+            </div>
+            <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close profile menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="drawer-divider"></div>
+        <div class="profile-drawer-body">
+            <a href="profile.html" class="profile-drawer-link">
+                <i class="fa-solid fa-user"></i> <span>My Profile</span><i class="fa-solid fa-arrow-right ms-auto"></i>
+            </a>
+            <a href="account-settings.html" class="profile-drawer-link">
+                <i class="fa-solid fa-gear"></i> <span>Account Settings</span><i class="fa-solid fa-arrow-right ms-auto"></i>
+            </a>
+            <div class="drawer-divider"></div>
+            <button class="profile-drawer-link profile-drawer-logout" id="drawer-logout-btn">
+                <i class="fa-solid fa-door-open"></i> <span>Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/dashboard.js"></script>
+    <script src="js/account-settings.js"></script>
+</body>
+</html>

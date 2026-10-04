@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Events | College Events & Registration System</title>
+    <meta name="description" content="Browse, search, and register for upcoming college workshops, competitions, cultural, sports, and technical events.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Main & Events CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/events.css">
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar-header" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <span class="logo-text">College Events</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="events.html" class="nav-link active">Events</a></li>
+                    <li class="nav-item"><a href="my-registrations.html" class="nav-link">My Registrations</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link btn-nav-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- PAGE HEADER -->
+        <section class="events-header-section">
+            <div class="container text-center">
+                <span class="eyebrow-text">DISCOVER & PARTICIPATE</span>
+                <h1 class="page-title font-heading">Explore Events</h1>
+                <p class="page-subtitle">
+                    Find workshops, competitions, cultural activities, and other events happening around campus.
+                </p>
+            </div>
+        </section>
+
+        <!-- SEARCH AND FILTER CONTROLS -->
+        <section class="section filter-section">
+            <div class="container">
+                <div class="filter-card">
+                    <!-- Search Input -->
+                    <div class="filter-group search-group">
+                        <label for="search-input" class="filter-label"><i class="fa-solid fa-magnifying-glass"></i> Search</label>
+                        <div class="search-input-wrapper">
+                            <input type="text" id="search-input" placeholder="Search by title, description, or venue..." autocomplete="off">
+                            <button id="clear-search" class="clear-btn" aria-label="Clear Search"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Category Select -->
+                    <div class="filter-group">
+                        <label for="category-filter" class="filter-label"><i class="fa-solid fa-layer-group"></i> Category</label>
+                        <select id="category-filter" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="technical">Technical</option>
+                            <option value="cultural">Cultural</option>
+                            <option value="competitions">Competitions</option>
+                            <option value="sports">Sports</option>
+                            <option value="workshops">Workshops</option>
+                            <option value="seminars">Seminars</option>
+                        </select>
+                    </div>
+
+                    <!-- Date Filter -->
+                    <div class="filter-group">
+                        <label for="date-filter" class="filter-label"><i class="fa-regular fa-calendar-days"></i> Date Period</label>
+                        <select id="date-filter" class="filter-select">
+                            <option value="all">All Dates</option>
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                        </select>
+                    </div>
+
+                    <!-- Sort Select -->
+                    <div class="filter-group">
+                        <label for="sort-filter" class="filter-label"><i class="fa-solid fa-arrow-down-short-wide"></i> Sort By</label>
+                        <select id="sort-filter" class="filter-select">
+                            <option value="date-asc">Upcoming First</option>
+                            <option value="latest">Latest Added</option>
+                            <option value="title-asc">Name (A-Z)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Results Counter & Reset -->
+                <div class="results-bar">
+                    <span id="results-count" class="results-count">Showing 0 events</span>
+                    <button id="reset-filters" class="btn-reset-filters"><i class="fa-solid fa-rotate-left"></i> Reset Filters</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENT LISTING GRID -->
+        <section class="section events-grid-section">
+            <div class="container">
+                <div id="events-grid" class="events-grid">
+                    <!-- Dynamic Event Cards Go Here -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="no-events" class="no-events-container text-center" style="display: none;">
+                    <div class="no-events-icon"><i class="fa-solid fa-calendar-xmark"></i></div>
+                    <h3 class="no-events-title">No Events Found</h3>
+                    <p class="no-events-desc">We couldn't find any events matching your criteria. Try adjusting your search or filters.</p>
+                    <button id="no-events-reset" class="btn btn-primary">Clear All Filters</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-top">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand-logo footer-logo">
+                    <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                    <span class="logo-text">College Events</span>
+                </a>
+                <p class="footer-desc">
+                    Discover, participate and experience everything happening around campus. Your central hub for campus engagements.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="my-registrations.html">My Registrations</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Event Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="events.html?category=technical">Technical</a></li>
+                    <li><a href="events.html?category=cultural">Cultural</a></li>
+                    <li><a href="events.html?category=sports">Sports</a></li>
+                    <li><a href="events.html?category=workshops">Workshops</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact</h4>
+                <ul class="footer-contact-list">
+                    <li><i class="fa-regular fa-envelope"></i> events@college.edu</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</li>
+                    <li><i class="fa-solid fa-location-dot"></i> College Campus, Pune</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; <span id="current-year">2026</span> College Events and Registration System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/events.js"></script>
+</body>
+</html>

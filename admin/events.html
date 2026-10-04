@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Events | Admin Panel</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Manage Events CSS -->
+    <link rel="stylesheet" href="css/events.css">
+</head>
+<body>
+
+    <div class="admin-wrapper">
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="dashboard.html" class="sidebar-brand">
+                    <i class="fa-solid fa-graduation-cap brand-icon"></i>
+                    <div class="brand-text">
+                        <span class="brand-title">College Events</span>
+                        <span class="brand-subtitle">Admin Panel</span>
+                    </div>
+                </a>
+                <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close Sidebar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <i class="fa-solid fa-chart-line nav-icon"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="events.html" class="nav-link active">
+                            <i class="fa-solid fa-calendar-days nav-icon"></i>
+                            <span>Manage Events</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="registrations.html" class="nav-link">
+                            <i class="fa-solid fa-id-card nav-icon"></i>
+                            <span>Registrations</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="users.html" class="nav-link">
+                            <i class="fa-solid fa-users nav-icon"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" id="sidebar-add-event-btn" class="nav-link">
+                            <i class="fa-solid fa-square-plus nav-icon"></i>
+                            <span>Add Event</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../login.html" class="sidebar-logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <div class="admin-main">
+            <!-- TOP HEADER -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="mobile-toggle-btn" id="sidebar-toggle-btn" aria-label="Toggle Sidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div>
+                        <h1 class="header-title">Manage Events</h1>
+                        <p class="header-subtitle">Create, update and manage college events.</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="admin-profile" id="admin-profile-toggle" style="cursor: pointer;" title="Open Profile Menu">
+                        <div class="profile-avatar">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <div class="profile-info">
+                            <span class="profile-name">Administrator</span>
+                            <span class="profile-role">System Admin</span>
+                        </div>
+                    </div>
+                    <a href="../login.html" class="header-logout-btn" title="Logout" id="header-logout-btn">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </header>
+
+            <!-- PAGE CONTENT -->
+            <main class="events-body">
+                
+                <!-- NOTIFICATION ALERT BANNER -->
+                <div id="alert-banner" class="alert-banner hidden">
+                    <i class="fa-solid fa-circle-check alert-icon"></i>
+                    <span id="alert-message">Action completed successfully.</span>
+                    <button class="alert-close" id="alert-close-btn">&times;</button>
+                </div>
+
+                <!-- OVERVIEW & STATS HEADER STRIP -->
+                <section class="events-overview-strip">
+                    <div class="overview-cards-wrapper">
+                        <div class="overview-card">
+                            <div class="ov-icon ov-blue"><i class="fa-solid fa-layer-group"></i></div>
+                            <div class="ov-data">
+                                <span class="ov-label">Total Events</span>
+                                <span class="ov-value" id="stat-total">0</span>
+                            </div>
+                        </div>
+
+                        <div class="overview-card">
+                            <div class="ov-icon ov-green"><i class="fa-solid fa-door-open"></i></div>
+                            <div class="ov-data">
+                                <span class="ov-label">Open Events</span>
+                                <span class="ov-value" id="stat-open">0</span>
+                            </div>
+                        </div>
+
+                        <div class="overview-card">
+                            <div class="ov-icon ov-amber"><i class="fa-solid fa-gauge-high"></i></div>
+                            <div class="ov-data">
+                                <span class="ov-label">Almost Full</span>
+                                <span class="ov-value" id="stat-almost-full">0</span>
+                            </div>
+                        </div>
+
+                        <div class="overview-card">
+                            <div class="ov-icon ov-red"><i class="fa-solid fa-ban"></i></div>
+                            <div class="ov-data">
+                                <span class="ov-label">Full / Closed</span>
+                                <span class="ov-value" id="stat-closed">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-add-event" id="open-add-modal-btn">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add New Event</span>
+                    </button>
+                </section>
+
+                <!-- SEARCH & FILTERS TOOLBAR -->
+                <section class="toolbar-card">
+                    <div class="toolbar-grid">
+                        <!-- Search Box -->
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" id="search-input" placeholder="Search by name, category, or venue..." aria-label="Search Events">
+                        </div>
+
+                        <!-- Category Filter -->
+                        <div class="filter-group">
+                            <label for="filter-category" class="filter-label"><i class="fa-solid fa-filter"></i> Category:</label>
+                            <select id="filter-category" class="filter-select">
+                                <option value="all">All Categories</option>
+                                <option value="Technical">Technical</option>
+                                <option value="Cultural">Cultural</option>
+                                <option value="Competitions">Competitions</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Workshops">Workshops</option>
+                                <option value="Seminars">Seminars</option>
+                            </select>
+                        </div>
+
+                        <!-- Status Filter -->
+                        <div class="filter-group">
+                            <label for="filter-status" class="filter-label"><i class="fa-solid fa-tag"></i> Status:</label>
+                            <select id="filter-status" class="filter-select">
+                                <option value="all">All Statuses</option>
+                                <option value="Open">Open</option>
+                                <option value="Almost Full">Almost Full</option>
+                                <option value="Full">Full</option>
+                                <option value="Closed">Closed</option>
+                            </select>
+                        </div>
+
+                        <!-- Sort Options -->
+                        <div class="filter-group">
+                            <label for="sort-by" class="filter-label"><i class="fa-solid fa-arrow-down-wide-short"></i> Sort By:</label>
+                            <select id="sort-by" class="filter-select">
+                                <option value="date-asc">Date: Upcoming First</option>
+                                <option value="date-desc">Date: Latest First</option>
+                                <option value="title-asc">Name: A-Z</option>
+                                <option value="title-desc">Name: Z-A</option>
+                                <option value="capacity-desc">Capacity: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Clear Filters Action Strip -->
+                    <div class="toolbar-actions">
+                        <button type="button" class="btn btn-secondary btn-sm" id="clear-filters-btn">
+                            <i class="fa-solid fa-rotate-left"></i> Clear Filters
+                        </button>
+                    </div>
+                </section>
+
+                <!-- EVENTS TABLE / CARDS CONTAINER -->
+                <section class="admin-card events-table-card">
+                    <div class="card-header space-between">
+                        <div class="header-info">
+                            <h3 class="card-title"><i class="fa-solid fa-list-check"></i> Event Directory</h3>
+                            <span class="results-count" id="results-count-text">Showing 0 events</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body no-padding">
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Event Name</th>
+                                        <th>Category</th>
+                                        <th>Date & Time</th>
+                                        <th>Venue</th>
+                                        <th>Capacity</th>
+                                        <th>Registrations</th>
+                                        <th>Available</th>
+                                        <th>Status</th>
+                                        <th class="text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="events-tbody">
+                                    <!-- Rendered dynamically by events.js -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- EMPTY STATE -->
+                        <div id="empty-state" class="empty-state hidden">
+                            <i class="fa-solid fa-calendar-xmark empty-icon"></i>
+                            <h4>No Events Found</h4>
+                            <p>No college events match your current search or filter criteria.</p>
+                            <button class="btn btn-secondary btn-sm" id="reset-filters-btn">Reset Filters</button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- FOOTER -->
+            <footer class="admin-footer">
+                <p>&copy; <span id="current-year">2026</span> College Events Management System. Frontend prototype preview.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ADD / EDIT EVENT MODAL -->
+    <div class="modal-overlay" id="event-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-text"><i class="fa-solid fa-calendar-plus"></i> Add New Event</h3>
+                <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+            </div>
+
+            <form id="event-form" class="modal-body">
+                <input type="hidden" id="event-id" value="">
+
+                <!-- Inline Form Feedback -->
+                <div id="form-error-msg" class="form-error-banner hidden">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span>Please fill in all required fields correctly.</span>
+                </div>
+
+                <div class="form-grid">
+                    <!-- Event Title -->
+                    <div class="form-group full-width">
+                        <label for="event-title" class="required">Event Title</label>
+                        <input type="text" id="event-title" class="form-control" placeholder="e.g. Annual Technical Hackathon" required>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="form-group">
+                        <label for="event-category" class="required">Category</label>
+                        <select id="event-category" class="form-control" required>
+                            <option value="">Select Category</option>
+                            <option value="Technical">Technical</option>
+                            <option value="Cultural">Cultural</option>
+                            <option value="Competitions">Competitions</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Workshops">Workshops</option>
+                            <option value="Seminars">Seminars</option>
+                        </select>
+                    </div>
+
+                    <!-- Status Override -->
+                    <div class="form-group">
+                        <label for="event-status" class="required">Registration Status</label>
+                        <select id="event-status" class="form-control" required>
+                            <option value="Registration Open">Registration Open</option>
+                            <option value="Registration Closed">Registration Closed</option>
+                        </select>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="form-group">
+                        <label for="event-date" class="required">Event Date</label>
+                        <input type="date" id="event-date" class="form-control" required>
+                    </div>
+
+                    <!-- Time -->
+                    <div class="form-group">
+                        <label for="event-time" class="required">Event Time</label>
+                        <input type="text" id="event-time" class="form-control" placeholder="e.g. 10:00 AM" required>
+                    </div>
+
+                    <!-- Venue -->
+                    <div class="form-group">
+                        <label for="event-venue" class="required">Venue</label>
+                        <input type="text" id="event-venue" class="form-control" placeholder="e.g. Auditorium Hall A" required>
+                    </div>
+
+                    <!-- Organizer -->
+                    <div class="form-group">
+                        <label for="event-organizer" class="required">Organizer / Club</label>
+                        <input type="text" id="event-organizer" class="form-control" placeholder="e.g. Coding Club" required>
+                    </div>
+
+                    <!-- Total Capacity -->
+                    <div class="form-group">
+                        <label for="event-capacity" class="required">Total Seat Capacity</label>
+                        <input type="number" id="event-capacity" class="form-control" min="1" placeholder="e.g. 100" required>
+                    </div>
+
+                    <!-- Registration Deadline -->
+                    <div class="form-group">
+                        <label for="event-deadline" class="required">Registration Deadline</label>
+                        <input type="date" id="event-deadline" class="form-control" required>
+                    </div>
+
+                    <!-- Eligibility -->
+                    <div class="form-group">
+                        <label for="event-eligibility" class="required">Eligibility</label>
+                        <input type="text" id="event-eligibility" class="form-control" placeholder="e.g. All Students / B.Tech Only" required>
+                    </div>
+                    
+                    <!-- Image Upload -->
+                    <div class="form-group full-width">
+                        <label for="event-image">Event Image</label>
+                        <input type="file" id="event-image" class="form-control" accept="image/*">
+                        <div id="image-preview-container" style="display: none; margin-top: 0.75rem;">
+                            <img id="event-image-preview" src="" alt="Event Image Preview" style="max-height: 120px; border-radius: 4px; border: 1px solid var(--border-color);">
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group full-width">
+                        <label for="event-description" class="required">Short Description</label>
+                        <textarea id="event-description" class="form-control" rows="2" placeholder="Brief summary of the event..." required></textarea>
+                    </div>
+
+                    <!-- Full Description -->
+                    <div class="form-group full-width">
+                        <label for="event-full-description" class="required">Full Description</label>
+                        <textarea id="event-full-description" class="form-control" rows="4" placeholder="Comprehensive event details..." required></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="modal-cancel-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="modal-submit-btn">
+                        <i class="fa-solid fa-floppy-disk"></i> Save Event
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- DELETE CONFIRMATION DIALOG -->
+    <div class="modal-overlay" id="delete-modal">
+        <div class="modal-container modal-sm">
+            <div class="modal-header modal-header-danger">
+                <h3 class="modal-title"><i class="fa-solid fa-triangle-exclamation"></i> Confirm Deletion</h3>
+                <button class="modal-close-btn" id="delete-close-btn">&times;</button>
+            </div>
+            <div class="modal-body text-center-modal">
+                <i class="fa-solid fa-trash-can delete-warning-icon"></i>
+                <h4 class="delete-heading">Delete Event?</h4>
+                <p class="delete-text">
+                    Are you sure you want to delete <strong id="delete-event-title">this event</strong>? 
+                    This action cannot be undone.
+                </p>
+                <div class="modal-footer center-footer">
+                    <button class="btn btn-secondary" id="delete-cancel-btn">Cancel</button>
+                    <button class="btn btn-danger" id="delete-confirm-btn">
+                        <i class="fa-solid fa-trash"></i> Delete Event
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFILE DRAWER (SLIDE-IN MENU) -->
+    <div class="profile-drawer-overlay" id="profile-drawer-overlay"></div>
+    <div class="profile-drawer" id="profile-drawer">
+        <div class="profile-drawer-header">
+            <div class="drawer-user-info">
+                <div class="d-name" id="drawer-admin-name">Administrator</div>
+                <div class="d-role">System Admin</div>
+            </div>
+            <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close profile menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="drawer-divider"></div>
+        <div class="profile-drawer-body">
+            <a href="profile.html" class="profile-drawer-link">
+                <i class="fa-solid fa-user"></i> <span>My Profile</span><i class="fa-solid fa-arrow-right ms-auto"></i>
+            </a>
+            <a href="account-settings.html" class="profile-drawer-link">
+                <i class="fa-solid fa-gear"></i> <span>Account Settings</span><i class="fa-solid fa-arrow-right ms-auto"></i>
+            </a>
+            <div class="drawer-divider"></div>
+            <button class="profile-drawer-link profile-drawer-logout" id="drawer-logout-btn">
+                <i class="fa-solid fa-door-open"></i> <span>Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Manage Events JavaScript -->
+    <script src="js/events.js"></script>
+</body>
+</html>

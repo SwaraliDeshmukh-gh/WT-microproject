@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Events & Registration System</title>
+    <meta name="description" content="Discover exciting college events, workshops, competitions and activities. Find what interests you and register in just a few clicks.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar-header" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <span class="logo-text">College Events</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+                    <li class="nav-item"><a href="my-registrations.html" class="nav-link">My Registrations</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link btn-nav-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-content reveal-on-scroll">
+                    <span class="eyebrow-text">COLLEGE EVENTS</span>
+                    <h1 class="hero-headline">Discover. Participate. Experience.</h1>
+                    <p class="hero-description">
+                        Discover exciting college events, workshops, competitions and activities. Find what interests you and register in just a few clicks.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="events.html" class="btn btn-primary">Explore Events</a>
+                        <a href="#upcoming-events" class="btn btn-secondary">View Upcoming</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual reveal-on-scroll">
+                    <div class="hero-image-wrapper">
+                        <!-- Fallback / Image container -->
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1000&q=80" alt="Campus Event Gathering" class="hero-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hero-img-placeholder" style="display: none;">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+
+                        <!-- Floating Accent Cards -->
+                        <div class="floating-card date-card">
+                            <div class="card-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                            <div class="card-info">
+                                <span class="card-label">Next Major Fest</span>
+                                <span class="card-val" id="hero-next-fest-val">Loading...</span>
+                            </div>
+                        </div>
+
+                        <div class="floating-card info-card">
+                            <div class="badge-live"><span class="pulse-dot"></span> Live Registration</div>
+                            <span class="card-title font-heading" id="hero-live-reg-title">Loading...</span>
+                            <span class="card-sub" id="hero-live-reg-count-container"><i class="fa-solid fa-users"></i> <span id="hero-live-reg-count">...</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UPCOMING EVENTS SECTION -->
+        <section class="section upcoming-section" id="upcoming-events">
+            <div class="container">
+                <div class="section-header text-center reveal-on-scroll">
+                    <h2 class="section-title">Upcoming Events</h2>
+                    <p class="section-subtitle">Don’t miss what’s happening around campus.</p>
+                </div>
+
+                <div class="events-grid" id="upcoming-events-grid">
+                    <!-- Events will be dynamically injected here by main.js -->
+                </div>
+
+                <div class="section-footer text-center reveal-on-scroll">
+                    <a href="events.html" class="btn btn-outline">View All Events <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENT CATEGORIES SECTION -->
+        <section class="section categories-section">
+            <div class="container">
+                <div class="section-header text-center reveal-on-scroll">
+                    <h2 class="section-title">Explore by Category</h2>
+                    <p class="section-subtitle">Find events that match your interests.</p>
+                </div>
+
+                <div class="categories-grid">
+                    <a href="events.html?category=technical" class="category-card reveal-on-scroll">
+                        <div class="category-icon-box"><i class="fa-solid fa-laptop-code"></i></div>
+                        <h3 class="category-name">Technical</h3>
+                    </a>
+
+                    <a href="events.html?category=cultural" class="category-card reveal-on-scroll">
+                        <div class="category-icon-box"><i class="fa-solid fa-masks-theater"></i></div>
+                        <h3 class="category-name">Cultural</h3>
+                    </a>
+
+                    <a href="events.html?category=competitions" class="category-card reveal-on-scroll">
+                        <div class="category-icon-box"><i class="fa-solid fa-trophy"></i></div>
+                        <h3 class="category-name">Competitions</h3>
+                    </a>
+
+                    <a href="events.html?category=sports" class="category-card reveal-on-scroll">
+                        <div class="category-icon-box"><i class="fa-solid fa-volleyball"></i></div>
+                        <h3 class="category-name">Sports</h3>
+                    </a>
+
+                    <a href="events.html?category=workshops" class="category-card reveal-on-scroll">
+                        <div class="category-icon-box"><i class="fa-solid fa-chalkboard-user"></i></div>
+                        <h3 class="category-name">Workshops</h3>
+                    </a>
+
+                    <a href="events.html?category=seminars" class="category-card reveal-on-scroll">
+                        <div class="category-icon-box"><i class="fa-solid fa-microphone-lines"></i></div>
+                        <h3 class="category-name">Seminars</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY PARTICIPATE SECTION -->
+        <section class="section why-section">
+            <div class="container">
+                <div class="section-header text-center reveal-on-scroll">
+                    <h2 class="section-title">Why Participate?</h2>
+                    <p class="section-subtitle">Make the absolute most out of your campus tenure.</p>
+                </div>
+
+                <div class="benefits-grid">
+                    <div class="benefit-card reveal-on-scroll">
+                        <div class="benefit-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+                        <h3 class="benefit-title">Learn</h3>
+                        <p class="benefit-desc">Attend workshops and seminars to develop practical, high-value skills.</p>
+                    </div>
+
+                    <div class="benefit-card reveal-on-scroll">
+                        <div class="benefit-icon"><i class="fa-solid fa-medal"></i></div>
+                        <h3 class="benefit-title">Compete</h3>
+                        <p class="benefit-desc">Take part in competitions and showcase your technical or creative abilities.</p>
+                    </div>
+
+                    <div class="benefit-card reveal-on-scroll">
+                        <div class="benefit-icon"><i class="fa-solid fa-people-group"></i></div>
+                        <h3 class="benefit-title">Connect</h3>
+                        <p class="benefit-desc">Meet students, interact with distinguished peers and build lifelong connections.</p>
+                    </div>
+
+                    <div class="benefit-card reveal-on-scroll">
+                        <div class="benefit-icon"><i class="fa-solid fa-star"></i></div>
+                        <h3 class="benefit-title">Experience</h3>
+                        <p class="benefit-desc">Be part of memorable college activities, moments, and leadership experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION SECTION -->
+        <section class="cta-section">
+            <div class="container cta-container reveal-on-scroll">
+                <div class="cta-content">
+                    <h2 class="cta-title font-heading">Ready to find your next event?</h2>
+                    <p class="cta-text">Explore upcoming events and make the most of your college experience.</p>
+                    <a href="events.html" class="btn btn-primary btn-cta">Explore Events</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-top">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand-logo footer-logo">
+                    <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                    <span class="logo-text">College Events</span>
+                </a>
+                <p class="footer-desc">
+                    Discover, participate and experience everything happening around campus. Your central hub for campus engagements.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="my-registrations.html">My Registrations</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Event Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="events.html?category=technical">Technical</a></li>
+                    <li><a href="events.html?category=cultural">Cultural</a></li>
+                    <li><a href="events.html?category=sports">Sports</a></li>
+                    <li><a href="events.html?category=workshops">Workshops</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact</h4>
+                <ul class="footer-contact-list">
+                    <li><i class="fa-regular fa-envelope"></i> events@college.edu</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</li>
+                    <li><i class="fa-solid fa-location-dot"></i> College Campus, Pune</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; <span id="current-year">2026</span> College Events and Registration System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

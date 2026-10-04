@@ -1,0 +1,228 @@
+/* ==========================================================================
+   ADMIN USERS STYLES
+   Minimal overrides/additions to complement registrations.css/dashboard.css
+   ========================================================================== */
+
+/* Overview Section Layout Adjustments */
+.events-overview-strip {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.overview-cards-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 1.25rem;
+    flex: 1;
+}
+
+.overview-card {
+    flex: 1;
+    margin-bottom: 0;
+    min-width: 180px;
+}
+
+.btn-add-event {
+    flex-shrink: 0;
+}
+
+/* User specific badge colors */
+.status-badge.role-admin {
+    background-color: var(--purple-light);
+    color: var(--purple);
+}
+
+.status-badge.role-student {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+/* User table cell layout */
+.user-cell {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-cell-title {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.user-cell-sub {
+    font-size: 0.775rem;
+    color: var(--text-secondary);
+}
+
+/* Delete Icon distinct style */
+.delete-warning-icon.fa-user-xmark {
+    font-size: 2.75rem; 
+    color: var(--danger); 
+    margin-bottom: 0.85rem;
+}
+
+/* Overview Icon for Admin */
+.ov-purple {
+    background-color: var(--purple-light);
+    color: var(--purple);
+}
+
+/* ==========================================================================
+   MODAL FORM REFINEMENTS
+   ========================================================================== */
+
+/* Error banner explicit hide */
+.form-error-banner.hidden {
+    display: none !important;
+}
+
+#user-modal .modal-container {
+    max-width: 720px;
+}
+
+/* Clean structural grid for Add/Edit Modal */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Premium Typography for Modal Labels */
+.modal-field-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-secondary);
+}
+
+.modal-field-label.required::after {
+    content: " *";
+    color: var(--danger);
+}
+
+/* Form Controls Restyling */
+.form-control {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    background-color: var(--admin-bg);
+    transition: all 0.2s ease;
+    min-height: 42px;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+/* Visual Section Dividers inside Modal */
+.modal-form-divider {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 1.25rem 0 0.5rem 0;
+    width: 100%;
+}
+
+#password-group {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+/* Premium Radio Button Group */
+.role-radio-group {
+    display: flex;
+    gap: 2rem;
+    margin-top: 0.4rem;
+}
+
+.role-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.role-radio-label input[type="radio"] {
+    display: none;
+}
+
+.radio-custom {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--admin-bg);
+    transition: var(--transition-base);
+}
+
+.role-radio-label input[type="radio"]:checked + .radio-custom {
+    border-color: var(--primary);
+    background-color: var(--primary-light);
+}
+
+.role-radio-label input[type="radio"]:checked + .radio-custom::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    display: block;
+    transform: scale(1);
+}
+
+/* Responsive Overrides */
+@media (max-width: 992px) {
+    .events-overview-strip {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .overview-cards-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    
+    .btn-add-event {
+        width: 100%;
+    }
+}
+
+@media (max-width: 680px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: 1 / -1;
+    }
+}

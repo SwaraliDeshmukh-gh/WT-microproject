@@ -1,0 +1,601 @@
+/* ==========================================================================
+   ABOUT PAGE STYLES (EXACT MAIN PAGE BALANCE)
+   ========================================================================== */
+
+/* Shared Section Formatting */
+.about-section {
+    padding: 5rem 0;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+    background-color: rgba(217, 119, 6, 0.1);
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.875rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.section-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* 1. HERO SECTION */
+.about-hero {
+    background-color: var(--color-bg-light);
+    padding: 4rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-hero-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(15, 23, 42, 0.04);
+    border: 1px solid var(--color-border);
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+.hero-tagline {
+    font-size: 1.2rem;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 540px;
+}
+
+/* Visual Card Stack Graphic */
+.about-hero-graphic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-card-stack {
+    position: relative;
+    width: 280px;
+    height: 240px;
+}
+
+.stack-card {
+    position: absolute;
+    width: 230px;
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(15, 23, 42, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+    transition: var(--transition-base);
+}
+
+.stack-card i {
+    font-size: 1.4rem;
+    color: var(--color-accent);
+}
+
+.card-1 {
+    top: 0;
+    left: 0;
+    transform: rotate(-5deg);
+    background: var(--color-primary);
+    color: #FFFFFF;
+    z-index: 3;
+}
+
+.card-2 {
+    top: 60px;
+    left: 30px;
+    transform: rotate(2deg);
+    background: var(--color-primary-light);
+    color: #FFFFFF;
+    z-index: 2;
+}
+
+.card-3 {
+    top: 120px;
+    left: 50px;
+    transform: rotate(6deg);
+    background: #FFFFFF;
+    color: var(--color-primary);
+    z-index: 1;
+}
+
+/* 2. VISION SECTION */
+.vision-section {
+    background-color: var(--color-bg-alt);
+    border-top: 1px solid var(--color-border-subtle);
+    border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.vision-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.vision-content p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 1.025rem;
+}
+
+.vision-content p.highlight-text {
+    color: var(--color-primary);
+    font-weight: 600;
+    border-left: 3px solid var(--color-accent);
+    padding-left: 1rem;
+    margin-top: 1.25rem;
+}
+
+.vision-banner-card {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    color: var(--color-text-light);
+    box-shadow: var(--shadow-lg);
+}
+
+.banner-icon {
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+}
+
+.banner-inner h3 {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+}
+
+.banner-inner p {
+    color: #94A3B8;
+    font-size: 0.95rem;
+}
+
+/* 3. EXPERIENCE SECTION */
+.experience-section {
+    background-color: var(--color-bg-light);
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.exp-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 2rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-base);
+}
+
+.exp-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(15, 23, 42, 0.15);
+}
+
+.exp-icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+    background-color: rgba(217, 119, 6, 0.1);
+    color: var(--color-accent);
+}
+
+.exp-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+}
+
+.exp-card p {
+    font-size: 0.925rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+/* 4. CONVENIENCE SECTION */
+.convenience-section {
+    background-color: var(--color-bg-alt);
+    border-top: 1px solid var(--color-border-subtle);
+    border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.convenience-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.convenience-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.convenience-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    position: relative;
+}
+
+.timeline-step {
+    background-color: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem 1.5rem;
+    position: relative;
+    transition: var(--transition-base);
+}
+
+.timeline-step:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-sm);
+}
+
+.step-num {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+}
+
+.step-content h4 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--color-primary);
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+}
+
+.step-content p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+/* 5. QUOTE SECTION */
+.quote-section {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: var(--color-text-light);
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.quote-box {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.quote-icon {
+    font-size: 2.25rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+}
+
+.quote-text {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.quote-sub {
+    font-size: 1.05rem;
+    color: #94A3B8;
+    line-height: 1.6;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+/* 6. MOMENTS SLIDER SECTION */
+.memories-section {
+    background-color: var(--color-bg-light);
+}
+
+.memories-slider-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 3rem auto 0;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.memories-slides-container {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 350px;
+}
+
+.memory-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 15%;
+    text-align: center;
+    z-index: 1;
+}
+
+.memory-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+.slide-bg-num {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-heading);
+    font-size: clamp(8rem, 20vw, 15rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    opacity: 0.03;
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
+}
+
+.slide-content {
+    position: relative;
+    z-index: 2;
+}
+
+.slide-icon {
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
+}
+
+.slide-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.slide-text {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+/* Slider Controls */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.slider-arrow:hover {
+    background-color: var(--color-primary);
+    color: #FFFFFF;
+    border-color: var(--color-primary);
+}
+
+.prev-arrow {
+    left: 1.5rem;
+}
+
+.next-arrow {
+    right: 1.5rem;
+}
+
+.slider-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    z-index: 10;
+    position: relative;
+}
+
+.indicator-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-border-subtle);
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: var(--transition-base);
+    padding: 0;
+}
+
+.indicator-dot:hover {
+    background-color: #94A3B8;
+}
+
+.indicator-dot.active {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: scale(1.3);
+}
+
+/* 7. CALL TO ACTION */
+.about-cta {
+    padding: 5rem 0;
+    background-color: var(--color-bg-alt);
+}
+
+.cta-box {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    border-radius: var(--radius-lg);
+    padding: 4rem 2rem;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    color: #FFFFFF;
+    box-shadow: var(--shadow-lg);
+}
+
+.cta-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 3vw, 2.75rem);
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.cta-text {
+    font-size: 1.1rem;
+    color: #94A3B8;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
+    background-color: var(--color-accent);
+    color: #FFFFFF;
+}
+
+.cta-button:hover {
+    background-color: var(--color-accent-hover);
+    color: #FFFFFF;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+    .about-hero-container,
+    .vision-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .about-hero-graphic {
+        margin-top: 1rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .memory-slide {
+        padding: 3rem 10%;
+    }
+    .slider-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    .prev-arrow { left: 0.5rem; }
+    .next-arrow { right: 0.5rem; }
+}
+
+@media (max-width: 576px) {
+    .about-hero {
+        padding: 3rem 0 4rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+}

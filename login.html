@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Account | College Events & Registration System</title>
+    <meta name="description" content="Access your student account or administrative dashboard for the College Events and Registration System.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar-header" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <span class="logo-text">College Events</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+                    <li class="nav-item"><a href="my-registrations.html" class="nav-link">My Registrations</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link btn-nav-login active">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="login-main-section">
+        <div class="container">
+            <div class="auth-wrapper">
+                
+                <!-- Feedback Notification Banner -->
+                <div id="auth-feedback" class="auth-feedback">
+                    <i id="feedback-icon" class="fa-solid fa-circle-check"></i>
+                    <span id="feedback-message"></span>
+                </div>
+
+                <!-- Auth Card Container -->
+                <div class="auth-card">
+                    
+                    <!-- Role Switcher Tabs (Student / Admin) -->
+                    <div class="role-tabs-container">
+                        <button type="button" class="role-tab active" data-role="student">
+                            <i class="fa-solid fa-user-graduate"></i> Student Portal
+                        </button>
+                        <button type="button" class="role-tab" data-role="admin">
+                            <i class="fa-solid fa-user-shield"></i> Admin Portal
+                        </button>
+                    </div>
+
+                    <!-- CARD HEADER TITLE -->
+                    <div class="auth-header text-center">
+                        <h1 id="auth-title" class="font-heading">Student Login</h1>
+                        <p id="auth-subtitle">Enter your credentials to access your event registrations.</p>
+                    </div>
+
+                    <!-- ================= STUDENT LOGIN FORM ================= -->
+                    <form id="student-login-form" class="auth-form active-form" novalidate>
+                        <div class="form-group">
+                            <label for="student-login-id" class="form-label">Email or Student ID</label>
+                            <div class="input-icon-wrapper">
+                                <i class="fa-regular fa-envelope"></i>
+                                <input type="text" id="student-login-id" class="form-input" placeholder="e.g. student@college.edu or ST1024" autocomplete="username">
+                            </div>
+                            <span class="error-message" id="student-login-id-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="student-login-pass" class="form-label">Password</label>
+                            <div class="input-icon-wrapper">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="student-login-pass" class="form-input" placeholder="Enter your password" autocomplete="current-password">
+                                <button type="button" class="password-toggle-btn" aria-label="Toggle password visibility">
+                                    <i class="fa-regular fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="error-message" id="student-login-pass-error"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">Login to Student Portal</button>
+
+                        <div class="auth-switch-prompt">
+                            <span>Don't have an account?</span> 
+                            <button type="button" class="switch-link-btn" id="to-signup-btn">Create Account</button>
+                        </div>
+                    </form>
+
+                    <!-- ================= ADMIN LOGIN FORM ================= -->
+                    <form id="admin-login-form" class="auth-form" novalidate>
+                        <div class="form-group">
+                            <label for="admin-login-id" class="form-label">Admin ID or Email</label>
+                            <div class="input-icon-wrapper">
+                                <i class="fa-solid fa-id-badge"></i>
+                                <input type="text" id="admin-login-id" class="form-input" placeholder="e.g. admin@college.edu" autocomplete="username">
+                            </div>
+                            <span class="error-message" id="admin-login-id-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="admin-login-pass" class="form-label">Admin Password</label>
+                            <div class="input-icon-wrapper">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="admin-login-pass" class="form-input" placeholder="Enter admin password" autocomplete="current-password">
+                                <button type="button" class="password-toggle-btn" aria-label="Toggle password visibility">
+                                    <i class="fa-regular fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="error-message" id="admin-login-pass-error"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">Login to Admin Dashboard</button>
+                    </form>
+
+                    <!-- ================= STUDENT CREATE ACCOUNT FORM ================= -->
+                    <form id="student-signup-form" class="auth-form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="signup-name" class="form-label">Full Name</label>
+                                <input type="text" id="signup-name" class="form-input" placeholder="John Doe">
+                                <span class="error-message" id="signup-name-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-id" class="form-label">Student ID</label>
+                                <input type="text" id="signup-id" class="form-input" placeholder="ST202601">
+                                <span class="error-message" id="signup-id-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="signup-class" class="form-label">Class</label>
+                                <select id="signup-class" class="form-input">
+                                    <option value="">Select Class</option>
+                                    <option value="B.Tech Computer Science">B.Tech Computer Science</option>
+                                    <option value="B.Tech Information Technology">B.Tech Information Technology</option>
+                                    <option value="B.Tech Electronics & Telecomm">B.Tech Electronics & Telecomm</option>
+                                    <option value="BCA">BCA</option>
+                                    <option value="MCA">MCA</option>
+                                </select>
+                                <span class="error-message" id="signup-class-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-division" class="form-label">Division</label>
+                                <select id="signup-division" class="form-input">
+                                    <option value="">Select Division</option>
+                                    <option value="Division A">Division A</option>
+                                    <option value="Division B">Division B</option>
+                                    <option value="Division C">Division C</option>
+                                </select>
+                                <span class="error-message" id="signup-division-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="signup-email" class="form-label">Email Address</label>
+                                <input type="email" id="signup-email" class="form-input" placeholder="student@college.edu">
+                                <span class="error-message" id="signup-email-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-phone" class="form-label">Phone Number</label>
+                                <input type="tel" id="signup-phone" class="form-input" placeholder="9876543210">
+                                <span class="error-message" id="signup-phone-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="signup-pass" class="form-label">Password</label>
+                                <div class="input-icon-wrapper">
+                                    <input type="password" id="signup-pass" class="form-input" placeholder="Min 6 characters">
+                                    <button type="button" class="password-toggle-btn" aria-label="Toggle password visibility">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </button>
+                                </div>
+                                <span class="error-message" id="signup-pass-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-confirm-pass" class="form-label">Confirm Password</label>
+                                <div class="input-icon-wrapper">
+                                    <input type="password" id="signup-confirm-pass" class="form-input" placeholder="Re-enter password">
+                                    <button type="button" class="password-toggle-btn" aria-label="Toggle password visibility">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </button>
+                                </div>
+                                <span class="error-message" id="signup-confirm-pass-error"></span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+
+                        <div class="auth-switch-prompt">
+                            <span>Already have an account?</span> 
+                            <button type="button" class="switch-link-btn" id="to-login-btn">Login</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-top">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand-logo footer-logo">
+                    <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                    <span class="logo-text">College Events</span>
+                </a>
+                <p class="footer-desc">
+                    Discover, participate and experience everything happening around campus. Your central hub for campus engagements.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="my-registrations.html">My Registrations</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Event Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="events.html?category=technical">Technical</a></li>
+                    <li><a href="events.html?category=cultural">Cultural</a></li>
+                    <li><a href="events.html?category=sports">Sports</a></li>
+                    <li><a href="events.html?category=workshops">Workshops</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact</h4>
+                <ul class="footer-contact-list">
+                    <li><i class="fa-regular fa-envelope"></i> events@college.edu</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</li>
+                    <li><i class="fa-solid fa-location-dot"></i> College Campus, Pune</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; <span id="current-year">2026</span> College Events and Registration System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

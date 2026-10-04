@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aboutPage>
+    <hero>
+        <badgeIcon>fa-solid fa-sparkles</badgeIcon>
+        <badgeText>Welcome to Campus Life</badgeText>
+        <title>About College Events</title>
+        <tagline>More than events. It's where campus life comes alive.</tagline>
+        <description>College Events is your central platform for discovering everything happening across our campus. Whether you want to learn new technical skills, showcase your talent on stage, compete in sports tournaments, or connect with peers, this platform brings every opportunity directly to you.</description>
+        <cards>
+            <card>
+                <icon>fa-solid fa-code</icon>
+                <text>Hackathons</text>
+                <class>card-1</class>
+            </card>
+            <card>
+                <icon>fa-solid fa-masks-theater</icon>
+                <text>Cultural Fests</text>
+                <class>card-2</class>
+            </card>
+            <card>
+                <icon>fa-solid fa-trophy</icon>
+                <text>Sports Meets</text>
+                <class>card-3</class>
+            </card>
+        </cards>
+    </hero>
+    
+    <purpose>
+        <tag>Our Purpose</tag>
+        <title>Bringing Campus Life Together</title>
+        <paragraphs>
+            <paragraph highlight="false">College is filled with energy, talent, and constant activity. On any given week, workshops, coding competitions, cultural rehearsals, sports matches, and expert seminars are taking place across various departments.</paragraph>
+            <paragraph highlight="false">However, with notices scattered across different boards, departmental groups, and messaging chats, students often miss out on exciting opportunities simply because they didn't hear about them in time.</paragraph>
+            <paragraph highlight="true">College Events bridges this gap by bringing every single campus activity into one clear, organized place—ensuring you never miss an opportunity to participate, learn, or celebrate.</paragraph>
+        </paragraphs>
+        <banner>
+            <icon>fa-solid fa-bullhorn</icon>
+            <title>No More Missed Opportunities</title>
+            <description>One unified schedule for all clubs, departments, and sports committees.</description>
+        </banner>
+    </purpose>
+
+    <experiences>
+        <tag>Campus Experiences</tag>
+        <title>Discover More Than Just Events</title>
+        <subtitle>Find experiences tailored to your passions and interests</subtitle>
+        <cards>
+            <card>
+                <colorClass>color-1</colorClass>
+                <icon>fa-solid fa-brain</icon>
+                <title>Learn</title>
+                <description>Discover hands-on workshops, technical bootcamps, and guest lectures to gain valuable skills beyond the classroom curriculum.</description>
+            </card>
+            <card>
+                <colorClass>color-2</colorClass>
+                <icon>fa-solid fa-flag-checkered</icon>
+                <title>Compete</title>
+                <description>Challenge yourself in coding hackathons, debate tournaments, gaming showdowns, and inter-college sports competitions.</description>
+            </card>
+            <card>
+                <colorClass>color-3</colorClass>
+                <icon>fa-solid fa-palette</icon>
+                <title>Create</title>
+                <description>Express your creative spirit through music festivals, dance performances, drama, art exhibitions, and photography showcases.</description>
+            </card>
+            <card>
+                <colorClass>color-4</colorClass>
+                <icon>fa-solid fa-users</icon>
+                <title>Connect</title>
+                <description>Meet students from other departments, join passionate club communities, and build lifelong memories during your college years.</description>
+            </card>
+        </cards>
+    </experiences>
+
+    <convenience>
+        <tag>Streamlined Experience</tag>
+        <title>Everything You Need, In One Spot</title>
+        <description>We've eliminated complicated registration processes so you can focus on being part of the action.</description>
+        <steps>
+            <step>
+                <number>01</number>
+                <title>Discover Easily</title>
+                <description>Filter activities by technical, cultural, sports, or workshop categories with up-to-date details.</description>
+            </step>
+            <step>
+                <number>02</number>
+                <title>Get All Info</title>
+                <description>Check dates, precise campus venues, timing, schedules, rules, and remaining available seats.</description>
+            </step>
+            <step>
+                <number>03</number>
+                <title>Instant Registration</title>
+                <description>Reserve your spot online in seconds and receive your digital confirmation pass right away.</description>
+            </step>
+            <step>
+                <number>04</number>
+                <title>Manage Easily</title>
+                <description>Keep track of all your upcoming participation passes in your personal "My Registrations" dashboard.</description>
+            </step>
+        </steps>
+    </convenience>
+
+    <quote>
+        <icon>fa-solid fa-quote-left</icon>
+        <text>"Don't just attend college. Experience it."</text>
+        <description>Academic lectures give you knowledge, but campus activities build character, confidence, and community. Take part, cheer for your friends, learn something unexpected, and make your college journey unforgettable.</description>
+    </quote>
+
+    <memories>
+        <tag>Campus Memories</tag>
+        <title>Moments That Become Memories</title>
+        <subtitle>College is not only about where you go. It's about what you experience along the way.</subtitle>
+        <slides>
+            <slide>
+                <number>01</number>
+                <icon>fa-solid fa-microphone-lines</icon>
+                <title>The First Time You Step on Stage</title>
+                <description>That moment when you finally share your talent, ideas, or creativity with an audience.</description>
+            </slide>
+            <slide>
+                <number>02</number>
+                <icon>fa-solid fa-people-group</icon>
+                <title>The Team You Didn't Know You'd Meet</title>
+                <description>Some of the best connections begin with a simple invitation to join something new.</description>
+            </slide>
+            <slide>
+                <number>03</number>
+                <icon>fa-solid fa-trophy</icon>
+                <title>The Competition You Almost Didn't Enter</title>
+                <description>Sometimes the experiences you almost skip become the ones you remember the longest.</description>
+            </slide>
+            <slide>
+                <number>04</number>
+                <icon>fa-solid fa-lightbulb</icon>
+                <title>The Workshop That Sparks Something New</title>
+                <description>One new idea, skill, or conversation can change the way you see what you're capable of.</description>
+            </slide>
+            <slide>
+                <number>05</number>
+                <icon>fa-solid fa-champagne-glasses</icon>
+                <title>The Evening Everyone Remembers</title>
+                <description>The event ends, but the laughter, conversations, and memories stay long after it does.</description>
+            </slide>
+        </slides>
+    </memories>
+
+    <callToAction>
+        <title>What's happening on campus?</title>
+        <description>Find your next event and be part of the vibrant campus experience.</description>
+        <buttonText>Explore Events</buttonText>
+        <buttonLink>events.html</buttonLink>
+    </callToAction>
+</aboutPage>

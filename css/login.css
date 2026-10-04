@@ -1,0 +1,253 @@
+/* ==========================================================================
+   LOGIN & CREATE ACCOUNT PAGE STYLES
+   ========================================================================== */
+
+.login-main-section {
+    padding: 3.5rem 0 5rem;
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.04) 0%, rgba(248, 250, 252, 1) 100%);
+    min-height: calc(100vh - 72px - 260px);
+    display: flex;
+    align-items: center;
+}
+
+.auth-wrapper {
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+/* Auth Card */
+.auth-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+/* Role Switcher Tabs */
+.role-tabs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    background-color: var(--color-bg-light);
+    padding: 0.35rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin-bottom: 2rem;
+}
+
+.role-tab {
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.925rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: var(--transition-base);
+}
+
+.role-tab:hover {
+    color: var(--color-primary);
+}
+
+.role-tab.active {
+    background-color: var(--color-bg-card);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Auth Header */
+.auth-header {
+    margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+    font-size: 1.85rem;
+    color: var(--color-primary);
+    margin-bottom: 0.4rem;
+}
+
+.auth-header p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+/* Forms Visibility Toggle */
+.auth-form {
+    display: none;
+}
+
+.auth-form.active-form {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Form Layouts & Inputs */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary-light);
+    margin-bottom: 0.4rem;
+}
+
+.input-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon-wrapper > i:first-child {
+    position: absolute;
+    left: 0.85rem;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+.input-icon-wrapper .form-input {
+    padding-left: 2.5rem;
+}
+
+.password-toggle-btn {
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-size: 0.95rem;
+    padding: 0.2rem;
+}
+
+.password-toggle-btn:hover {
+    color: var(--color-primary);
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
+}
+
+.form-input.is-invalid {
+    border-color: #dc2626;
+}
+
+.form-input.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+/* Validation Error Messages */
+.error-message {
+    display: block;
+    font-size: 0.775rem;
+    color: #dc2626;
+    margin-top: 0.3rem;
+    min-height: 1rem;
+}
+
+/* Full Width Buttons */
+.btn-full {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.8rem;
+    font-size: 1rem;
+}
+
+/* Switch Links */
+.auth-switch-prompt {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+.switch-link-btn {
+    background: none;
+    border: none;
+    color: var(--color-accent);
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    padding: 0;
+    margin-left: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.switch-link-btn:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    .auth-card {
+        padding: 1.5rem;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+/* ==========================================================================
+   AUTH FEEDBACK NOTIFICATION BANNER
+   ========================================================================== */
+.auth-feedback {
+    display: none;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.925rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--shadow-sm);
+    animation: fadeIn 0.3s ease;
+}
+
+.auth-feedback.success {
+    background-color: #ecfdf5;
+    border: 1px solid #10b981;
+    color: #065f46;
+}
+
+.auth-feedback.success i {
+    color: #059669;
+    font-size: 1.1rem;
+}

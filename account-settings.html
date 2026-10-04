@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings | College Events & Registration System</title>
+    <meta name="description" content="Update your personal information and account security.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/account-settings.css">
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar-header" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <span class="logo-text">College Events</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+                    <li class="nav-item"><a href="my-registrations.html" class="nav-link">My Registrations</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link btn-nav-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="settings-page">
+        <section class="section settings-section">
+            <div class="container settings-container">
+                
+                <div class="section-header text-center reveal-on-scroll">
+                    <h1 class="section-title">Account Settings</h1>
+                    <p class="section-subtitle">Update your personal information and account security.</p>
+                </div>
+
+                <!-- PERSONAL INFORMATION CARD -->
+                <div class="settings-card reveal-on-scroll">
+                    <div class="card-header-basic">
+                        <h2 class="settings-card-title"><i class="fa-solid fa-user-pen"></i> Personal Information</h2>
+                    </div>
+                    
+                    <div id="profile-alert" class="settings-alert"></div>
+
+                    <form id="profile-form">
+                        <div class="form-grid">
+                            <div class="form-group full-width-mobile">
+                                <label for="profile-name" class="form-label">Full Name</label>
+                                <input type="text" id="profile-name" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group full-width-mobile">
+                                <label for="profile-studentid" class="form-label">Student ID</label>
+                                <input type="text" id="profile-studentid" class="form-control" readonly title="Student ID cannot be changed">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profile-class" class="form-label">Class</label>
+                                <input type="text" id="profile-class" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profile-division" class="form-label">Division</label>
+                                <input type="text" id="profile-division" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group full-width-mobile">
+                                <label for="profile-email" class="form-label">Email Address</label>
+                                <input type="email" id="profile-email" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group full-width-mobile">
+                                <label for="profile-phone" class="form-label">Phone Number</label>
+                                <input type="tel" id="profile-phone" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="btn-save-profile">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- CHANGE PASSWORD CARD -->
+                <div class="settings-card reveal-on-scroll">
+                    <div class="card-header-basic">
+                        <h2 class="settings-card-title"><i class="fa-solid fa-shield-halved"></i> Change Password</h2>
+                    </div>
+
+                    <div id="password-alert" class="settings-alert"></div>
+
+                    <form id="password-form">
+                        <div class="form-grid password-grid">
+                            <div class="form-group full-row">
+                                <label for="current-password" class="form-label">Current Password</label>
+                                <input type="password" id="current-password" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="new-password" class="form-label">New Password</label>
+                                <input type="password" id="new-password" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirm-password" class="form-label">Confirm New Password</label>
+                                <input type="password" id="confirm-password" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="btn-update-password">Update Password</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-top">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand-logo footer-logo">
+                    <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                    <span class="logo-text">College Events</span>
+                </a>
+                <p class="footer-desc">
+                    Discover, participate and experience everything happening around campus. Your central hub for campus engagements.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="my-registrations.html">My Registrations</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Event Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="events.html?category=technical">Technical</a></li>
+                    <li><a href="events.html?category=cultural">Cultural</a></li>
+                    <li><a href="events.html?category=sports">Sports</a></li>
+                    <li><a href="events.html?category=workshops">Workshops</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact</h4>
+                <ul class="footer-contact-list">
+                    <li><i class="fa-regular fa-envelope"></i> events@college.edu</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</li>
+                    <li><i class="fa-solid fa-location-dot"></i> College Campus, Pune</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; <span id="current-year">2026</span> College Events and Registration System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/account-settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Registrations | College Events & Registration System</title>
+    <meta name="description" content="View and manage all your registered college events.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Main & Page CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/my-registrations.css">
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar-header" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <span class="logo-text">College Events</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+                    <li class="nav-item"><a href="my-registrations.html" class="nav-link active">My Registrations</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link btn-nav-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- BREADCRUMB -->
+        <section class="breadcrumb-section">
+            <div class="container">
+                <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span>My Registrations</span>
+                </nav>
+            </div>
+        </section>
+
+        <!-- PAGE HEADER -->
+        <section class="page-header-section">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="page-title font-heading">My Registrations</h1>
+                    <p class="page-subtitle">View and manage the events you have registered for across campus.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN REGISTRATIONS SECTION -->
+        <section class="section registrations-section">
+            <div class="container">
+                
+                <!-- Filter Bar & Counter -->
+                <div class="registration-toolbar" id="registration-toolbar">
+                    <div class="filter-group">
+                        <span class="filter-label"><i class="fa-solid fa-filter"></i> Filter:</span>
+                        <div class="filter-buttons">
+                            <button class="btn-filter active" data-filter="all">All (<span id="count-all">0</span>)</button>
+                            <button class="btn-filter" data-filter="confirmed">Confirmed (<span id="count-confirmed">0</span>)</button>
+                            <button class="btn-filter" data-filter="cancelled">Cancelled (<span id="count-cancelled">0</span>)</button>
+                        </div>
+                    </div>
+                    <div class="total-status">
+                        Showing <span id="displayed-count">0</span> registration(s)
+                    </div>
+                </div>
+
+                <!-- Registration Cards Grid Container -->
+                <div id="registrations-grid" class="registrations-grid"></div>
+
+                <!-- Empty State Container -->
+                <div id="empty-state" class="empty-state-card" style="display: none;">
+                    <div class="empty-icon-wrapper">
+                        <i class="fa-regular fa-calendar-xmark empty-icon"></i>
+                    </div>
+                    <h3 class="empty-title font-heading">No Registrations Found</h3>
+                    <p class="empty-message" id="empty-message">You haven't registered for any events yet. Explore upcoming campus activities and get involved!</p>
+                    <a href="events.html" class="btn btn-primary">
+                        <i class="fa-solid fa-compass"></i> Explore Events
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- CANCEL CONFIRMATION MODAL -->
+    <div class="modal-backdrop" id="cancel-modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-labelledby="modal-title">
+            <div class="modal-header">
+                <div class="modal-icon-wrapper">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h3 id="modal-title" class="modal-title font-heading">Cancel Registration?</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to cancel your registration for <strong id="modal-event-title">this event</strong>?</p>
+                <p class="modal-warning">This action will release your spot for other students.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" id="btn-modal-close">Keep Registration</button>
+                <button type="button" class="btn btn-danger" id="btn-modal-confirm">Confirm Cancellation</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-top">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand-logo footer-logo">
+                    <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                    <span class="logo-text">College Events</span>
+                </a>
+                <p class="footer-desc">
+                    Discover, participate and experience everything happening around campus. Your central hub for campus engagements.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="my-registrations.html">My Registrations</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Event Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="events.html?category=technical">Technical</a></li>
+                    <li><a href="events.html?category=cultural">Cultural</a></li>
+                    <li><a href="events.html?category=sports">Sports</a></li>
+                    <li><a href="events.html?category=workshops">Workshops</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact</h4>
+                <ul class="footer-contact-list">
+                    <li><i class="fa-regular fa-envelope"></i> events@college.edu</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</li>
+                    <li><i class="fa-solid fa-location-dot"></i> College Campus, Pune</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; <span id="current-year">2026</span> College Events and Registration System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/my-registrations.js"></script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | College Events</title>
+    <meta name="description" content="Sign in or create a student account to manage your event registrations and explore campus activities.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar-header" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <span class="logo-text">College Events</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+                    <li class="nav-item"><a href="my-registrations.html" class="nav-link">My Registrations</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link btn-nav-login active">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="login-main">
+        <div class="container">
+            <div class="auth-card-container">
+                <!-- VISUAL BRANDING SIDE -->
+                <div class="auth-visual-side">
+                    <div class="visual-content">
+                        <div class="visual-badge">
+                            <i class="fa-solid fa-sparkles"></i> Campus Portal
+                        </div>
+                        <h2 class="visual-title font-heading" id="visual-heading">Your Gateway to Campus Life</h2>
+                        <p class="visual-description" id="visual-desc">
+                            Access your event passes, check real-time workshop schedules, and stay connected with everything happening on campus.
+                        </p>
+                        
+                        <div class="visual-features-list">
+                            <div class="vf-item">
+                                <i class="fa-solid fa-ticket"></i>
+                                <span>Manage active registrations</span>
+                            </div>
+                            <div class="vf-item">
+                                <i class="fa-solid fa-bell"></i>
+                                <span>Get schedule updates & notifications</span>
+                            </div>
+                            <div class="vf-item">
+                                <i class="fa-solid fa-award"></i>
+                                <span>Track participation records</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORM SIDE -->
+                <div class="auth-form-side">
+                    <div class="form-wrapper">
+                        <a href="index.html" class="back-home-link">
+                            <i class="fa-solid fa-arrow-left"></i> Back to Home
+                        </a>
+
+                        <!-- USER ROLE SELECTOR (STUDENT vs ADMIN) -->
+                        <div class="user-type-tabs" id="user-role-tabs" role="tablist" aria-label="Account role selector">
+                            <button type="button" class="tab-btn active" id="tab-student" role="tab" aria-selected="true" data-role="student">
+                                <i class="fa-solid fa-user-graduate"></i> Student
+                            </button>
+                            <button type="button" class="tab-btn" id="tab-admin" role="tab" aria-selected="false" data-role="admin">
+                                <i class="fa-solid fa-user-shield"></i> Admin
+                            </button>
+                        </div>
+
+                        <!-- TOP STATUS NOTIFICATION AREA -->
+                        <div class="form-status-alert" id="form-alert" role="alert" aria-live="polite" style="display: none;"></div>
+
+                        <!-- STATE 1: SIGN IN FORM -->
+                        <div class="auth-state-box" id="login-state">
+                            <div class="login-header">
+                                <h1 class="font-heading login-title">Welcome Back</h1>
+                                <p class="login-subtitle">Sign in to continue to College Events</p>
+                            </div>
+
+                            <form id="login-form" novalidate>
+                                <!-- IDENTITY FIELD -->
+                                <div class="form-group">
+                                    <label for="login-identifier" id="label-identifier" class="form-label">Student ID or College Email</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-regular fa-envelope input-icon"></i>
+                                        <input type="text" id="login-identifier" name="identifier" class="form-input" placeholder="e.g. ST12345 or student@college.edu" autocomplete="username">
+                                    </div>
+                                    <span class="error-text" id="error-login-identifier"></span>
+                                </div>
+
+                                <!-- PASSWORD FIELD -->
+                                <div class="form-group">
+                                    <label for="login-password" class="form-label">Password</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-solid fa-lock input-icon"></i>
+                                        <input type="password" id="login-password" name="password" class="form-input" placeholder="Enter your password" autocomplete="current-password">
+                                        <button type="button" class="toggle-password-btn" data-target="login-password" aria-label="Toggle password visibility">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <span class="error-text" id="error-login-password"></span>
+                                </div>
+
+                                <!-- REMEMBER ME & FORGOT PASSWORD -->
+                                <div class="form-options">
+                                    <label class="checkbox-container" id="remember-me-container">
+                                        <input type="checkbox" id="remember-me" name="remember">
+                                        <span class="checkmark"></span>
+                                        <span class="checkbox-label">Remember me</span>
+                                    </label>
+                                    <a href="#" class="forgot-password-link" id="forgot-password-link">Forgot Password?</a>
+                                </div>
+
+                                <!-- SUBMIT BUTTON -->
+                                <button type="submit" class="btn btn-primary btn-auth-submit">
+                                    <span>Sign In</span> <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </form>
+
+                            <!-- CREATE ACCOUNT PROMPT (STUDENT ONLY) -->
+                            <div class="auth-switch-prompt" id="student-signup-prompt">
+                                <p>Don't have a student account? <button type="button" class="link-btn" id="btn-show-signup">Create one</button></p>
+                            </div>
+                        </div>
+
+                        <!-- STATE 2: STUDENT CREATE ACCOUNT FORM -->
+                        <div class="auth-state-box" id="signup-state" style="display: none;">
+                            <div class="login-header">
+                                <h1 class="font-heading login-title">Create Account</h1>
+                                <p class="login-subtitle">Register your student details for campus events</p>
+                            </div>
+
+                            <form id="signup-form" novalidate>
+                                <!-- FULL NAME -->
+                                <div class="form-group">
+                                    <label for="signup-name" class="form-label">Full Name</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-regular fa-user input-icon"></i>
+                                        <input type="text" id="signup-name" name="fullName" class="form-input" placeholder="e.g. Alex Sharma">
+                                    </div>
+                                    <span class="error-text" id="error-signup-name"></span>
+                                </div>
+
+                                <!-- STUDENT ID -->
+                                <div class="form-group">
+                                    <label for="signup-studentid" class="form-label">Student ID</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-solid fa-id-card input-icon"></i>
+                                        <input type="text" id="signup-studentid" name="studentId" class="form-input" placeholder="e.g. ST12345">
+                                    </div>
+                                    <span class="error-text" id="error-signup-studentid"></span>
+                                </div>
+
+                                <!-- CLASS / PROGRAM & YEAR DROPDOWNS -->
+                                <div class="form-row-grid">
+                                    <div class="form-group">
+                                        <label for="signup-class" class="form-label">Year / Level</label>
+                                        <div class="input-wrapper">
+                                            <i class="fa-solid fa-graduation-cap input-icon"></i>
+                                            <select id="signup-class" name="class" class="form-input form-select">
+                                                <option value="" disabled selected>Select Year</option>
+                                                <option value="First Year (FE)">First Year (FE)</option>
+                                                <option value="Second Year (SE)">Second Year (SE)</option>
+                                                <option value="Third Year (TE)">Third Year (TE)</option>
+                                                <option value="Final Year (BE)">Final Year (BE)</option>
+                                                <option value="Post Graduate (PG)">Post Graduate (PG)</option>
+                                            </select>
+                                        </div>
+                                        <span class="error-text" id="error-signup-class"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="signup-division" class="form-label">Division</label>
+                                        <div class="input-wrapper">
+                                            <i class="fa-solid fa-users-rectangle input-icon"></i>
+                                            <select id="signup-division" name="division" class="form-input form-select">
+                                                <option value="" disabled selected>Select Div</option>
+                                                <option value="Division A">Division A</option>
+                                                <option value="Division B">Division B</option>
+                                                <option value="Division C">Division C</option>
+                                                <option value="Division D">Division D</option>
+                                                <option value="Division E">Division E</option>
+                                            </select>
+                                        </div>
+                                        <span class="error-text" id="error-signup-division"></span>
+                                    </div>
+                                </div>
+
+                                <!-- EMAIL ADDRESS -->
+                                <div class="form-group">
+                                    <label for="signup-email" class="form-label">College Email</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-regular fa-envelope input-icon"></i>
+                                        <input type="email" id="signup-email" name="email" class="form-input" placeholder="e.g. alex@college.edu">
+                                    </div>
+                                    <span class="error-text" id="error-signup-email"></span>
+                                </div>
+
+                                <!-- PHONE NUMBER -->
+                                <div class="form-group">
+                                    <label for="signup-phone" class="form-label">Phone Number</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-solid fa-phone input-icon"></i>
+                                        <input type="tel" id="signup-phone" name="phone" class="form-input" placeholder="e.g. 9876543210">
+                                    </div>
+                                    <span class="error-text" id="error-signup-phone"></span>
+                                </div>
+
+                                <!-- PASSWORD -->
+                                <div class="form-group">
+                                    <label for="signup-password" class="form-label">Password</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-solid fa-lock input-icon"></i>
+                                        <input type="password" id="signup-password" name="password" class="form-input" placeholder="Create a password" autocomplete="new-password">
+                                        <button type="button" class="toggle-password-btn" data-target="signup-password" aria-label="Toggle password visibility">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <span class="error-text" id="error-signup-password"></span>
+                                </div>
+
+                                <!-- CONFIRM PASSWORD -->
+                                <div class="form-group">
+                                    <label for="signup-confirm-password" class="form-label">Confirm Password</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-solid fa-shield-halved input-icon"></i>
+                                        <input type="password" id="signup-confirm-password" name="confirmPassword" class="form-input" placeholder="Confirm your password" autocomplete="new-password">
+                                        <button type="button" class="toggle-password-btn" data-target="signup-confirm-password" aria-label="Toggle confirm password visibility">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <span class="error-text" id="error-signup-confirm-password"></span>
+                                </div>
+
+                                <!-- SUBMIT CREATE ACCOUNT BUTTON -->
+                                <button type="submit" class="btn btn-primary btn-auth-submit">
+                                    <span>Create Account</span> <i class="fa-solid fa-user-plus"></i>
+                                </button>
+                            </form>
+
+                            <!-- BACK TO LOGIN PROMPT -->
+                            <div class="auth-switch-prompt">
+                                <p>Already have an account? <button type="button" class="link-btn" id="btn-show-login">Sign In</button></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-top">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand-logo footer-logo">
+                    <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                    <span class="logo-text">College Events</span>
+                </a>
+                <p class="footer-desc">
+                    Discover, participate and experience everything happening around campus. Your central hub for campus engagements.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="my-registrations.html">My Registrations</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Event Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="events.html?category=technical">Technical</a></li>
+                    <li><a href="events.html?category=cultural">Cultural</a></li>
+                    <li><a href="events.html?category=sports">Sports</a></li>
+                    <li><a href="events.html?category=workshops">Workshops</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact</h4>
+                <ul class="footer-contact-list">
+                    <li><i class="fa-regular fa-envelope"></i> events@college.edu</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</li>
+                    <li><i class="fa-solid fa-location-dot"></i> College Campus, Pune</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; <span id="current-year">2026</span> College Events and Registration System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

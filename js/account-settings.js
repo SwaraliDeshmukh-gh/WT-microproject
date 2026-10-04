@@ -1,0 +1,224 @@
+/**
+ * College Events - Account Settings Logic
+ * Fetches authenticated user data, updates personal info and manages password changes.
+ */
+
+document.addEventListener('DOMContentLoaded', async () => {
+    
+    // 1. Verify Authentication Token
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Initialize Page
+    await fetchAndPopulateUserData(token);
+    setupFormListeners(token);
+});
+
+/**
+ * Fetches the user data and populates the Personal Information form.
+ */
+async function fetchAndPopulateUserData(token) {
+    try {
+        const response = await fetch('http://localhost:8000/api/auth/me', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        // Handle unauthorized access
+        if (response.status === 401 || response.status === 403) {
+            handleUnauthorized();
+            return;
+        }
+
+        if (!response.ok) {
+            throw new Error('Failed to load user data from the server.');
+        }
+
+        const user = await response.json();
+        
+        // Populate form inputs
+        document.getElementById('profile-name').value = user.name || '';
+        document.getElementById('profile-studentid').value = user.studentId || '';
+        document.getElementById('profile-class').value = user.className || '';
+        document.getElementById('profile-division').value = user.division || '';
+        document.getElementById('profile-email').value = user.email || '';
+        document.getElementById('profile-phone').value = user.phone || '';
+
+    } catch (error) {
+        console.error('Account Settings Load Error:', error);
+        showProfileAlert('Unable to load your profile information at this time.', 'error');
+    }
+}
+
+/**
+ * Attaches event listeners for the update forms.
+ */
+function setupFormListeners(token) {
+    const profileForm = document.getElementById('profile-form');
+    const passwordForm = document.getElementById('password-form');
+
+    // Personal Information Update
+    profileForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const payload = {
+            name: document.getElementById('profile-name').value.trim(),
+            className: document.getElementById('profile-class').value.trim(),
+            division: document.getElementById('profile-division').value.trim(),
+            email: document.getElementById('profile-email').value.trim(),
+            phone: document.getElementById('profile-phone').value.trim()
+        };
+
+        try {
+            const response = await fetch('http://localhost:8000/api/auth/profile', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.status === 401 || response.status === 403) {
+                handleUnauthorized();
+                return;
+            }
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || data.message || 'Failed to update profile.');
+            }
+
+            // Update local storage so other components (like navbar) stay in sync
+            localStorage.setItem('collegeEventUser', JSON.stringify(data));
+            
+            // Immediately update navbar display names if they exist in DOM
+            updateNavbarNameDisplay(data.name);
+
+            showProfileAlert('Personal information updated successfully.', 'success');
+
+        } catch (error) {
+            console.error('Profile Update Error:', error);
+            showProfileAlert(error.message, 'error');
+        }
+    });
+
+    // Password Update
+    passwordForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const currentPassword = document.getElementById('current-password').value;
+        const newPassword = document.getElementById('new-password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+
+        // Frontend Validation
+        if (!currentPassword || !newPassword || !confirmPassword) {
+            showPasswordAlert('All password fields are required.', 'error');
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            showPasswordAlert('New password and confirm password do not match.', 'error');
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:8000/api/auth/password', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ currentPassword, newPassword })
+            });
+
+            if (response.status === 401 || response.status === 403) {
+                handleUnauthorized();
+                return;
+            }
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || data.message || 'Failed to update password.');
+            }
+
+            showPasswordAlert('Password updated successfully.', 'success');
+            
+            // Clear password fields on success
+            passwordForm.reset();
+
+        } catch (error) {
+            console.error('Password Update Error:', error);
+            showPasswordAlert(error.message, 'error');
+        }
+    });
+}
+
+/**
+ * Instantly updates the dynamically rendered profile name in the navbar
+ * injected by main.js without requiring a hard refresh.
+ */
+function updateNavbarNameDisplay(newName) {
+    const navProfileBtnSpan = document.querySelector('#nav-profile-toggle span');
+    if (navProfileBtnSpan) {
+        navProfileBtnSpan.textContent = newName;
+    }
+    
+    const drawerProfileName = document.querySelector('.drawer-user-info .d-name');
+    if (drawerProfileName) {
+        drawerProfileName.textContent = newName;
+    }
+}
+
+/**
+ * Triggers logout and redirect for invalid/expired tokens.
+ */
+function handleUnauthorized() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('collegeEventUser');
+    window.location.href = 'login.html';
+}
+
+/**
+ * Display alert messages for Personal Information form
+ */
+function showProfileAlert(message, type) {
+    const alertEl = document.getElementById('profile-alert');
+    if (!alertEl) return;
+    
+    alertEl.textContent = message;
+    alertEl.className = `settings-alert show ${type}`;
+    
+    // Auto-hide success message after a few seconds
+    if (type === 'success') {
+        setTimeout(() => {
+            alertEl.classList.remove('show');
+        }, 5000);
+    }
+}
+
+/**
+ * Display alert messages for Password form
+ */
+function showPasswordAlert(message, type) {
+    const alertEl = document.getElementById('password-alert');
+    if (!alertEl) return;
+    
+    alertEl.textContent = message;
+    alertEl.className = `settings-alert show ${type}`;
+    
+    // Auto-hide success message after a few seconds
+    if (type === 'success') {
+        setTimeout(() => {
+            alertEl.classList.remove('show');
+        }, 5000);
+    }
+}

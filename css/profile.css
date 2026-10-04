@@ -1,0 +1,183 @@
+/* ==========================================================================
+   PROFILE PAGE STYLES
+   Inherits global variables and styling from css/style.css
+   ========================================================================== */
+
+.profile-page {
+    background-color: var(--color-bg-light);
+    min-height: calc(100vh - 72px - 300px); /* Fill screen min minus navbar & footer */
+}
+
+.profile-section {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+}
+
+.profile-container {
+    max-width: 900px;
+}
+
+/* Error Banner */
+.profile-error {
+    background-color: #FEF2F2;
+    border: 1px solid #FECACA;
+    color: #DC2626;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.profile-error.hidden {
+    display: none;
+}
+
+/* Base Card Styling */
+.profile-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    transition: var(--transition-base);
+}
+
+.profile-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(15, 23, 42, 0.1);
+}
+
+.card-header-basic {
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.profile-card-title i {
+    color: var(--color-accent);
+}
+
+/* Information Grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem 1.5rem;
+}
+
+.info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.info-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+}
+
+.info-value {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+    word-break: break-word;
+}
+
+/* Read-only specifically for Student ID */
+.info-value.read-only {
+    background-color: var(--color-bg-light);
+    border: 1px dashed var(--color-border);
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    font-family: monospace;
+    font-size: 1rem;
+    width: fit-content;
+}
+
+.role-caps {
+    text-transform: capitalize;
+}
+
+/* Actions Grid (Registrations & Settings) */
+.profile-actions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    margin-bottom: 0;
+}
+
+.action-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: rgba(217, 119, 6, 0.1);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+    transition: var(--transition-base);
+}
+
+.action-card:hover .action-icon {
+    background-color: var(--color-primary);
+    color: var(--color-accent);
+    transform: scale(1.05);
+}
+
+.action-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.action-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+    .profile-section {
+        padding-top: 2rem;
+    }
+    
+    .profile-card {
+        padding: 1.5rem;
+    }
+    
+    .profile-actions-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .action-card {
+        padding: 2rem 1.5rem;
+    }
+}

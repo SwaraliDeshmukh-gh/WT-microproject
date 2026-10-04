@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | College Events & Registration System</title>
+    <meta name="description" content="View and manage your student profile and registrations.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar-header" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <span class="logo-text">College Events</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+                    <li class="nav-item"><a href="my-registrations.html" class="nav-link">My Registrations</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link btn-nav-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="profile-page">
+        <section class="section profile-section">
+            <div class="container profile-container">
+                
+                <div class="section-header text-center reveal-on-scroll">
+                    <h1 class="section-title">My Profile</h1>
+                    <p class="section-subtitle">View your student information and manage your account.</p>
+                </div>
+
+                <!-- Error Message Container -->
+                <div id="profile-error-msg" class="profile-error hidden"></div>
+
+                <!-- MAIN PROFILE INFORMATION CARD -->
+                <div class="profile-card reveal-on-scroll">
+                    <div class="card-header-basic">
+                        <h2 class="profile-card-title"><i class="fa-regular fa-address-card"></i> Personal Information</h2>
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-group">
+                            <span class="info-label">Full Name</span>
+                            <span class="info-value" id="val-name">Loading...</span>
+                        </div>
+                        
+                        <div class="info-group">
+                            <span class="info-label">Student ID</span>
+                            <span class="info-value read-only" id="val-studentid">Loading...</span>
+                        </div>
+                        
+                        <div class="info-group">
+                            <span class="info-label">Email Address</span>
+                            <span class="info-value" id="val-email">Loading...</span>
+                        </div>
+                        
+                        <div class="info-group">
+                            <span class="info-label">Phone Number</span>
+                            <span class="info-value" id="val-phone">Loading...</span>
+                        </div>
+                        
+                        <div class="info-group">
+                            <span class="info-label">Class</span>
+                            <span class="info-value" id="val-class">Loading...</span>
+                        </div>
+                        
+                        <div class="info-group">
+                            <span class="info-label">Division</span>
+                            <span class="info-value" id="val-division">Loading...</span>
+                        </div>
+                        
+                        <div class="info-group">
+                            <span class="info-label">Role</span>
+                            <span class="info-value role-caps" id="val-role">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACTIONS GRID -->
+                <div class="profile-actions-grid reveal-on-scroll">
+                    
+                    <!-- MY REGISTRATIONS -->
+                    <div class="profile-card action-card">
+                        <div class="action-icon"><i class="fa-solid fa-ticket"></i></div>
+                        <div class="action-content">
+                            <h3 class="action-title font-heading">My Registrations</h3>
+                            <p class="action-desc">View and manage the events you have registered for.</p>
+                            <a href="my-registrations.html" class="btn btn-primary">View My Registrations</a>
+                        </div>
+                    </div>
+
+                    <!-- ACCOUNT SETTINGS -->
+                    <div class="profile-card action-card">
+                        <div class="action-icon"><i class="fa-solid fa-gear"></i></div>
+                        <div class="action-content">
+                            <h3 class="action-title font-heading">Account Settings</h3>
+                            <p class="action-desc">Update your password and application preferences.</p>
+                            <a href="account-settings.html" class="btn btn-outline">Account Settings</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-top">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand-logo footer-logo">
+                    <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                    <span class="logo-text">College Events</span>
+                </a>
+                <p class="footer-desc">
+                    Discover, participate and experience everything happening around campus. Your central hub for campus engagements.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="my-registrations.html">My Registrations</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Event Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="events.html?category=technical">Technical</a></li>
+                    <li><a href="events.html?category=cultural">Cultural</a></li>
+                    <li><a href="events.html?category=sports">Sports</a></li>
+                    <li><a href="events.html?category=workshops">Workshops</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact</h4>
+                <ul class="footer-contact-list">
+                    <li><i class="fa-regular fa-envelope"></i> events@college.edu</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</li>
+                    <li><i class="fa-solid fa-location-dot"></i> College Campus, Pune</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; <span id="current-year">2026</span> College Events and Registration System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

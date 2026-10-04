@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Register for Event | College Events & Registration System</title>
+    <meta name="description" content="Complete your registration for college events. Fill in student details to reserve your seat.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Main & Page CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar-header" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <span class="logo-text">College Events</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="events.html" class="nav-link active">Events</a></li>
+                    <li class="nav-item"><a href="my-registrations.html" class="nav-link">My Registrations</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link btn-nav-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- BREADCRUMB & BACK BUTTON -->
+        <section class="breadcrumb-section">
+            <div class="container">
+                <div class="breadcrumb-wrapper">
+                    <a id="btn-back-to-details" href="events.html" class="btn-back">
+                        <i class="fa-solid fa-arrow-left"></i> Back to Event Details
+                    </a>
+                    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+                        <a href="index.html">Home</a>
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <a href="events.html">Events</a>
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <a id="breadcrumb-event-link" href="#">Event Details</a>
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <span>Register</span>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN REGISTRATION SECTION -->
+        <section class="section registration-section">
+            <div class="container">
+                
+                <!-- Fallback view when event is invalid -->
+                <div id="event-not-found" class="not-found-card text-center" style="display: none;">
+                    <i class="fa-solid fa-triangle-exclamation not-found-icon"></i>
+                    <h2>Event Not Found</h2>
+                    <p>The event you are attempting to register for does not exist or has been removed.</p>
+                    <a href="events.html" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Browse All Events</a>
+                </div>
+
+                <!-- Registration Layout Grid -->
+                <div id="registration-container" class="registration-grid">
+                    
+                    <!-- Left Sidebar: Selected Event Preview -->
+                    <aside class="event-summary-card">
+                        <div class="summary-header">
+                            <span class="summary-tag"><i class="fa-solid fa-bookmark"></i> Selected Event</span>
+                        </div>
+                        <div class="summary-image-wrapper">
+                            <img id="summary-event-image" src="" alt="Event Banner" class="summary-event-img">
+                            <span id="summary-event-category" class="category-badge">Category</span>
+                        </div>
+                        <div class="summary-body">
+                            <h2 id="summary-event-title" class="summary-title font-heading">Loading Event...</h2>
+                            
+                            <div class="summary-info-list">
+                                <div class="summary-info-item">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                    <div>
+                                        <span class="info-label">Date</span>
+                                        <span id="summary-event-date" class="info-val">-</span>
+                                    </div>
+                                </div>
+                                <div class="summary-info-item">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <div>
+                                        <span class="info-label">Time</span>
+                                        <span id="summary-event-time" class="info-val">-</span>
+                                    </div>
+                                </div>
+                                <div class="summary-info-item">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <div>
+                                        <span class="info-label">Venue</span>
+                                        <span id="summary-event-venue" class="info-val">-</span>
+                                    </div>
+                                </div>
+                                <div class="summary-info-item">
+                                    <i class="fa-solid fa-chair"></i>
+                                    <div>
+                                        <span class="info-label">Available Seats</span>
+                                        <span id="summary-event-seats" class="info-val">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Right Column: Registration Form Container -->
+                    <div class="registration-form-card">
+                        <div class="form-header">
+                            <h1 class="form-title font-heading">Register for Event</h1>
+                            <p class="form-subtitle">Please provide your student details to confirm your seat for this event.</p>
+                        </div>
+
+                        <!-- Full Capacity Notice Banner -->
+                        <div id="seats-full-alert" class="alert-box alert-error" style="display: none;" role="alert">
+                            <i class="fa-solid fa-circle-xmark alert-icon"></i>
+                            <div>
+                                <strong>Registration Unavailable!</strong>
+                                <p>This event has reached maximum capacity and has 0 available seats remaining.</p>
+                            </div>
+                        </div>
+
+                        <!-- Global Form Error Banner -->
+                        <div id="form-global-error" class="alert-box alert-error" style="display: none;" role="alert">
+                            <i class="fa-solid fa-circle-exclamation alert-icon"></i>
+                            <span>Please fix the errors highlighted below before submitting.</span>
+                        </div>
+
+                        <form id="registration-form" novalidate>
+                            
+                            <div class="form-grid">
+                                <!-- Student Name -->
+                                <div class="form-group full-width">
+                                    <label for="studentName" class="form-label">Full Name <span class="required">*</span></label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-regular fa-user field-icon"></i>
+                                        <input type="text" id="studentName" name="studentName" class="form-control" placeholder="e.g. Alex Morgan" required aria-describedby="studentName-error">
+                                    </div>
+                                    <span id="studentName-error" class="error-message" aria-live="polite"></span>
+                                </div>
+
+                                <!-- Student ID -->
+                                <div class="form-group">
+                                    <label for="studentId" class="form-label">Student ID / PRN <span class="required">*</span></label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-solid fa-id-card field-icon"></i>
+                                        <input type="text" id="studentId" name="studentId" class="form-control" placeholder="e.g. STU2026104" required aria-describedby="studentId-error">
+                                    </div>
+                                    <span id="studentId-error" class="error-message" aria-live="polite"></span>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="form-group">
+                                    <label for="email" class="form-label">College Email <span class="required">*</span></label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-regular fa-envelope field-icon"></i>
+                                        <input type="email" id="email" name="email" class="form-control" placeholder="e.g. alex@college.edu" required aria-describedby="email-error">
+                                    </div>
+                                    <span id="email-error" class="error-message" aria-live="polite"></span>
+                                </div>
+
+                                <!-- Class -->
+                                <div class="form-group">
+                                    <label for="className" class="form-label">Class / Year <span class="required">*</span></label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-solid fa-graduation-cap field-icon"></i>
+                                        <select id="className" name="className" class="form-control" required aria-describedby="className-error">
+                                            <option value="">-- Select Class --</option>
+                                            <option value="First Year (FE)">First Year (FE)</option>
+                                            <option value="Second Year (SE)">Second Year (SE)</option>
+                                            <option value="Third Year (TE)">Third Year (TE)</option>
+                                            <option value="Final Year (BE)">Final Year (BE)</option>
+                                            <option value="Postgraduate (PG)">Postgraduate (PG)</option>
+                                        </select>
+                                    </div>
+                                    <span id="className-error" class="error-message" aria-live="polite"></span>
+                                </div>
+
+                                <!-- Division -->
+                                <div class="form-group">
+                                    <label for="division" class="form-label">Division <span class="required">*</span></label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-solid fa-users-rectangle field-icon"></i>
+                                        <select id="division" name="division" class="form-control" required aria-describedby="division-error">
+                                            <option value="">-- Select Division --</option>
+                                            <option value="Div A">Division A</option>
+                                            <option value="Div B">Division B</option>
+                                            <option value="Div C">Division C</option>
+                                            <option value="Div D">Division D</option>
+                                        </select>
+                                    </div>
+                                    <span id="division-error" class="error-message" aria-live="polite"></span>
+                                </div>
+
+                                <!-- Phone Number -->
+                                <div class="form-group full-width">
+                                    <label for="phone" class="form-label">Phone Number <span class="required">*</span></label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-solid fa-phone field-flip field-icon"></i>
+                                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="e.g. 9876543210" required aria-describedby="phone-error">
+                                    </div>
+                                    <span id="phone-error" class="error-message" aria-live="polite"></span>
+                                </div>
+
+                                <!-- Confirmation Checkbox -->
+                                <div class="form-group full-width">
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="confirmCheck" name="confirmCheck" aria-describedby="confirmCheck-error">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-label-text">I confirm that the information provided is correct.</span>
+                                    </label>
+                                    <span id="confirmCheck-error" class="error-message" aria-live="polite"></span>
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="form-actions">
+                                <a id="btn-cancel" href="events.html" class="btn btn-secondary">Cancel</a>
+                                <button type="submit" id="btn-submit" class="btn btn-primary btn-submit">
+                                    <i class="fa-solid fa-check-circle"></i> Complete Registration
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-top">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand-logo footer-logo">
+                    <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                    <span class="logo-text">College Events</span>
+                </a>
+                <p class="footer-desc">
+                    Discover, participate and experience everything happening around campus. Your central hub for campus engagements.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="my-registrations.html">My Registrations</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Event Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="events.html?category=technical">Technical</a></li>
+                    <li><a href="events.html?category=cultural">Cultural</a></li>
+                    <li><a href="events.html?category=sports">Sports</a></li>
+                    <li><a href="events.html?category=workshops">Workshops</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact</h4>
+                <ul class="footer-contact-list">
+                    <li><i class="fa-regular fa-envelope"></i> events@college.edu</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</li>
+                    <li><i class="fa-solid fa-location-dot"></i> College Campus, Pune</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; <span id="current-year">2026</span> College Events and Registration System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>

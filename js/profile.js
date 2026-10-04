@@ -1,0 +1,66 @@
+/**
+ * College Events - Profile Page Logic
+ * Fetches authenticated user data from backend and populates the profile UI.
+ */
+
+document.addEventListener('DOMContentLoaded', async () => {
+    
+    // 1. Verify Authentication Token
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+        // Not logged in, redirect immediately
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // 2. Fetch User Data
+    try {
+        const response = await fetch('http://localhost:8000/api/auth/me', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        // Handle expired/invalid tokens
+        if (response.status === 401 || response.status === 403) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('collegeEventUser');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        if (!response.ok) {
+            throw new Error('Failed to load profile data from the server.');
+        }
+
+        // 3. Populate Profile Data
+        const userData = await response.json();
+        populateProfile(userData);
+
+    } catch (error) {
+        console.error('Profile API Error:', error);
+        
+        // Show user-friendly error message
+        const errorMsg = document.getElementById('profile-error-msg');
+        if (errorMsg) {
+            errorMsg.textContent = 'Unable to load your profile information at this time. Please try again later.';
+            errorMsg.classList.remove('hidden');
+        }
+    }
+});
+
+/**
+ * Maps the returned user data to the DOM elements.
+ * Uses fallback strings if a specific field is missing.
+ */
+function populateProfile(user) {
+    document.getElementById('val-name').textContent = user.name || 'Not specified';
+    document.getElementById('val-studentid').textContent = user.studentId || 'Not specified';
+    document.getElementById('val-email').textContent = user.email || 'Not specified';
+    document.getElementById('val-phone').textContent = user.phone || 'Not specified';
+    document.getElementById('val-class').textContent = user.className || 'Not specified';
+    document.getElementById('val-division').textContent = user.division || 'Not specified';
+    document.getElementById('val-role').textContent = user.role || 'Student';
+}

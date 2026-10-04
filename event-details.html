@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Event Details | College Events & Registration System</title>
+    <meta name="description" content="View full event details, schedules, venue info, and registration guidelines.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Main & Page CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/event-details.css">
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar-header" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <span class="logo-text">College Events</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="events.html" class="nav-link active">Events</a></li>
+                    <li class="nav-item"><a href="my-registrations.html" class="nav-link">My Registrations</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link btn-nav-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- BREADCRUMB & BACK BUTTON -->
+        <section class="breadcrumb-section">
+            <div class="container">
+                <div class="breadcrumb-wrapper">
+                    <a href="events.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Back to Events</a>
+                    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+                        <a href="index.html">Home</a>
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <a href="events.html">Events</a>
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <span id="breadcrumb-title">Event Details</span>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN EVENT CONTENT CONTAINER -->
+        <section class="section event-detail-section">
+            <div class="container">
+                <!-- Fallback view when event is not found -->
+                <div id="event-not-found" class="not-found-card text-center" style="display: none;">
+                    <i class="fa-solid fa-triangle-exclamation not-found-icon"></i>
+                    <h2>Event Not Found</h2>
+                    <p>The event you are looking for does not exist or has been removed.</p>
+                    <a href="events.html" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Browse All Events</a>
+                </div>
+
+                <!-- Active Event Details Container -->
+                <div id="event-content" class="event-details-grid">
+                    
+                    <!-- Left Column: Image, Description, Eligibility -->
+                    <div class="event-main-content">
+                        <div class="event-banner-card">
+                            <img id="event-image" src="" alt="Event Banner" class="event-banner-img">
+                            <span id="event-category" class="category-badge">Category</span>
+                            <span id="event-status-badge" class="status-badge">Status</span>
+                        </div>
+
+                        <div class="detail-card">
+                            <h1 id="event-title" class="event-heading font-heading">Loading Event Title...</h1>
+                            <p id="event-short-desc" class="event-lead-text"></p>
+                            
+                            <hr class="divider">
+
+                            <div class="detail-block">
+                                <h3 class="block-heading"><i class="fa-solid fa-circle-info"></i> About the Event</h3>
+                                <div id="event-full-desc" class="block-text"></div>
+                            </div>
+
+                            <div class="detail-block">
+                                <h3 class="block-heading"><i class="fa-solid fa-user-check"></i> Eligibility Criteria</h3>
+                                <p id="event-eligibility" class="block-text"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Event Meta & Action Sidebar -->
+                    <aside class="event-sidebar">
+                        <div class="sidebar-card action-card">
+                            
+                            <!-- Seats Visual Progress Container -->
+                            <div class="seats-progress-container">
+                                <div class="seats-header">
+                                    <span class="seats-label"><i class="fa-solid fa-chair"></i> Seat Availability</span>
+                                    <span id="seats-count-text" class="seats-value">0 / 0</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div id="seats-progress-bar" class="progress-bar-fill" style="width: 0%;"></div>
+                                </div>
+                                <p id="seats-remaining-note" class="seats-note"></p>
+                            </div>
+
+                            <!-- Key Info List -->
+                            <div class="info-list">
+                                <div class="info-item">
+                                    <div class="info-icon"><i class="fa-regular fa-calendar-days"></i></div>
+                                    <div class="info-details">
+                                        <span class="info-label">Date</span>
+                                        <span id="event-date" class="info-value">-</span>
+                                    </div>
+                                </div>
+
+                                <div class="info-item">
+                                    <div class="info-icon"><i class="fa-regular fa-clock"></i></div>
+                                    <div class="info-details">
+                                        <span class="info-label">Time</span>
+                                        <span id="event-time" class="info-value">-</span>
+                                    </div>
+                                </div>
+
+                                <div class="info-item">
+                                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                    <div class="info-details">
+                                        <span class="info-label">Venue</span>
+                                        <span id="event-venue" class="info-value">-</span>
+                                    </div>
+                                </div>
+
+                                <div class="info-item">
+                                    <div class="info-icon"><i class="fa-solid fa-sitemap"></i></div>
+                                    <div class="info-details">
+                                        <span class="info-label">Organizer</span>
+                                        <span id="event-organizer" class="info-value">-</span>
+                                    </div>
+                                </div>
+
+                                <div class="info-item">
+                                    <div class="info-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+                                    <div class="info-details">
+                                        <span class="info-label">Registration Deadline</span>
+                                        <span id="event-deadline" class="info-value">-</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Registration CTA Button -->
+                            <a id="btn-register" href="#" class="btn btn-primary btn-block btn-register">
+                                <i class="fa-solid fa-pen-to-square"></i> Register Now
+                            </a>
+                            
+                            <p id="closed-message" class="closed-notice" style="display: none;">
+                                <i class="fa-solid fa-circle-xmark"></i> Registrations for this event are currently closed.
+                            </p>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-top">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand-logo footer-logo">
+                    <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                    <span class="logo-text">College Events</span>
+                </a>
+                <p class="footer-desc">
+                    Discover, participate and experience everything happening around campus. Your central hub for campus engagements.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="my-registrations.html">My Registrations</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Event Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="events.html?category=technical">Technical</a></li>
+                    <li><a href="events.html?category=cultural">Cultural</a></li>
+                    <li><a href="events.html?category=sports">Sports</a></li>
+                    <li><a href="events.html?category=workshops">Workshops</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact</h4>
+                <ul class="footer-contact-list">
+                    <li><i class="fa-regular fa-envelope"></i> events@college.edu</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 XXXXX XXXXX</li>
+                    <li><i class="fa-solid fa-location-dot"></i> College Campus, Pune</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; <span id="current-year">2026</span> College Events and Registration System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/event-details.js"></script>
+</body>
+</html>

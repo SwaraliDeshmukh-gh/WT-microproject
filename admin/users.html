@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users | Admin Panel</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Users CSS -->
+    <link rel="stylesheet" href="css/registrations.css"> <!-- Reusing layout & table styles -->
+    <link rel="stylesheet" href="css/users.css">
+</head>
+<body>
+
+    <div class="admin-wrapper">
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="dashboard.html" class="sidebar-brand">
+                    <i class="fa-solid fa-graduation-cap brand-icon"></i>
+                    <div class="brand-text">
+                        <span class="brand-title">College Events</span>
+                        <span class="brand-subtitle">Admin Panel</span>
+                    </div>
+                </a>
+                <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close Sidebar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <i class="fa-solid fa-chart-line nav-icon"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="events.html" class="nav-link">
+                            <i class="fa-solid fa-calendar-days nav-icon"></i>
+                            <span>Manage Events</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="registrations.html" class="nav-link">
+                            <i class="fa-solid fa-id-card nav-icon"></i>
+                            <span>Registrations</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="users.html" class="nav-link active">
+                            <i class="fa-solid fa-users nav-icon"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="events.html?action=add" class="nav-link">
+                            <i class="fa-solid fa-square-plus nav-icon"></i>
+                            <span>Add Event</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../login.html" class="sidebar-logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <div class="admin-main">
+            <!-- TOP HEADER -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="mobile-toggle-btn" id="sidebar-toggle-btn" aria-label="Toggle Sidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div>
+                        <h1 class="header-title">Users</h1>
+                        <p class="header-subtitle">Manage user accounts and access.</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="admin-profile" id="admin-profile-toggle" style="cursor: pointer;" title="Open Profile Menu">
+                        <div class="profile-avatar">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <div class="profile-info">
+                            <span class="profile-name">Administrator</span>
+                            <span class="profile-role">System Admin</span>
+                        </div>
+                    </div>
+                    <a href="../login.html" class="header-logout-btn" title="Logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </header>
+
+            <!-- PAGE CONTENT -->
+            <main class="registrations-body">
+                
+                <!-- NOTIFICATION ALERT BANNER -->
+                <div id="alert-banner" class="alert-banner hidden">
+                    <i class="fa-solid fa-circle-check alert-icon"></i>
+                    <span id="alert-message">Action completed successfully.</span>
+                    <button class="alert-close" id="alert-close-btn">&times;</button>
+                </div>
+
+                <!-- OVERVIEW & ACTIONS STRIP -->
+                <section class="events-overview-strip">
+                    <div class="overview-cards-wrapper">
+                        <div class="overview-card">
+                            <div class="ov-icon ov-blue"><i class="fa-solid fa-users"></i></div>
+                            <div class="ov-data">
+                                <span class="ov-label">Total Users</span>
+                                <span class="ov-value" id="stat-total-users">0</span>
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <div class="ov-icon ov-green"><i class="fa-solid fa-user-graduate"></i></div>
+                            <div class="ov-data">
+                                <span class="ov-label">Student Accounts</span>
+                                <span class="ov-value" id="stat-student-users">0</span>
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <div class="ov-icon ov-purple"><i class="fa-solid fa-user-shield"></i></div>
+                            <div class="ov-data">
+                                <span class="ov-label">Admin Accounts</span>
+                                <span class="ov-value" id="stat-admin-users">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-add-event" id="open-add-user-modal-btn">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add User</span>
+                    </button>
+                </section>
+
+                <!-- SEARCH & FILTERS TOOLBAR -->
+                <section class="toolbar-card">
+                    <div class="toolbar-grid">
+                        <!-- Search Box -->
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" id="search-input" placeholder="Search by name, ID, email, class..." aria-label="Search Users">
+                        </div>
+
+                        <!-- Role Filter -->
+                        <div class="filter-group">
+                            <label for="filter-role" class="filter-label"><i class="fa-solid fa-user-tag"></i> Role:</label>
+                            <select id="filter-role" class="filter-select">
+                                <option value="all">All Roles</option>
+                                <option value="student">Student</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+
+                        <!-- Sort Options -->
+                        <div class="filter-group">
+                            <label for="sort-by" class="filter-label"><i class="fa-solid fa-arrow-down-wide-short"></i> Sort By:</label>
+                            <select id="sort-by" class="filter-select">
+                                <option value="newest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                                <option value="name-asc">Name A-Z</option>
+                                <option value="name-desc">Name Z-A</option>
+                            </select>
+                        </div>
+
+                        <!-- Clear Filters Action Strip -->
+                        <div class="toolbar-actions" style="margin-top: 0; padding-top: 0; border-top: none; justify-content: flex-start;">
+                            <button type="button" class="btn btn-secondary btn-sm" id="clear-filters-btn">
+                                <i class="fa-solid fa-rotate-left"></i> Clear Filters
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- USERS TABLE CARD -->
+                <section class="admin-card">
+                    <div class="card-header space-between">
+                        <div class="header-info">
+                            <h3 class="card-title"><i class="fa-solid fa-list-check"></i> System Users</h3>
+                            <span class="results-count" id="results-count-text">Showing 0 of 0 users</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body no-padding">
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Student ID</th>
+                                        <th>Class & Div</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Role</th>
+                                        <th class="text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="users-tbody">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- EMPTY STATE -->
+                        <div id="empty-state" class="empty-state hidden">
+                            <i class="fa-solid fa-users-slash empty-icon"></i>
+                            <h4>No users found</h4>
+                            <p>Try changing your search or filters.</p>
+                            <button class="btn btn-secondary btn-sm" id="reset-filters-btn">Clear Filters</button>
+                        </div>
+                    </div>
+
+                    <!-- PAGINATION FOOTER -->
+                    <div class="card-footer pagination-footer" id="pagination-wrapper">
+                        <span class="pagination-info" id="pagination-info">Showing page 1 of 1</span>
+                        <div class="pagination-controls" id="pagination-controls">
+                            <!-- Dynamic pagination controls -->
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- FOOTER -->
+            <footer class="admin-footer">
+                <p>&copy; <span id="current-year">2026</span> College Events Management System. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- VIEW USER MODAL -->
+    <div class="modal-overlay" id="view-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fa-solid fa-user-circle"></i> User Details</h3>
+                <button class="modal-close-btn" id="view-close-btn">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- User Meta Banner -->
+                <div class="modal-meta-strip">
+                    <div class="meta-item">
+                        <span class="meta-label">Account Created</span>
+                        <span class="meta-val highlight" id="view-user-date">-</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Role</span>
+                        <span id="view-user-role-badge" class="status-badge status-open">Student</span>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h4 class="details-section-title"><i class="fa-solid fa-address-card"></i> Profile Information</h4>
+                    <div class="info-list">
+                        <div class="info-row">
+                            <span class="info-label">Full Name:</span>
+                            <span class="info-value bold" id="view-user-name">-</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Email Address:</span>
+                            <span class="info-value" id="view-user-email">-</span>
+                        </div>
+                        <div class="info-row student-specific-row" id="view-row-studentid">
+                            <span class="info-label">Student ID:</span>
+                            <span class="info-value" id="view-user-id">-</span>
+                        </div>
+                        <div class="info-row student-specific-row" id="view-row-classdiv">
+                            <span class="info-label">Class & Div:</span>
+                            <span class="info-value" id="view-user-class-div">-</span>
+                        </div>
+                        <div class="info-row student-specific-row" id="view-row-phone">
+                            <span class="info-label">Phone Number:</span>
+                            <span class="info-value" id="view-user-phone">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="view-modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD / EDIT USER MODAL -->
+    <div class="modal-overlay" id="user-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title" id="user-modal-title-text"><i class="fa-solid fa-user-plus"></i> Add User</h3>
+                <button class="modal-close-btn" id="user-modal-close-btn">&times;</button>
+            </div>
+
+            <form id="user-form" class="modal-body">
+                <input type="hidden" id="user-id" value="">
+
+                <!-- Hidden by default, toggled via JS -->
+                <div id="user-form-error-msg" class="form-error-banner hidden">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span>Please fill in all required fields correctly.</span>
+                </div>
+
+                <div class="form-grid">
+                    
+                    <!-- Role Selection Group -->
+                    <div class="form-group full-width" id="role-selection-wrapper">
+                        <div class="form-group" id="role-selection-group">
+                            <label class="required modal-field-label">Account Role</label>
+                            <div class="role-radio-group">
+                                <label class="role-radio-label">
+                                    <input type="radio" name="user-role" value="student" checked>
+                                    <span class="radio-custom"></span> Student
+                                </label>
+                                <label class="role-radio-label">
+                                    <input type="radio" name="user-role" value="admin">
+                                    <span class="radio-custom"></span> Admin
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="modal-form-divider">
+                    </div>
+
+                    <!-- Row 1 -->
+                    <div class="form-group">
+                        <label for="user-name" class="required modal-field-label">Full Name</label>
+                        <input type="text" id="user-name" class="form-control" placeholder="e.g. John Doe" required>
+                    </div>
+
+                    <div class="form-group" id="group-email">
+                        <label for="user-email" class="required modal-field-label">Email Address</label>
+                        <input type="email" id="user-email" class="form-control" placeholder="e.g. john@example.com" required>
+                    </div>
+
+                    <!-- Row 2 (Student Only) -->
+                    <div class="form-group student-only-field" id="group-studentid">
+                        <label for="user-studentid" class="required modal-field-label">Student ID</label>
+                        <input type="text" id="user-studentid" class="form-control" placeholder="e.g. STU-2026-001" required>
+                    </div>
+
+                    <div class="form-group student-only-field" id="group-phone">
+                        <label for="user-phone" class="required modal-field-label">Phone Number</label>
+                        <input type="tel" id="user-phone" class="form-control" placeholder="e.g. 9876543210" required>
+                    </div>
+
+                    <!-- Row 3 (Student Only) -->
+                    <div class="form-group student-only-field" id="group-class">
+                        <label for="user-class" class="required modal-field-label">Class / Year</label>
+                        <input type="text" id="user-class" class="form-control" placeholder="e.g. SY B.Tech" required>
+                    </div>
+
+                    <div class="form-group student-only-field" id="group-division">
+                        <label for="user-division" class="required modal-field-label">Division</label>
+                        <input type="text" id="user-division" class="form-control" placeholder="e.g. A" required>
+                    </div>
+
+                    <!-- Row 4 (Full Width Password) -->
+                    <div class="form-group full-width" id="password-group">
+                        <label for="user-password" class="required modal-field-label">Password</label>
+                        <input type="password" id="user-password" class="form-control" placeholder="Enter a secure password" minlength="6">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="user-modal-cancel-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="user-modal-submit-btn">
+                        <i class="fa-solid fa-floppy-disk"></i> <span id="submit-btn-text">Add User</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- DELETE CONFIRMATION DIALOG -->
+    <div class="modal-overlay" id="delete-modal">
+        <div class="modal-container modal-sm">
+            <div class="modal-header modal-header-danger">
+                <h3 class="modal-title"><i class="fa-solid fa-triangle-exclamation"></i> Confirm Deletion</h3>
+                <button class="modal-close-btn" id="delete-close-btn">&times;</button>
+            </div>
+            <div class="modal-body text-center-modal">
+                <i class="fa-solid fa-user-xmark delete-warning-icon"></i>
+                <h4 class="delete-heading">Permanently Delete User?</h4>
+                <p class="delete-text">
+                    Are you sure you want to delete <strong id="delete-user-name">this user</strong>? 
+                    This action is permanent and cannot be undone.
+                </p>
+                <div class="modal-footer center-footer">
+                    <button class="btn btn-secondary" id="delete-cancel-btn">Cancel</button>
+                    <button class="btn btn-danger" id="delete-confirm-btn">
+                        <i class="fa-solid fa-trash"></i> Delete User
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFILE DRAWER (SLIDE-IN MENU) -->
+    <div class="profile-drawer-overlay" id="profile-drawer-overlay"></div>
+    <div class="profile-drawer" id="profile-drawer">
+        <div class="profile-drawer-header">
+            <div class="drawer-user-info">
+                <div class="d-name" id="drawer-admin-name">Administrator</div>
+                <div class="d-role">System Admin</div>
+            </div>
+            <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close profile menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="drawer-divider"></div>
+        <div class="profile-drawer-body">
+            <a href="profile.html" class="profile-drawer-link">
+                <i class="fa-solid fa-user"></i> <span>My Profile</span><i class="fa-solid fa-arrow-right ms-auto"></i>
+            </a>
+            <a href="account-settings.html" class="profile-drawer-link">
+                <i class="fa-solid fa-gear"></i> <span>Account Settings</span><i class="fa-solid fa-arrow-right ms-auto"></i>
+            </a>
+            <div class="drawer-divider"></div>
+            <button class="profile-drawer-link profile-drawer-logout" id="drawer-logout-btn">
+                <i class="fa-solid fa-door-open"></i> <span>Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Users JavaScript -->
+    <script src="js/users.js"></script>
+</body>
+</html>
