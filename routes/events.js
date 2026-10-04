@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const Event = require("../models/Event");
+const Event = require("../models/event");
 const Registration = require("../models/Registration");
 const { protect, authorize } = require("../middleware/auth");
 
