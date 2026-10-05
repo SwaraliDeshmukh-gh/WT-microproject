@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
  */
 async function fetchAndPopulateUserData(token) {
     try {
-        const response = await fetch('${API_BASE_URL}/api/auth/me', {
+        const response = await fetch(`${API_BASE_URL}/api/auth/me`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -45,6 +45,20 @@ async function fetchAndPopulateUserData(token) {
         // Populate form inputs
         document.getElementById('profile-name').value = user.name || '';
         document.getElementById('profile-email').value = user.email || '';
+        document.getElementById('profile-phone').value = user.phone || '';
+        document.getElementById('profile-department').value = user.department || '';
+        document.getElementById('profile-designation').value = user.designation || '';
+        document.getElementById('profile-bio').value = user.bio || '';
+        
+        // Read-only fields
+        document.getElementById('profile-role').value = (user.role || 'Admin').toUpperCase();
+        
+        const createdDate = new Date(user.createdAt);
+        document.getElementById('profile-created').value = !isNaN(createdDate) 
+            ? createdDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) 
+            : 'Unknown';
+            
+        document.getElementById('profile-status').value = user.accountStatus || 'Active';
 
     } catch (error) {
         console.error('Account Settings Load Error:', error);
@@ -65,11 +79,15 @@ function setupFormListeners(token) {
         
         const payload = {
             name: document.getElementById('profile-name').value.trim(),
-            email: document.getElementById('profile-email').value.trim()
+            email: document.getElementById('profile-email').value.trim(),
+            phone: document.getElementById('profile-phone').value.trim(),
+            department: document.getElementById('profile-department').value.trim(),
+            designation: document.getElementById('profile-designation').value.trim(),
+            bio: document.getElementById('profile-bio').value.trim()
         };
 
         try {
-            const response = await fetch('${API_BASE_URL}/api/auth/profile', {
+            const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

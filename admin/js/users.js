@@ -346,19 +346,29 @@ window.viewUserDetails = function(userId) {
 
     document.getElementById('view-user-name').textContent = user.name || '';
     document.getElementById('view-user-email').textContent = user.email || '';
+    document.getElementById('view-user-phone').textContent = user.phone || '-';
+    document.getElementById('view-user-bio').textContent = user.bio || '-';
+    document.getElementById('view-user-status').textContent = user.accountStatus || 'Active';
 
     const isStudent = user.role !== 'admin';
     
-    // Hide entire rows for admins
+    // Hide entire rows conditionally
     document.getElementById('view-row-studentid').style.display = isStudent ? 'flex' : 'none';
     document.getElementById('view-row-classdiv').style.display = isStudent ? 'flex' : 'none';
-    document.getElementById('view-row-phone').style.display = isStudent ? 'flex' : 'none';
+    
+    const deptRow = document.getElementById('view-row-department');
+    if (deptRow) deptRow.style.display = isStudent ? 'none' : 'flex';
+    
+    const desigRow = document.getElementById('view-row-designation');
+    if (desigRow) desigRow.style.display = isStudent ? 'none' : 'flex';
 
-    // Populate student-specific data
+    // Populate data
     if (isStudent) {
-        document.getElementById('view-user-id').textContent = user.studentId || '';
-        document.getElementById('view-user-class-div').textContent = user.className ? `${user.className}, ${user.department || 'N/A'}, Div ${user.division || ''}` : '';
-        document.getElementById('view-user-phone').textContent = user.phone || '';
+        document.getElementById('view-user-id').textContent = user.studentId || '-';
+        document.getElementById('view-user-class-div').textContent = user.className ? `${user.className}, ${user.department || 'N/A'}, Div ${user.division || ''}` : '-';
+    } else {
+        document.getElementById('view-user-department').textContent = user.department || '-';
+        document.getElementById('view-user-designation').textContent = user.designation || '-';
     }
 
     document.getElementById('view-modal')?.classList.add('active');
@@ -480,16 +490,16 @@ async function handleUserFormSubmit(e) {
     // Base payload common to both
     const payload = {
         name: document.getElementById('user-name').value.trim(),
-        email: document.getElementById('user-email').value.trim()
+        email: document.getElementById('user-email').value.trim(),
+        phone: document.getElementById('user-phone').value.trim(),
+        department: document.getElementById('user-department').value.trim()
     };
 
     // Add student specific fields
     if (isStudent) {
         payload.studentId = document.getElementById('user-studentid').value.trim();
         payload.className = document.getElementById('user-class').value.trim();
-        payload.department = document.getElementById('user-department').value.trim();
         payload.division = document.getElementById('user-division').value.trim();
-        payload.phone = document.getElementById('user-phone').value.trim();
     }
 
     // Add creation specific fields

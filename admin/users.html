@@ -284,9 +284,25 @@
                             <span class="info-label">Year, Dept & Div:</span>
                             <span class="info-value" id="view-user-class-div">-</span>
                         </div>
-                        <div class="info-row student-specific-row" id="view-row-phone">
+                        <div class="info-row" id="view-row-department" style="display: none;">
+                            <span class="info-label">Department:</span>
+                            <span class="info-value" id="view-user-department">-</span>
+                        </div>
+                        <div class="info-row admin-specific-row" id="view-row-designation" style="display: none;">
+                            <span class="info-label">Designation:</span>
+                            <span class="info-value" id="view-user-designation">-</span>
+                        </div>
+                        <div class="info-row">
                             <span class="info-label">Phone Number:</span>
                             <span class="info-value" id="view-user-phone">-</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Bio / About:</span>
+                            <span class="info-value" id="view-user-bio">-</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Account Status:</span>
+                            <span class="info-value" id="view-user-status">-</span>
                         </div>
                     </div>
                 </div>
@@ -352,7 +368,7 @@
                         <input type="text" id="user-studentid" class="form-control" placeholder="e.g. STU-2026-001" required>
                     </div>
 
-                    <div class="form-group student-only-field" id="group-phone">
+                    <div class="form-group" id="group-phone">
                         <label for="user-phone" class="required modal-field-label">Phone Number</label>
                         <input type="tel" id="user-phone" class="form-control" placeholder="e.g. 9876543210" required>
                     </div>
@@ -378,7 +394,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group full-width student-only-field" id="group-department">
+                    <div class="form-group full-width" id="group-department">
                         <label for="user-department" class="required modal-field-label">Department</label>
                         <select id="user-department" class="form-control" required>
                             <option value="">Select Department</option>

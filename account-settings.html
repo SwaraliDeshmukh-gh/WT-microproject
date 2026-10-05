@@ -70,14 +70,14 @@
                                 <input type="text" id="profile-name" class="form-control" required>
                             </div>
                             
-                            <div class="form-group full-width-mobile">
+                            <div class="form-group full-width-mobile student-field">
                                 <label for="profile-studentid" class="form-label">Student ID</label>
                                 <input type="text" id="profile-studentid" class="form-control" readonly title="Student ID cannot be changed">
                             </div>
                             
-                            <div class="form-group">
+                            <div class="form-group student-field">
                                 <label for="profile-class" class="form-label">Year</label>
-                                <select id="profile-class" class="form-control" required>
+                                <select id="profile-class" class="form-control">
                                     <option value="">Select Year</option>
                                     <option value="First Year">First Year</option>
                                     <option value="Second Year">Second Year</option>
@@ -87,7 +87,7 @@
                             
                             <div class="form-group">
                                 <label for="profile-department" class="form-label">Department</label>
-                                <select id="profile-department" class="form-control" required>
+                                <select id="profile-department" class="form-control">
                                     <option value="">Select Department</option>
                                     <option value="Computer Engineering">Computer Engineering</option>
                                     <option value="Information Technology">Information Technology</option>
@@ -99,14 +99,20 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
+
+                            <div class="form-group student-field">
                                 <label for="profile-division" class="form-label">Division</label>
-                                <select id="profile-division" class="form-control" required>
+                                <select id="profile-division" class="form-control">
                                     <option value="">Select Division</option>
                                     <option value="A">A</option>
                                     <option value="B">B</option>
                                     <option value="C">C</option>
                                 </select>
+                            </div>
+                            
+                            <div class="form-group full-width-mobile admin-field" style="display: none;">
+                                <label for="profile-designation" class="form-label">Designation</label>
+                                <input type="text" id="profile-designation" class="form-control" placeholder="e.g. Faculty Coordinator">
                             </div>
                             
                             <div class="form-group full-width-mobile">
@@ -117,6 +123,26 @@
                             <div class="form-group full-width-mobile">
                                 <label for="profile-phone" class="form-label">Phone Number</label>
                                 <input type="tel" id="profile-phone" class="form-control" required>
+                            </div>
+
+                            <div class="form-group full-row">
+                                <label for="profile-bio" class="form-label">Bio / About</label>
+                                <textarea id="profile-bio" class="form-control" rows="3" placeholder="Tell us a little about yourself..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profile-role" class="form-label">Role</label>
+                                <input type="text" id="profile-role" class="form-control" readonly>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profile-status" class="form-label">Account Status</label>
+                                <input type="text" id="profile-status" class="form-control" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profile-created" class="form-label">Account Created</label>
+                                <input type="text" id="profile-created" class="form-control" readonly>
                             </div>
                         </div>
 

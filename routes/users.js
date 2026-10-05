@@ -42,7 +42,7 @@ router.get("/:id", async (req, res) => {
 // 3. POST /api/users - Create a new user (Student or Admin)
 router.post("/", async (req, res) => {
     try {
-        const { name, studentId, className, department, division, email, phone, password, role } = req.body;
+        const { name, studentId, className, department, division, email, phone, password, role, bio, designation, accountStatus } = req.body;
 
         // Validate that role is explicitly either "student" or "admin"
         if (role !== "student" && role !== "admin") {
@@ -73,14 +73,17 @@ router.post("/", async (req, res) => {
             role
         };
 
-        // Attach student-specific fields only if the role is student
         if (role === "student") {
             newUserObj.studentId = studentId;
             newUserObj.className = className;
-            newUserObj.department = department;
             newUserObj.division = division;
-            newUserObj.phone = phone;
         }
+        
+        if (phone !== undefined) newUserObj.phone = phone;
+        if (department !== undefined) newUserObj.department = department;
+        if (bio !== undefined) newUserObj.bio = bio;
+        if (accountStatus !== undefined) newUserObj.accountStatus = accountStatus;
+        if (role === "admin" && designation !== undefined) newUserObj.designation = designation;
 
         const newUser = new User(newUserObj);
 
@@ -107,7 +110,7 @@ router.put("/:id", async (req, res) => {
             return res.status(400).json({ error: "Invalid User ID format" });
         }
 
-        const { name, studentId, className, department, division, email, phone } = req.body;
+        const { name, studentId, className, department, division, email, phone, bio, designation, accountStatus } = req.body;
         
         const user = await User.findById(req.params.id);
         if (!user) {
@@ -136,10 +139,14 @@ router.put("/:id", async (req, res) => {
             }
             if (studentId !== undefined) user.studentId = studentId;
             if (className !== undefined) user.className = className;
-            if (department !== undefined) user.department = department;
             if (division !== undefined) user.division = division;
-            if (phone !== undefined) user.phone = phone;
         }
+
+        if (department !== undefined) user.department = department;
+        if (phone !== undefined) user.phone = phone;
+        if (bio !== undefined) user.bio = bio;
+        if (accountStatus !== undefined) user.accountStatus = accountStatus;
+        if (user.role === "admin" && designation !== undefined) user.designation = designation;
 
         const updatedUser = await user.save();
 

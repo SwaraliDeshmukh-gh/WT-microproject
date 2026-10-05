@@ -50,6 +50,33 @@ async function fetchAndPopulateUserData(token) {
         document.getElementById('profile-division').value = user.division || '';
         document.getElementById('profile-email').value = user.email || '';
         document.getElementById('profile-phone').value = user.phone || '';
+        
+        // New Profile Fields
+        document.getElementById('profile-bio').value = user.bio || '';
+        document.getElementById('profile-designation').value = user.designation || '';
+        document.getElementById('profile-role').value = user.role === 'admin' ? 'Administrator' : 'Student';
+        document.getElementById('profile-status').value = user.accountStatus || 'Active';
+        
+        if (user.createdAt) {
+            const createdDate = new Date(user.createdAt);
+            document.getElementById('profile-created').value = createdDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+        
+        // Toggle Admin vs Student UI Fields
+        const adminFields = document.querySelectorAll('.admin-field');
+        const studentFields = document.querySelectorAll('.student-field');
+        
+        if (user.role === 'admin') {
+            adminFields.forEach(el => el.style.display = 'block');
+            studentFields.forEach(el => el.style.display = 'none');
+        } else {
+            adminFields.forEach(el => el.style.display = 'none');
+            studentFields.forEach(el => el.style.display = 'block');
+        }
 
     } catch (error) {
         console.error('Account Settings Load Error:', error);
@@ -74,7 +101,9 @@ function setupFormListeners(token) {
             department: document.getElementById('profile-department').value.trim(),
             division: document.getElementById('profile-division').value.trim(),
             email: document.getElementById('profile-email').value.trim(),
-            phone: document.getElementById('profile-phone').value.trim()
+            phone: document.getElementById('profile-phone').value.trim(),
+            bio: document.getElementById('profile-bio').value.trim(),
+            designation: document.getElementById('profile-designation').value.trim()
         };
 
         try {

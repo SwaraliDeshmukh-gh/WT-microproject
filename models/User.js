@@ -61,6 +61,23 @@ const userSchema = new mongoose.Schema({
             message: '{VALUE} is not a valid user role'
         },
         default: 'student'
+    },
+    bio: {
+        type: String,
+        trim: true,
+        maxlength: 500
+    },
+    designation: {
+        type: String,
+        trim: true
+    },
+    accountStatus: {
+        type: String,
+        enum: {
+            values: ['Active', 'Inactive', 'Suspended'],
+            message: '{VALUE} is not a valid account status'
+        },
+        default: 'Active'
     }
 }, {
     timestamps: true

@@ -57,5 +57,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 function populateProfile(user) {
     document.getElementById('val-name').textContent = user.name || 'Not specified';
     document.getElementById('val-email').textContent = user.email || 'Not specified';
-    document.getElementById('val-role').textContent = user.role || 'Admin';
+    document.getElementById('val-phone').textContent = user.phone || 'Not specified';
+    document.getElementById('val-department').textContent = user.department || 'Not specified';
+    document.getElementById('val-designation').textContent = user.designation || 'Not specified';
+    document.getElementById('val-bio').textContent = user.bio || 'No bio provided.';
+    
+    document.getElementById('val-role').textContent = (user.role || 'Admin').toUpperCase();
+    
+    const createdDate = new Date(user.createdAt);
+    document.getElementById('val-created').textContent = !isNaN(createdDate) 
+        ? createdDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) 
+        : 'Unknown';
+        
+    document.getElementById('val-status').textContent = user.accountStatus || 'Active';
 }

@@ -62,6 +62,9 @@ router.post('/signup', async (req, res) => {
             email: savedUser.email,
             phone: savedUser.phone,
             role: savedUser.role,
+            bio: savedUser.bio,
+            designation: savedUser.designation,
+            accountStatus: savedUser.accountStatus,
             createdAt: savedUser.createdAt
         };
 
@@ -117,7 +120,11 @@ router.post('/login', async (req, res) => {
             department: user.department,
             email: user.email,
             phone: user.phone,
-            role: user.role
+            role: user.role,
+            bio: user.bio,
+            designation: user.designation,
+            accountStatus: user.accountStatus,
+            createdAt: user.createdAt
         };
 
         res.status(200).json({
@@ -147,7 +154,7 @@ router.get('/me', protect, async (req, res) => {
 // 4. PUT /api/auth/profile - Update currently authenticated user's profile info (Protected Route)
 router.put('/profile', protect, async (req, res) => {
     try {
-        const { name, className, division, department, email, phone } = req.body;
+        const { name, className, division, department, email, phone, bio, designation } = req.body;
 
         // Find the authenticated user
         const user = await User.findById(req.user.id);
@@ -166,10 +173,14 @@ router.put('/profile', protect, async (req, res) => {
 
         // Update other allowed fields
         if (name !== undefined) user.name = name;
-        if (className !== undefined) user.className = className;
-        if (division !== undefined) user.division = division;
+        if (user.role === 'student') {
+            if (className !== undefined) user.className = className;
+            if (division !== undefined) user.division = division;
+        }
         if (department !== undefined) user.department = department;
         if (phone !== undefined) user.phone = phone;
+        if (bio !== undefined) user.bio = bio;
+        if (user.role === 'admin' && designation !== undefined) user.designation = designation;
 
         // Save the updated user
         const updatedUser = await user.save();
@@ -184,7 +195,11 @@ router.put('/profile', protect, async (req, res) => {
             department: updatedUser.department,
             email: updatedUser.email,
             phone: updatedUser.phone,
-            role: updatedUser.role
+            role: updatedUser.role,
+            bio: updatedUser.bio,
+            designation: updatedUser.designation,
+            accountStatus: updatedUser.accountStatus,
+            createdAt: updatedUser.createdAt
         });
     } catch (error) {
         if (error.name === 'ValidationError') {

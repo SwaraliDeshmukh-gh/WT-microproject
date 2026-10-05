@@ -64,4 +64,31 @@ function populateProfile(user) {
     document.getElementById('val-department').textContent = user.department || 'Not specified';
     document.getElementById('val-division').textContent = user.division || 'Not specified';
     document.getElementById('val-role').textContent = user.role || 'Student';
+    
+    document.getElementById('val-bio').textContent = user.bio || 'Not specified';
+    document.getElementById('val-designation').textContent = user.designation || 'Not specified';
+    document.getElementById('val-status').textContent = user.accountStatus || 'Active';
+    
+    if (user.createdAt) {
+        const createdDate = new Date(user.createdAt);
+        document.getElementById('val-created').textContent = createdDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    } else {
+        document.getElementById('val-created').textContent = 'Not specified';
+    }
+    
+    // Toggle Admin vs Student UI Fields
+    const adminFields = document.querySelectorAll('.admin-field');
+    const studentFields = document.querySelectorAll('.student-field');
+    
+    if (user.role === 'admin') {
+        adminFields.forEach(el => el.style.display = 'flex');
+        studentFields.forEach(el => el.style.display = 'none');
+    } else {
+        adminFields.forEach(el => el.style.display = 'none');
+        studentFields.forEach(el => el.style.display = 'flex');
+    }
 }
