@@ -3,41 +3,44 @@
    ========================================================================== */
 
 :root {
-    --admin-bg: #f1f5f9;
+    --admin-bg: #f8fafc;
     --admin-card-bg: #ffffff;
     --sidebar-bg: #0f172a;
     --sidebar-hover: #1e293b;
-    --sidebar-border: #334155;
+    --sidebar-border: #1e293b;
     
-    --text-primary: #0f172a;
+    --text-primary: #1e293b;
     --text-secondary: #64748b;
     --text-muted: #94a3b8;
     
     --border-color: #e2e8f0;
     
-    --primary: #2563eb;
-    --primary-hover: #1d4ed8;
-    --primary-light: #eff6ff;
+    --primary: #0f172a;
+    --primary-hover: #d97706;
+    --primary-light: #e2e8f0;
+    --accent: #d97706;
     
-    --success: #16a34a;
-    --success-light: #dcfce7;
+    --success: #10B981;
+    --success-light: #D1FAE5;
     
-    --warning: #d97706;
-    --warning-light: #fef3c7;
+    --warning: #F59E0B;
+    --warning-light: #FEF3C7;
     
-    --danger: #dc2626;
-    --danger-light: #fee2e2;
+    --danger: #EF4444;
+    --danger-light: #FEE2E2;
 
     --purple: #9333ea;
     --purple-light: #faf5ff;
     
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 14px;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
     
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+
+    --font-heading: 'Cinzel', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -47,10 +50,14 @@
 }
 
 body {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-body);
     background-color: var(--admin-bg);
     color: var(--text-primary);
     line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6, .brand-title, .header-title, .section-title, .card-title, .modal-title {
+    font-family: var(--font-heading);
 }
 
 a {
@@ -100,7 +107,7 @@ button {
 
 .brand-icon {
     font-size: 1.75rem;
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .brand-text {
@@ -161,7 +168,7 @@ button {
 }
 
 .nav-link.active {
-    background-color: var(--primary);
+    background-color: var(--accent);
     color: #ffffff;
 }
 
