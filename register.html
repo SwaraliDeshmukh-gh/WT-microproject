@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">Register for Event | College Events & Registration System</title>
-    <meta name="description" content="Complete your registration for college events. Fill in student details to reserve your seat.">
-    
+    <meta name="description"
+        content="Complete your registration for college events. Fill in student details to reserve your seat.">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <!-- Main & Page CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/register.css">
 </head>
+
 <body>
 
     <!-- NAVIGATION BAR -->
@@ -70,18 +75,19 @@
         <!-- MAIN REGISTRATION SECTION -->
         <section class="section registration-section">
             <div class="container">
-                
+
                 <!-- Fallback view when event is invalid -->
                 <div id="event-not-found" class="not-found-card text-center" style="display: none;">
                     <i class="fa-solid fa-triangle-exclamation not-found-icon"></i>
                     <h2>Event Not Found</h2>
                     <p>The event you are attempting to register for does not exist or has been removed.</p>
-                    <a href="events.html" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Browse All Events</a>
+                    <a href="events.html" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Browse All
+                        Events</a>
                 </div>
 
                 <!-- Registration Layout Grid -->
                 <div id="registration-container" class="registration-grid">
-                    
+
                     <!-- Left Sidebar: Selected Event Preview -->
                     <aside class="event-summary-card">
                         <div class="summary-header">
@@ -93,7 +99,7 @@
                         </div>
                         <div class="summary-body">
                             <h2 id="summary-event-title" class="summary-title font-heading">Loading Event...</h2>
-                            
+
                             <div class="summary-info-list">
                                 <div class="summary-info-item">
                                     <i class="fa-regular fa-calendar-days"></i>
@@ -131,7 +137,8 @@
                     <div class="registration-form-card">
                         <div class="form-header">
                             <h1 class="form-title font-heading">Register for Event</h1>
-                            <p class="form-subtitle">Please provide your student details to confirm your seat for this event.</p>
+                            <p class="form-subtitle">Please provide your student details to confirm your seat for this
+                                event.</p>
                         </div>
 
                         <!-- Full Capacity Notice Banner -->
@@ -150,50 +157,57 @@
                         </div>
 
                         <form id="registration-form" novalidate>
-                            
+
                             <div class="form-grid">
                                 <!-- Student Name -->
                                 <div class="form-group full-width">
-                                    <label for="studentName" class="form-label">Full Name <span class="required">*</span></label>
+                                    <label for="studentName" class="form-label">Full Name <span
+                                            class="required">*</span></label>
                                     <div class="input-wrapper">
                                         <i class="fa-regular fa-user field-icon"></i>
-                                        <input type="text" id="studentName" name="studentName" class="form-control" placeholder="e.g. Alex Morgan" required aria-describedby="studentName-error">
+                                        <input type="text" id="studentName" name="studentName" class="form-control"
+                                            placeholder="e.g. Alex Morgan" required
+                                            aria-describedby="studentName-error">
                                     </div>
                                     <span id="studentName-error" class="error-message" aria-live="polite"></span>
                                 </div>
 
                                 <!-- Student ID -->
                                 <div class="form-group">
-                                    <label for="studentId" class="form-label">Student ID / PRN <span class="required">*</span></label>
+                                    <label for="studentId" class="form-label">Student ID / PRN <span
+                                            class="required">*</span></label>
                                     <div class="input-wrapper">
                                         <i class="fa-solid fa-id-card field-icon"></i>
-                                        <input type="text" id="studentId" name="studentId" class="form-control" placeholder="e.g. STU2026104" required aria-describedby="studentId-error">
+                                        <input type="text" id="studentId" name="studentId" class="form-control"
+                                            placeholder="e.g. STU2026104" required aria-describedby="studentId-error">
                                     </div>
                                     <span id="studentId-error" class="error-message" aria-live="polite"></span>
                                 </div>
 
                                 <!-- Email -->
                                 <div class="form-group">
-                                    <label for="email" class="form-label">College Email <span class="required">*</span></label>
+                                    <label for="email" class="form-label">College Email <span
+                                            class="required">*</span></label>
                                     <div class="input-wrapper">
                                         <i class="fa-regular fa-envelope field-icon"></i>
-                                        <input type="email" id="email" name="email" class="form-control" placeholder="e.g. alex@college.edu" required aria-describedby="email-error">
+                                        <input type="email" id="email" name="email" class="form-control"
+                                            placeholder="e.g. alex@college.edu" required aria-describedby="email-error">
                                     </div>
                                     <span id="email-error" class="error-message" aria-live="polite"></span>
                                 </div>
 
                                 <!-- Class -->
                                 <div class="form-group">
-                                    <label for="className" class="form-label">Class / Year <span class="required">*</span></label>
+                                    <label for="className" class="form-label">Class / Year <span
+                                            class="required">*</span></label>
                                     <div class="input-wrapper">
                                         <i class="fa-solid fa-graduation-cap field-icon"></i>
-                                        <select id="className" name="className" class="form-control" required aria-describedby="className-error">
-                                            <option value="">-- Select Class --</option>
-                                            <option value="First Year (FE)">First Year (FE)</option>
-                                            <option value="Second Year (SE)">Second Year (SE)</option>
-                                            <option value="Third Year (TE)">Third Year (TE)</option>
-                                            <option value="Final Year (BE)">Final Year (BE)</option>
-                                            <option value="Postgraduate (PG)">Postgraduate (PG)</option>
+                                        <select id="className" name="className" class="form-control" required
+                                            aria-describedby="className-error">
+                                            <option value="">Select Year</option>
+                                            <option value="First Year">First Year</option>
+                                            <option value="Second Year">Second Year</option>
+                                            <option value="Third Year">Third Year</option>
                                         </select>
                                     </div>
                                     <span id="className-error" class="error-message" aria-live="polite"></span>
@@ -201,26 +215,51 @@
 
                                 <!-- Division -->
                                 <div class="form-group">
-                                    <label for="division" class="form-label">Division <span class="required">*</span></label>
+                                    <label for="division" class="form-label">Division <span
+                                            class="required">*</span></label>
                                     <div class="input-wrapper">
                                         <i class="fa-solid fa-users-rectangle field-icon"></i>
-                                        <select id="division" name="division" class="form-control" required aria-describedby="division-error">
-                                            <option value="">-- Select Division --</option>
-                                            <option value="Div A">Division A</option>
-                                            <option value="Div B">Division B</option>
-                                            <option value="Div C">Division C</option>
-                                            <option value="Div D">Division D</option>
+                                        <select id="division" name="division" class="form-control" required
+                                            aria-describedby="division-error">
+                                            <option value="">Select Division</option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
                                         </select>
                                     </div>
                                     <span id="division-error" class="error-message" aria-live="polite"></span>
                                 </div>
 
+                                <!-- Department -->
+                                <div class="form-group full-width">
+                                    <label for="department" class="form-label">Department <span
+                                            class="required">*</span></label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-solid fa-building field-icon"></i>
+                                        <select id="department" name="department" class="form-control" required
+                                            aria-describedby="department-error">
+                                            <option value="">Select Department</option>
+                                            <option value="Computer Engineering">Computer Engineering</option>
+                                            <option value="Information Technology">Information Technology</option>
+                                            <option value="Electronics & Telecommunication Engineering">Electronics &
+                                                Telecommunication Engineering</option>
+                                            <option value="Civil Engineering">Civil Engineering</option>
+                                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                            <option value="Electrical Engineering">Electrical Engineering</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <span id="department-error" class="error-message" aria-live="polite"></span>
+                                </div>
+
                                 <!-- Phone Number -->
                                 <div class="form-group full-width">
-                                    <label for="phone" class="form-label">Phone Number <span class="required">*</span></label>
+                                    <label for="phone" class="form-label">Phone Number <span
+                                            class="required">*</span></label>
                                     <div class="input-wrapper">
                                         <i class="fa-solid fa-phone field-flip field-icon"></i>
-                                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="e.g. 9876543210" required aria-describedby="phone-error">
+                                        <input type="tel" id="phone" name="phone" class="form-control"
+                                            placeholder="e.g. 9876543210" required aria-describedby="phone-error">
                                     </div>
                                     <span id="phone-error" class="error-message" aria-live="polite"></span>
                                 </div>
@@ -228,9 +267,11 @@
                                 <!-- Confirmation Checkbox -->
                                 <div class="form-group full-width">
                                     <label class="checkbox-container">
-                                        <input type="checkbox" id="confirmCheck" name="confirmCheck" aria-describedby="confirmCheck-error">
+                                        <input type="checkbox" id="confirmCheck" name="confirmCheck"
+                                            aria-describedby="confirmCheck-error">
                                         <span class="checkbox-custom"></span>
-                                        <span class="checkbox-label-text">I confirm that the information provided is correct.</span>
+                                        <span class="checkbox-label-text">I confirm that the information provided is
+                                            correct.</span>
                                     </label>
                                     <span id="confirmCheck-error" class="error-message" aria-live="polite"></span>
                                 </div>
@@ -260,7 +301,8 @@
                     <span class="logo-text">College Events</span>
                 </a>
                 <p class="footer-desc">
-                    Discover, participate and experience everything happening around campus. Your central hub for campus engagements.
+                    Discover, participate and experience everything happening around campus. Your central hub for campus
+                    engagements.
                 </p>
             </div>
 
@@ -296,7 +338,8 @@
 
         <div class="footer-bottom">
             <div class="container footer-bottom-container">
-                <p>&copy; <span id="current-year">2026</span> College Events and Registration System. All rights reserved.</p>
+                <p>&copy; <span id="current-year">2026</span> College Events and Registration System. All rights
+                    reserved.</p>
             </div>
         </div>
     </footer>
@@ -306,4 +349,5 @@
     <script src="js/main.js"></script>
     <script src="js/register.js"></script>
 </body>
+
 </html>

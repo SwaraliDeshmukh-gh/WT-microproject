@@ -102,8 +102,13 @@ function populateEventDetails(event) {
     const registerBtn = document.getElementById('btn-register');
     const closedMsg = document.getElementById('closed-message');
 
-    if (event.status === 'Registration Closed' || availableSeats === 0) {
+    if (event.status === 'Registration Closed') {
         registerBtn.innerHTML = '<i class="fa-solid fa-lock"></i> Registration Closed';
+        registerBtn.classList.add('btn-disabled');
+        registerBtn.removeAttribute('href');
+        closedMsg.style.display = 'block';
+    } else if (event.status === 'Full') {
+        registerBtn.innerHTML = '<i class="fa-solid fa-lock"></i> Event Full';
         registerBtn.classList.add('btn-disabled');
         registerBtn.removeAttribute('href');
         closedMsg.style.display = 'block';

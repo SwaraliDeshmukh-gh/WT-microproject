@@ -204,6 +204,7 @@ if (redirect === 'register' && eventId) {
                 const studentId = document.getElementById('signup-id').value.trim();
                 const className = document.getElementById('signup-class').value;
                 const division = document.getElementById('signup-division').value;
+                const department = document.getElementById('signup-department').value;
                 const email = document.getElementById('signup-email').value.trim();
                 const phone = document.getElementById('signup-phone').value.trim();
                 const password = document.getElementById('signup-pass').value;
@@ -219,6 +220,7 @@ if (redirect === 'register' && eventId) {
                             studentId,
                             className,
                             division,
+                            department,
                             email,
                             phone,
                             password
@@ -298,12 +300,13 @@ if (redirect === 'register' && eventId) {
         const studentId = document.getElementById('signup-id');
         const studentClass = document.getElementById('signup-class');
         const division = document.getElementById('signup-division');
+        const department = document.getElementById('signup-department');
         const email = document.getElementById('signup-email');
         const phone = document.getElementById('signup-phone');
         const password = document.getElementById('signup-pass');
         const confirmPass = document.getElementById('signup-confirm-pass');
 
-        [name, studentId, studentClass, division, email, phone, password, confirmPass].forEach(input => {
+        [name, studentId, studentClass, division, department, email, phone, password, confirmPass].forEach(input => {
             clearFieldError(input, `${input.id}-error`);
         });
 
@@ -324,6 +327,11 @@ if (redirect === 'register' && eventId) {
 
         if (!division.value) {
             setFieldError(division, 'signup-division-error', 'Please select your class division.');
+            isValid = false;
+        }
+
+        if (!department.value) {
+            setFieldError(department, 'signup-department-error', 'Please select your department.');
             isValid = false;
         }
 

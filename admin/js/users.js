@@ -55,6 +55,7 @@ async function initUsersPage() {
     logoutBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
+            if (!confirm("Are you sure you want to logout?")) return;
             localStorage.removeItem('token');
             localStorage.removeItem('collegeEventAdmin');
             localStorage.removeItem('collegeEventUser');
@@ -252,7 +253,7 @@ function renderTableAndPagination(data) {
         
         // Blank cells for admins according to requirements
         const studentIdDisplay = !isAdmin ? escapeHTML(user.studentId || '') : '';
-        const classDivDisplay = !isAdmin && user.className ? escapeHTML(`${user.className} (${user.division || ''})`) : '';
+        const classDivDisplay = !isAdmin && user.className ? escapeHTML(`${user.className}, ${user.department || 'N/A'}, Div ${user.division || ''}`) : '';
         const phoneDisplay = !isAdmin ? escapeHTML(user.phone || '') : '';
 
         return `
@@ -356,7 +357,7 @@ window.viewUserDetails = function(userId) {
     // Populate student-specific data
     if (isStudent) {
         document.getElementById('view-user-id').textContent = user.studentId || '';
-        document.getElementById('view-user-class-div').textContent = user.className ? `${user.className} (${user.division || ''})` : '';
+        document.getElementById('view-user-class-div').textContent = user.className ? `${user.className}, ${user.department || 'N/A'}, Div ${user.division || ''}` : '';
         document.getElementById('view-user-phone').textContent = user.phone || '';
     }
 
@@ -426,6 +427,7 @@ window.openUserModal = function(userId = null) {
         
         document.getElementById('user-studentid').value = user.studentId || '';
         document.getElementById('user-class').value = user.className || '';
+        document.getElementById('user-department').value = user.department || '';
         document.getElementById('user-division').value = user.division || '';
         document.getElementById('user-phone').value = user.phone || '';
         
@@ -485,6 +487,7 @@ async function handleUserFormSubmit(e) {
     if (isStudent) {
         payload.studentId = document.getElementById('user-studentid').value.trim();
         payload.className = document.getElementById('user-class').value.trim();
+        payload.department = document.getElementById('user-department').value.trim();
         payload.division = document.getElementById('user-division').value.trim();
         payload.phone = document.getElementById('user-phone').value.trim();
     }

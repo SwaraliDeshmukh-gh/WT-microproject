@@ -24,6 +24,10 @@ const registrationSchema = new mongoose.Schema({
         lowercase: true,
         match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Please enter a valid email address']
     },
+    department: {
+        type: String,
+        trim: true
+    },
     className: {
         type: String,
         required: [true, 'Class/Year is required'],

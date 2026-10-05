@@ -185,7 +185,7 @@ function renderEventCards(events) {
 function getStatusBadgeClass(status) {
     if (status === 'Registration Open') return 'status-open';
     if (status === 'Almost Full') return 'status-almost';
-    return 'status-closed';
+    return 'status-closed'; // Applies to Full and Registration Closed
 }
 
 function updateResultsCount(count) {

@@ -249,6 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // --- Logout Functionality ---
                     const performLogout = (e) => {
                         e.preventDefault();
+                        if (!confirm("Are you sure you want to logout?")) return;
                         localStorage.removeItem('token');
                         localStorage.removeItem('collegeEventUser');
                         window.location.href = 'login.html';

@@ -67,11 +67,6 @@ const eventSchema = new mongoose.Schema({
             validator: Number.isInteger,
             message: "Total seats must be a whole number"
         }
-    },
-    status: {
-        type: String,
-        required: true,
-        trim: true
     }
 }, {
     timestamps: true

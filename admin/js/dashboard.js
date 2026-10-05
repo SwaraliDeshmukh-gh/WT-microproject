@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     logoutBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
+            if (!confirm("Are you sure you want to logout?")) return;
 
             localStorage.removeItem('token');
             localStorage.removeItem('collegeEventAdmin');
@@ -159,14 +160,7 @@ async function fetchDashboardData() {
     // Map backend events to table structure
     const processedUpcomingEvents = upcomingEvents.map(evt => {
         // Calculate status
-        let displayStatus = "Open";
-        if (evt.status === "Registration Closed") {
-            displayStatus = "Closed";
-        } else if (evt.availableSeats <= 0) {
-            displayStatus = "Full";
-        } else if (evt.availableSeats <= Math.ceil(evt.totalSeats * 0.2)) {
-            displayStatus = "Almost Full";
-        }
+        let displayStatus = evt.status;
 
         // Count actual confirmed registrations for this specific event
         const confirmedForEvent = registrations.filter(r => 
@@ -318,12 +312,12 @@ function renderRecentRegistrations(registrations) {
  */
 function getStatusClass(status) {
     switch (status.toLowerCase()) {
-        case 'open':
+        case 'registration open':
         case 'confirmed':
             return 'status-open';
         case 'almost full':
             return 'status-almost-full';
-        case 'closed':
+        case 'registration closed':
         case 'cancelled':
         case 'full':
             return 'status-closed';

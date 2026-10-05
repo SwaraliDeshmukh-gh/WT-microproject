@@ -73,6 +73,7 @@ router.post("/", protect, authorize("student"), async (req, res) => {
             email: user.email,
             className: user.className,
             division: user.division,
+            department: user.department,
             phone: user.phone,
             status: "Confirmed"
         });

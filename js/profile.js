@@ -61,6 +61,7 @@ function populateProfile(user) {
     document.getElementById('val-email').textContent = user.email || 'Not specified';
     document.getElementById('val-phone').textContent = user.phone || 'Not specified';
     document.getElementById('val-class').textContent = user.className || 'Not specified';
+    document.getElementById('val-department').textContent = user.department || 'Not specified';
     document.getElementById('val-division').textContent = user.division || 'Not specified';
     document.getElementById('val-role').textContent = user.role || 'Student';
 }

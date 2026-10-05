@@ -16,8 +16,7 @@ const eventsData = [
         eligibility: "Open to all college students interested in web development.",
         deadline: new Date("2026-09-18"),
         image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80",
-        totalSeats: 60,
-        status: "Registration Open"
+        totalSeats: 60
     },
     {
         title: "Inter-College Hackathon",
@@ -32,8 +31,7 @@ const eventsData = [
         eligibility: "Engineering and Computer Science undergraduate students.",
         deadline: new Date("2026-09-22"),
         image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
-        totalSeats: 150,
-        status: "Almost Full"
+        totalSeats: 150
     },
     {
         title: "Cultural Fest 2026",
@@ -48,8 +46,7 @@ const eventsData = [
         eligibility: "Open to all enrolled students across all streams.",
         deadline: new Date("2026-09-28"),
         image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
-        totalSeats: 500,
-        status: "Registration Open"
+        totalSeats: 500
     },
     {
         title: "Inter-Department Cricket Tournament",
@@ -64,8 +61,7 @@ const eventsData = [
         eligibility: "Department-nominated team members only.",
         deadline: new Date("2026-10-01"),
         image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=800&q=80",
-        totalSeats: 16,
-        status: "Registration Closed"
+        totalSeats: 16
     },
     {
         title: "Coding Competition",
@@ -80,8 +76,7 @@ const eventsData = [
         eligibility: "Individual participation for all students.",
         deadline: new Date("2026-10-05"),
         image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80",
-        totalSeats: 40,
-        status: "Registration Open"
+        totalSeats: 40
     },
     {
         title: "Career Guidance Seminar",
@@ -96,8 +91,7 @@ const eventsData = [
         eligibility: "Pre-final and Final year students.",
         deadline: new Date("2026-10-10"),
         image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80",
-        totalSeats: 200,
-        status: "Registration Open"
+        totalSeats: 200
     }
 ];
 

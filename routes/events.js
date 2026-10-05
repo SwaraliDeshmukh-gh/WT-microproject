@@ -16,8 +16,20 @@ router.get("/", async (req, res) => {
                 status: "Confirmed"
             });
             const availableSeats = Math.max(0, event.totalSeats - confirmedCount);
+            
+            let dynamicStatus = "Registration Open";
+            const now = new Date();
+            if (new Date(event.deadline) < now) {
+                dynamicStatus = "Registration Closed";
+            } else if (availableSeats === 0) {
+                dynamicStatus = "Full";
+            } else if (availableSeats <= Math.ceil(event.totalSeats * 0.2)) {
+                dynamicStatus = "Almost Full";
+            }
+
             return {
                 ...event,
+                status: dynamicStatus,
                 availableSeats
             };
         }));
@@ -46,8 +58,19 @@ router.get("/:id", async (req, res) => {
         });
         const availableSeats = Math.max(0, event.totalSeats - confirmedCount);
 
+        let dynamicStatus = "Registration Open";
+        const now = new Date();
+        if (new Date(event.deadline) < now) {
+            dynamicStatus = "Registration Closed";
+        } else if (availableSeats === 0) {
+            dynamicStatus = "Full";
+        } else if (availableSeats <= Math.ceil(event.totalSeats * 0.2)) {
+            dynamicStatus = "Almost Full";
+        }
+
         res.status(200).json({
             ...event,
+            status: dynamicStatus,
             availableSeats
         });
     } catch (error) {
@@ -74,8 +97,7 @@ router.post("/", protect, authorize("admin"), async (req, res) => {
             eligibility,
             deadline,
             image,
-            totalSeats,
-            status
+            totalSeats
         } = req.body;
 
         const newEvent = new Event({
@@ -91,8 +113,7 @@ router.post("/", protect, authorize("admin"), async (req, res) => {
             eligibility,
             deadline,
             image,
-            totalSeats,
-            status
+            totalSeats
         });
 
         const savedEvent = await newEvent.save();
@@ -130,8 +151,7 @@ router.put("/:id", protect, authorize("admin"), async (req, res) => {
             eligibility,
             deadline,
             image,
-            totalSeats,
-            status
+            totalSeats
         } = req.body;
 
         if (totalSeats !== undefined && totalSeats !== existingEvent.totalSeats) {
@@ -161,7 +181,6 @@ router.put("/:id", protect, authorize("admin"), async (req, res) => {
         if (deadline !== undefined) updates.deadline = deadline;
         if (image !== undefined) updates.image = image;
         if (totalSeats !== undefined) updates.totalSeats = totalSeats;
-        if (status !== undefined) updates.status = status;
 
         const updatedEvent = await Event.findByIdAndUpdate(
             req.params.id,

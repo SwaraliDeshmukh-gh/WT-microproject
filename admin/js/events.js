@@ -57,6 +57,7 @@ async function initManageEvents() {
     if (drawerLogoutBtn) {
         drawerLogoutBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            if (!confirm("Are you sure you want to logout?")) return;
             localStorage.removeItem('token');
             localStorage.removeItem('collegeEventAdmin');
             localStorage.removeItem('collegeEventUser');
@@ -171,7 +172,7 @@ function renderOverviewStats(data) {
 
     data.forEach(evt => {
         const computedStatus = getCalculatedStatus(evt);
-        if (computedStatus === 'Open') openCount++;
+        if (computedStatus === 'Registration Open') openCount++;
         else if (computedStatus === 'Almost Full') almostFullCount++;
         else closedCount++; // Full or Closed
     });
@@ -283,23 +284,15 @@ function renderTable(events) {
  * Logic to derive display status from backend status or available seats
  */
 function getCalculatedStatus(evt) {
-    if (evt.status === "Registration Closed") {
-        return "Closed";
-    } else if (evt.availableSeats <= 0) {
-        return "Full";
-    } else if (evt.availableSeats <= Math.ceil(evt.totalSeats * 0.2)) {
-        return "Almost Full";
-    } else {
-        return "Open";
-    }
+    return evt.status || 'Registration Open';
 }
 
 function getStatusBadgeClass(status) {
     switch (status) {
-        case 'Open': return 'status-open';
+        case 'Registration Open': return 'status-open';
         case 'Almost Full': return 'status-almost-full';
         case 'Full': return 'status-full';
-        case 'Closed': return 'status-closed';
+        case 'Registration Closed': return 'status-closed';
         default: return '';
     }
 }
@@ -341,7 +334,7 @@ function openEventModal(eventId = null) {
             }
         }
 
-        document.getElementById('event-status').value = evt.status === 'Registration Closed' ? 'Registration Closed' : 'Registration Open';
+
         document.getElementById('event-date').value = formatDateForInput(evt.date);
         document.getElementById('event-time').value = evt.time || '';
         document.getElementById('event-venue').value = evt.venue || '';
@@ -364,7 +357,7 @@ function openEventModal(eventId = null) {
         // Add Mode
         modalTitle.innerHTML = `<i class="fa-solid fa-calendar-plus"></i> Add New Event`;
         document.getElementById('event-id').value = '';
-        document.getElementById('event-status').value = 'Registration Open';
+
         previewContainer.style.display = 'none';
     }
 
@@ -408,7 +401,7 @@ async function handleFormSubmit(e) {
     };
     const categoryLabel = categoryLabels[category] || category;
 
-    const status = document.getElementById('event-status').value; // Must be "Registration Open" or "Registration Closed"
+
     const date = document.getElementById('event-date').value;
     const time = document.getElementById('event-time').value.trim();
     const venue = document.getElementById('event-venue').value.trim();
@@ -465,8 +458,7 @@ async function handleFormSubmit(e) {
             eligibility,
             deadline,
             image: finalImageBase64,
-            totalSeats,
-            status
+            totalSeats
         };
 
         let response;

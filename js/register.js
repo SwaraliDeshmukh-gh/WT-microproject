@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         renderEventSummary(selectedEvent);
         checkSeatAvailability(selectedEvent);
+        
+        await populateUserProfileFields();
+        
         setupLiveValidation();
         setupFormSubmit();
     } catch (error) {
@@ -45,6 +48,57 @@ document.addEventListener('DOMContentLoaded', async () => {
         showNotFoundState();
     }
 });
+
+// Fetch authenticated user profile and populate fields
+async function populateUserProfileFields() {
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const response = await fetch(`${API_BASE_URL}/api/auth/me`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const user = await response.json();
+
+        // Auto-fill fields
+        const fields = [
+            { id: 'studentName', value: user.name },
+            { id: 'studentId', value: user.studentId },
+            { id: 'email', value: user.email },
+            { id: 'className', value: user.className },
+            { id: 'division', value: user.division },
+            { id: 'phone', value: user.phone },
+            { id: 'department', value: user.department } // For Req 3
+        ];
+
+        fields.forEach(field => {
+            const el = document.getElementById(field.id);
+            if (el && field.value) {
+                el.value = field.value;
+                el.readOnly = true;
+                
+                // For select elements, disabled works better to prevent changes
+                if (el.tagName === 'SELECT') {
+                    // Try to set the value. If it doesn't match an option, we might need to add it dynamically or rely on standardize Req 3 to fix options.
+                    el.disabled = true;
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching user profile:', error);
+    }
+}
 
 // Render selected event details in sidebar summary card
 function renderEventSummary(event) {
@@ -142,6 +196,7 @@ function validateForm() {
     const emailInput = document.getElementById('email');
     const classInput = document.getElementById('className');
     const divisionInput = document.getElementById('division');
+    const departmentInput = document.getElementById('department');
     const phoneInput = document.getElementById('phone');
     const confirmInput = document.getElementById('confirmCheck');
 
@@ -193,6 +248,14 @@ function validateForm() {
         isValid = false;
     } else {
         clearFieldError('division');
+    }
+
+    // 5.5 Department Selection Validation
+    if (!departmentInput.value) {
+        showFieldError('department', 'Please select your department.');
+        isValid = false;
+    } else {
+        clearFieldError('department');
     }
 
     // 6. Phone Number Validation (Standard 10-digit check)

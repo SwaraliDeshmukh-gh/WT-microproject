@@ -55,6 +55,7 @@ async function initRegistrationsPage() {
     if (drawerLogoutBtn) {
         drawerLogoutBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            if (!confirm("Are you sure you want to logout?")) return;
             localStorage.removeItem('token');
             localStorage.removeItem('collegeEventAdmin');
             localStorage.removeItem('collegeEventUser');
@@ -345,7 +346,7 @@ window.viewRegistrationDetails = function(regId) {
     // Student Information
     document.getElementById('view-student-name').textContent = reg.studentName || '-';
     document.getElementById('view-student-id').textContent = reg.studentId || '-';
-    document.getElementById('view-student-class-div').textContent = `${reg.className || '-'} (${reg.division || '-'})`;
+    document.getElementById('view-student-class-div').textContent = `${reg.className || '-'}, ${reg.department || 'N/A'}, Div ${reg.division || '-'}`;
     document.getElementById('view-student-email').textContent = reg.email || '-';
     document.getElementById('view-student-phone').textContent = reg.phone || '-';
 

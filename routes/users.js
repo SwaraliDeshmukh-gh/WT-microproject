@@ -42,7 +42,7 @@ router.get("/:id", async (req, res) => {
 // 3. POST /api/users - Create a new user (Student or Admin)
 router.post("/", async (req, res) => {
     try {
-        const { name, studentId, className, division, email, phone, password, role } = req.body;
+        const { name, studentId, className, department, division, email, phone, password, role } = req.body;
 
         // Validate that role is explicitly either "student" or "admin"
         if (role !== "student" && role !== "admin") {
@@ -77,6 +77,7 @@ router.post("/", async (req, res) => {
         if (role === "student") {
             newUserObj.studentId = studentId;
             newUserObj.className = className;
+            newUserObj.department = department;
             newUserObj.division = division;
             newUserObj.phone = phone;
         }
@@ -106,7 +107,7 @@ router.put("/:id", async (req, res) => {
             return res.status(400).json({ error: "Invalid User ID format" });
         }
 
-        const { name, studentId, className, division, email, phone } = req.body;
+        const { name, studentId, className, department, division, email, phone } = req.body;
         
         const user = await User.findById(req.params.id);
         if (!user) {
@@ -135,6 +136,7 @@ router.put("/:id", async (req, res) => {
             }
             if (studentId !== undefined) user.studentId = studentId;
             if (className !== undefined) user.className = className;
+            if (department !== undefined) user.department = department;
             if (division !== undefined) user.division = division;
             if (phone !== undefined) user.phone = phone;
         }

@@ -15,6 +15,11 @@ const userSchema = new mongoose.Schema({
             return this.role === 'student';
         }
     },
+    department: {
+        type: String,
+        trim: true,
+        required: function() { return this.role === 'student'; }
+    },
     className: {
         type: String,
         trim: true,

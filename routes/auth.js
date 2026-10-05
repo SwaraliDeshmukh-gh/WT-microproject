@@ -20,7 +20,7 @@ const generateToken = (user) => {
 // 1. POST /api/auth/signup - Public Student Account Creation
 router.post('/signup', async (req, res) => {
     try {
-        const { name, studentId, className, division, email, phone, password } = req.body;
+        const { name, studentId, className, division, department, email, phone, password } = req.body;
 
         // Check if email already exists
         const existingEmail = await User.findOne({ email: email ? email.toLowerCase() : '' });
@@ -42,6 +42,7 @@ router.post('/signup', async (req, res) => {
             studentId,
             className,
             division,
+            department,
             email,
             phone,
             password,
@@ -57,6 +58,7 @@ router.post('/signup', async (req, res) => {
             studentId: savedUser.studentId,
             className: savedUser.className,
             division: savedUser.division,
+            department: savedUser.department,
             email: savedUser.email,
             phone: savedUser.phone,
             role: savedUser.role,
@@ -112,6 +114,7 @@ router.post('/login', async (req, res) => {
             studentId: user.studentId,
             className: user.className,
             division: user.division,
+            department: user.department,
             email: user.email,
             phone: user.phone,
             role: user.role
@@ -144,7 +147,7 @@ router.get('/me', protect, async (req, res) => {
 // 4. PUT /api/auth/profile - Update currently authenticated user's profile info (Protected Route)
 router.put('/profile', protect, async (req, res) => {
     try {
-        const { name, className, division, email, phone } = req.body;
+        const { name, className, division, department, email, phone } = req.body;
 
         // Find the authenticated user
         const user = await User.findById(req.user.id);
@@ -165,6 +168,7 @@ router.put('/profile', protect, async (req, res) => {
         if (name !== undefined) user.name = name;
         if (className !== undefined) user.className = className;
         if (division !== undefined) user.division = division;
+        if (department !== undefined) user.department = department;
         if (phone !== undefined) user.phone = phone;
 
         // Save the updated user
@@ -177,6 +181,7 @@ router.put('/profile', protect, async (req, res) => {
             studentId: updatedUser.studentId,
             className: updatedUser.className,
             division: updatedUser.division,
+            department: updatedUser.department,
             email: updatedUser.email,
             phone: updatedUser.phone,
             role: updatedUser.role

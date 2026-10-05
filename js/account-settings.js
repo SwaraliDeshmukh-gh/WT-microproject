@@ -46,6 +46,7 @@ async function fetchAndPopulateUserData(token) {
         document.getElementById('profile-name').value = user.name || '';
         document.getElementById('profile-studentid').value = user.studentId || '';
         document.getElementById('profile-class').value = user.className || '';
+        document.getElementById('profile-department').value = user.department || '';
         document.getElementById('profile-division').value = user.division || '';
         document.getElementById('profile-email').value = user.email || '';
         document.getElementById('profile-phone').value = user.phone || '';
@@ -70,6 +71,7 @@ function setupFormListeners(token) {
         const payload = {
             name: document.getElementById('profile-name').value.trim(),
             className: document.getElementById('profile-class').value.trim(),
+            department: document.getElementById('profile-department').value.trim(),
             division: document.getElementById('profile-division').value.trim(),
             email: document.getElementById('profile-email').value.trim(),
             phone: document.getElementById('profile-phone').value.trim()
