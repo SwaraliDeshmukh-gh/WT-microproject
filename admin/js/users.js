@@ -17,8 +17,8 @@ let isActionProcessing = false;
 
 async function initUsersPage() {
     // 1. Authentication check
-    const token = localStorage.getItem('token');
-    const adminData = localStorage.getItem('collegeEventAdmin');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
+    const adminData = (localStorage.getItem('collegeEventAdmin') || sessionStorage.getItem('collegeEventAdmin'));
     
     if (!token || !adminData) {
         window.location.href = '../login.html';
@@ -56,10 +56,10 @@ async function initUsersPage() {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             if (!confirm("Are you sure you want to logout?")) return;
-            localStorage.removeItem('token');
-            localStorage.removeItem('collegeEventAdmin');
-            localStorage.removeItem('collegeEventUser');
-            localStorage.removeItem('user');
+            localStorage.removeItem('token'); sessionStorage.removeItem('token');
+            localStorage.removeItem('collegeEventAdmin'); sessionStorage.removeItem('collegeEventAdmin');
+            localStorage.removeItem('collegeEventUser'); sessionStorage.removeItem('collegeEventUser');
+            localStorage.removeItem('user'); sessionStorage.removeItem('user');
             window.location.href = '../login.html';
         });
     });
@@ -76,7 +76,7 @@ async function initUsersPage() {
  * Fetches users from GET /api/users
  */
 async function fetchUsers() {
-    const token = localStorage.getItem('token');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
     try {
         const response = await fetch(`${API_BASE_URL}/api/users`, {
             method: 'GET',
@@ -86,10 +86,10 @@ async function fetchUsers() {
         });
 
         if (response.status === 401) {
-            localStorage.removeItem('token');
-            localStorage.removeItem('collegeEventAdmin');
-            localStorage.removeItem('collegeEventUser');
-            localStorage.removeItem('user');
+            localStorage.removeItem('token'); sessionStorage.removeItem('token');
+            localStorage.removeItem('collegeEventAdmin'); sessionStorage.removeItem('collegeEventAdmin');
+            localStorage.removeItem('collegeEventUser'); sessionStorage.removeItem('collegeEventUser');
+            localStorage.removeItem('user'); sessionStorage.removeItem('user');
             window.location.href = '../login.html';
             return;
         }
@@ -508,7 +508,7 @@ async function handleUserFormSubmit(e) {
         payload.role = userRole;
     }
 
-    const token = localStorage.getItem('token');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
     if (!token) {
         window.location.href = '../login.html';
         return;
@@ -542,10 +542,10 @@ async function handleUserFormSubmit(e) {
         }
 
         if (response.status === 401) {
-            localStorage.removeItem('token');
-            localStorage.removeItem('collegeEventAdmin');
-            localStorage.removeItem('collegeEventUser');
-            localStorage.removeItem('user');
+            localStorage.removeItem('token'); sessionStorage.removeItem('token');
+            localStorage.removeItem('collegeEventAdmin'); sessionStorage.removeItem('collegeEventAdmin');
+            localStorage.removeItem('collegeEventUser'); sessionStorage.removeItem('collegeEventUser');
+            localStorage.removeItem('user'); sessionStorage.removeItem('user');
             window.location.href = '../login.html';
             return;
         }
@@ -601,7 +601,7 @@ function closeDeleteModal() {
 async function confirmDeleteUser() {
     if (!deleteTargetId || isActionProcessing) return;
 
-    const token = localStorage.getItem('token');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
     if (!token) {
         window.location.href = '../login.html';
         return;
@@ -620,10 +620,10 @@ async function confirmDeleteUser() {
         });
 
         if (response.status === 401) {
-            localStorage.removeItem('token');
-            localStorage.removeItem('collegeEventAdmin');
-            localStorage.removeItem('collegeEventUser');
-            localStorage.removeItem('user');
+            localStorage.removeItem('token'); sessionStorage.removeItem('token');
+            localStorage.removeItem('collegeEventAdmin'); sessionStorage.removeItem('collegeEventAdmin');
+            localStorage.removeItem('collegeEventUser'); sessionStorage.removeItem('collegeEventUser');
+            localStorage.removeItem('user'); sessionStorage.removeItem('user');
             window.location.href = '../login.html';
             return;
         }

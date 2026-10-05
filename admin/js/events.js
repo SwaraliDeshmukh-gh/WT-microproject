@@ -20,8 +20,8 @@ let deleteTargetId = null;
  */
 async function initManageEvents() {
     // 1. Authentication check
-    const token = localStorage.getItem('token');
-    const adminData = localStorage.getItem('collegeEventAdmin');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
+    const adminData = (localStorage.getItem('collegeEventAdmin') || sessionStorage.getItem('collegeEventAdmin'));
     if (!token || !adminData) {
         window.location.href = '../login.html';
         return;
@@ -58,10 +58,10 @@ async function initManageEvents() {
         drawerLogoutBtn.addEventListener('click', (e) => {
             e.preventDefault();
             if (!confirm("Are you sure you want to logout?")) return;
-            localStorage.removeItem('token');
-            localStorage.removeItem('collegeEventAdmin');
-            localStorage.removeItem('collegeEventUser');
-            localStorage.removeItem('user');
+            localStorage.removeItem('token'); sessionStorage.removeItem('token');
+            localStorage.removeItem('collegeEventAdmin'); sessionStorage.removeItem('collegeEventAdmin');
+            localStorage.removeItem('collegeEventUser'); sessionStorage.removeItem('collegeEventUser');
+            localStorage.removeItem('user'); sessionStorage.removeItem('user');
             window.location.href = '../login.html';
         });
     }
@@ -420,7 +420,7 @@ async function handleFormSubmit(e) {
         return;
     }
 
-    const token = localStorage.getItem('token');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
     if (!token) {
         window.location.href = '../login.html';
         return;
@@ -526,7 +526,7 @@ function closeDeleteModal() {
 async function confirmDeleteEvent() {
     if (!deleteTargetId) return;
 
-    const token = localStorage.getItem('token');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
     if (!token) {
         window.location.href = '../login.html';
         return;

@@ -6,7 +6,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
     
     // 1. Verify Authentication Token
-    const token = localStorage.getItem('token');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
     
     if (!token) {
         window.location.href = 'login.html';
@@ -213,8 +213,8 @@ function updateNavbarNameDisplay(newName) {
  * Triggers logout and redirect for invalid/expired tokens.
  */
 function handleUnauthorized() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('collegeEventUser');
+    localStorage.removeItem('token'); sessionStorage.removeItem('token');
+    localStorage.removeItem('collegeEventUser'); sessionStorage.removeItem('collegeEventUser');
     window.location.href = 'login.html';
 }
 

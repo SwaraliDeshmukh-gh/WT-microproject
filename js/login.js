@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    localStorage.removeItem('token');
-localStorage.removeItem('collegeEventUser');
-localStorage.removeItem('collegeEventAdmin');
-localStorage.removeItem('user');
+    localStorage.removeItem('token'); sessionStorage.removeItem('token');
+localStorage.removeItem('collegeEventUser'); sessionStorage.removeItem('collegeEventUser');
+localStorage.removeItem('collegeEventAdmin'); sessionStorage.removeItem('collegeEventAdmin');
+localStorage.removeItem('user'); sessionStorage.removeItem('user');
     const roleTabs = document.querySelectorAll('.role-tab');
     const studentLoginForm = document.getElementById('student-login-form');
     const adminLoginForm = document.getElementById('admin-login-form');
@@ -133,10 +133,14 @@ if (data.user.role === 'admin') {
 }
 
 // Save student session
-localStorage.removeItem('collegeEventAdmin');
-localStorage.removeItem('token');
-localStorage.setItem('token', data.token);
-localStorage.setItem('collegeEventUser', JSON.stringify(data.user));
+localStorage.removeItem('collegeEventAdmin'); sessionStorage.removeItem('collegeEventAdmin');
+localStorage.removeItem('token'); sessionStorage.removeItem('token');
+
+const rememberMe = document.getElementById('student-remember-me').checked;
+const storage = rememberMe ? localStorage : sessionStorage;
+
+storage.setItem('token', data.token);
+storage.setItem('collegeEventUser', JSON.stringify(data.user));
 
 // Return to registration if the student came from an event
 const urlParams = new URLSearchParams(window.location.search);
@@ -184,7 +188,7 @@ if (redirect === 'register' && eventId) {
                     }
 
                     // Save admin session
-                    localStorage.removeItem('collegeEventUser');
+                    localStorage.removeItem('collegeEventUser'); sessionStorage.removeItem('collegeEventUser');
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('collegeEventAdmin', JSON.stringify(data.user));
 

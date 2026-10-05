@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* --------------------------------------------------
      * 5. Dynamic Logged-in User Profile Navbar Display & Drawer
      * -------------------------------------------------- */
-    const userJson = localStorage.getItem('collegeEventUser');
+    const userJson = (localStorage.getItem('collegeEventUser') || sessionStorage.getItem('collegeEventUser'));
     if (userJson) {
         try {
             const user = JSON.parse(userJson);
@@ -250,8 +250,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const performLogout = (e) => {
                         e.preventDefault();
                         if (!confirm("Are you sure you want to logout?")) return;
-                        localStorage.removeItem('token');
-                        localStorage.removeItem('collegeEventUser');
+                        localStorage.removeItem('token'); sessionStorage.removeItem('token');
+                        localStorage.removeItem('collegeEventUser'); sessionStorage.removeItem('collegeEventUser');
                         window.location.href = 'login.html';
                     };
 

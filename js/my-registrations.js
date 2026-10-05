@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 async function initRegistrationsPage() {
     // 1. Check for token in localStorage
-    const token = localStorage.getItem('token');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
     if (!token) {
         window.location.href = 'login.html';
         return;
@@ -284,7 +284,7 @@ function closeCancelModal() {
 async function handleConfirmCancel() {
     if (!selectedRegIdToCancel || isCancelling) return;
 
-    const token = localStorage.getItem('token');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
     if (!token) {
         window.location.href = 'login.html';
         return;

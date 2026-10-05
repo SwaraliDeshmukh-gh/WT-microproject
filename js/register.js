@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Fetch authenticated user profile and populate fields
 async function populateUserProfileFields() {
     try {
-        const token = localStorage.getItem('token');
+        const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
         if (!token) {
             window.location.href = 'login.html';
             return;
@@ -317,7 +317,7 @@ function clearFieldError(fieldId) {
 
 // Submit registration to backend API and redirect
 async function submitRegistration() {
-    const token = localStorage.getItem('token');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
     if (!token) {
         window.location.href = 'login.html';
         return;

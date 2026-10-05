@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const regId = urlParams.get('regId');
 
     // 2. Read JWT token from localStorage
-    const token = localStorage.getItem('token');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
 
     // 3. If either regId or token is missing, show no-registration-card
     if (!regId || !token) {

@@ -5,8 +5,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    const token = localStorage.getItem('token');
-    const userJson = localStorage.getItem('collegeEventAdmin');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
+    const userJson = (localStorage.getItem('collegeEventAdmin') || sessionStorage.getItem('collegeEventAdmin'));
 
     if (!token || !userJson) {
         window.location.href = '../login.html';
@@ -45,10 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             if (!confirm("Are you sure you want to logout?")) return;
 
-            localStorage.removeItem('token');
-            localStorage.removeItem('collegeEventAdmin');
-            localStorage.removeItem('collegeEventUser');
-            localStorage.removeItem('user');
+            localStorage.removeItem('token'); sessionStorage.removeItem('token');
+            localStorage.removeItem('collegeEventAdmin'); sessionStorage.removeItem('collegeEventAdmin');
+            localStorage.removeItem('collegeEventUser'); sessionStorage.removeItem('collegeEventUser');
+            localStorage.removeItem('user'); sessionStorage.removeItem('user');
 
             window.location.href = '../login.html';
         });
@@ -91,7 +91,7 @@ async function initDashboard() {
  * Retrieves real MongoDB data from API endpoints
  */
 async function fetchDashboardData() {
-    const token = localStorage.getItem('token');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
     
     // Fetch Events and Registrations concurrently
     const [eventsRes, regsRes] = await Promise.all([

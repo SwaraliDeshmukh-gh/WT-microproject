@@ -113,7 +113,7 @@ function populateEventDetails(event) {
         registerBtn.removeAttribute('href');
         closedMsg.style.display = 'block';
     } else {
-    const token = localStorage.getItem('token');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
 
     if (token) {
         registerBtn.href = `register.html?id=${encodeURIComponent(event._id)}`;

@@ -6,7 +6,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
     
     // 1. Verify Authentication Token
-    const token = localStorage.getItem('token');
+    const token = (localStorage.getItem('token') || sessionStorage.getItem('token'));
     
     if (!token) {
         // Not logged in, redirect immediately
@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Handle expired/invalid tokens
         if (response.status === 401 || response.status === 403) {
-            localStorage.removeItem('token');
-            localStorage.removeItem('collegeEventUser');
+            localStorage.removeItem('token'); sessionStorage.removeItem('token');
+            localStorage.removeItem('collegeEventUser'); sessionStorage.removeItem('collegeEventUser');
             window.location.href = 'login.html';
             return;
         }
