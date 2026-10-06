@@ -63,6 +63,7 @@ router.post('/signup', async (req, res) => {
             phone: savedUser.phone,
             role: savedUser.role,
             bio: savedUser.bio,
+            profilePhoto: savedUser.profilePhoto,
             designation: savedUser.designation,
             accountStatus: savedUser.accountStatus,
             createdAt: savedUser.createdAt
@@ -122,6 +123,7 @@ router.post('/login', async (req, res) => {
             phone: user.phone,
             role: user.role,
             bio: user.bio,
+            profilePhoto: user.profilePhoto,
             designation: user.designation,
             accountStatus: user.accountStatus,
             createdAt: user.createdAt
@@ -154,7 +156,7 @@ router.get('/me', protect, async (req, res) => {
 // 4. PUT /api/auth/profile - Update currently authenticated user's profile info (Protected Route)
 router.put('/profile', protect, async (req, res) => {
     try {
-        const { name, className, division, department, email, phone, bio, designation } = req.body;
+        const { name, className, division, department, email, phone, bio, designation, profilePhoto } = req.body;
 
         // Find the authenticated user
         const user = await User.findById(req.user.id);
@@ -181,6 +183,7 @@ router.put('/profile', protect, async (req, res) => {
         if (phone !== undefined) user.phone = phone;
         if (bio !== undefined) user.bio = bio;
         if (user.role === 'admin' && designation !== undefined) user.designation = designation;
+        if (profilePhoto !== undefined) user.profilePhoto = profilePhoto;
 
         // Save the updated user
         const updatedUser = await user.save();
@@ -197,6 +200,7 @@ router.put('/profile', protect, async (req, res) => {
             phone: updatedUser.phone,
             role: updatedUser.role,
             bio: updatedUser.bio,
+            profilePhoto: updatedUser.profilePhoto,
             designation: updatedUser.designation,
             accountStatus: updatedUser.accountStatus,
             createdAt: updatedUser.createdAt

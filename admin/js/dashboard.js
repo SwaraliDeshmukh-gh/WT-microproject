@@ -25,6 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (profileNameEl && user.name) {
             profileNameEl.textContent = user.name;
         }
+
+        const profileAvatarWrap = document.querySelector('.profile-avatar');
+        if (profileAvatarWrap) {
+            if (user.profilePhoto) {
+                profileAvatarWrap.innerHTML = `<img src="${user.profilePhoto}" alt="Admin" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+            } else {
+                profileAvatarWrap.innerHTML = `<i class="fa-solid fa-user-shield"></i>`;
+            }
+        }
         
         // Populate the dynamic admin name in the new profile drawer
         const drawerNameEl = document.getElementById('drawer-admin-name');

@@ -110,8 +110,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     profileToggle.id = 'nav-profile-toggle';
                     profileToggle.setAttribute('aria-expanded', 'false');
 
-                    const iconUser = document.createElement('i');
-                    iconUser.className = 'fa-solid fa-user';
+                    let iconUser;
+                    if (user.profilePhoto) {
+                        iconUser = document.createElement('img');
+                        iconUser.src = user.profilePhoto;
+                        iconUser.alt = 'Profile';
+                        iconUser.style.width = '20px';
+                        iconUser.style.height = '20px';
+                        iconUser.style.borderRadius = '50%';
+                        iconUser.style.objectFit = 'cover';
+                        iconUser.className = 'nav-avatar-img';
+                    } else {
+                        iconUser = document.createElement('i');
+                        iconUser.className = 'fa-solid fa-user';
+                    }
 
                     const nameSpan = document.createElement('span');
                     nameSpan.textContent = user.name || 'User';
@@ -172,7 +184,39 @@ document.addEventListener('DOMContentLoaded', () => {
                     closeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
                     closeBtn.setAttribute('aria-label', 'Close profile menu');
 
-                    drawerHeader.appendChild(userInfo);
+                    const drawerAvatar = document.createElement('div');
+                    drawerAvatar.className = 'drawer-avatar';
+                    drawerAvatar.style.width = '48px';
+                    drawerAvatar.style.height = '48px';
+                    drawerAvatar.style.borderRadius = '50%';
+                    drawerAvatar.style.marginRight = '15px';
+                    drawerAvatar.style.display = 'flex';
+                    drawerAvatar.style.alignItems = 'center';
+                    drawerAvatar.style.justifyContent = 'center';
+                    drawerAvatar.style.background = 'var(--color-bg-alt, #e2e8f0)';
+                    drawerAvatar.style.color = 'var(--color-text-muted, #94a3b8)';
+                    drawerAvatar.style.fontSize = '1.5rem';
+                    drawerAvatar.style.overflow = 'hidden';
+                    drawerAvatar.style.flexShrink = '0';
+
+                    if (user.profilePhoto) {
+                        drawerAvatar.innerHTML = `<img src="${user.profilePhoto}" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">`;
+                    } else {
+                        drawerAvatar.innerHTML = `<i class="fa-solid fa-user"></i>`;
+                    }
+
+                    // Wrap avatar and user info so they are grouped together on the left
+                    const headerInfoGroup = document.createElement('div');
+                    headerInfoGroup.style.display = 'flex';
+                    headerInfoGroup.style.alignItems = 'center';
+                    headerInfoGroup.appendChild(drawerAvatar);
+                    headerInfoGroup.appendChild(userInfo);
+
+                    drawerHeader.style.display = 'flex';
+                    drawerHeader.style.justifyContent = 'space-between';
+                    drawerHeader.style.alignItems = 'center';
+
+                    drawerHeader.appendChild(headerInfoGroup);
                     drawerHeader.appendChild(closeBtn);
 
                     // Drawer Body & Links

@@ -63,6 +63,22 @@
                     
                     <div id="profile-alert" class="settings-alert"></div>
 
+                    <!-- PROFILE PHOTO SECTION -->
+                    <div class="profile-photo-section" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 2rem; padding-top: 1rem;">
+                        <div class="profile-avatar-wrapper" style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; background: var(--color-bg-alt, #e2e8f0); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--color-text-muted, #94a3b8); margin-bottom: 1rem; border: 3px solid var(--color-bg-card, #fff); box-shadow: var(--shadow-sm);">
+                            <img id="profile-photo-preview" src="" alt="Profile Photo" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                            <i class="fa-solid fa-user" id="profile-photo-icon"></i>
+                        </div>
+                        <div class="profile-photo-actions" style="display: flex; gap: 10px;">
+                            <label for="profile-photo-input" class="btn btn-outline" style="cursor: pointer; padding: 0.4rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-camera"></i> Change</label>
+                            <input type="file" id="profile-photo-input" accept="image/jpeg, image/png, image/webp" style="display: none;">
+                            
+                            <button type="button" id="btn-remove-photo" class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.9rem; display: none; color: #dc2626; border-color: #dc2626;"><i class="fa-solid fa-trash"></i> Remove</button>
+                            <button type="button" id="btn-save-photo" class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.9rem; display: none;"><i class="fa-solid fa-save"></i> Save</button>
+                        </div>
+                        <div id="photo-error-msg" style="color: #dc2626; font-size: 0.85rem; margin-top: 0.5rem; display: none;"></div>
+                    </div>
+
                     <form id="profile-form">
                         <div class="form-grid">
                             <div class="form-group full-width-mobile">

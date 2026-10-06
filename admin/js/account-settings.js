@@ -60,10 +60,158 @@ async function fetchAndPopulateUserData(token) {
             
         document.getElementById('profile-status').value = user.accountStatus || 'Active';
 
+        initAdminPhotoUpload(token, user);
+        updateAdminProfileHeader(user.profilePhoto);
+
     } catch (error) {
         console.error('Account Settings Load Error:', error);
         showProfileAlert('Unable to load your profile information at this time.', 'error');
     }
+}
+
+/**
+ * Attaches event listeners for the update forms.
+ */
+function initAdminPhotoUpload(token, user) {
+    const photoInput = document.getElementById('profile-photo-input');
+    const photoPreview = document.getElementById('profile-photo-preview');
+    const photoIcon = document.getElementById('profile-photo-icon');
+    const btnSave = document.getElementById('btn-save-photo');
+    const btnRemove = document.getElementById('btn-remove-photo');
+    const errorMsg = document.getElementById('photo-error-msg');
+    
+    let currentBase64 = user.profilePhoto || "";
+
+    if (currentBase64) {
+        photoPreview.src = currentBase64;
+        photoPreview.style.display = 'block';
+        photoIcon.style.display = 'none';
+        btnRemove.style.display = 'inline-block';
+    }
+
+    photoInput.addEventListener('change', function() {
+        errorMsg.style.display = 'none';
+        const file = this.files[0];
+        if (!file) return;
+
+        const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+        if (!validTypes.includes(file.type)) {
+            errorMsg.textContent = 'Invalid file type. Please upload a JPEG, PNG, or WEBP image.';
+            errorMsg.style.display = 'block';
+            this.value = '';
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            errorMsg.textContent = 'File is too large. Maximum size is 5 MB.';
+            errorMsg.style.display = 'block';
+            this.value = '';
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            currentBase64 = e.target.result;
+            photoPreview.src = currentBase64;
+            photoPreview.style.display = 'block';
+            photoIcon.style.display = 'none';
+            btnSave.style.display = 'inline-block';
+        };
+        reader.readAsDataURL(file);
+    });
+
+    btnSave.addEventListener('click', async () => {
+        try {
+            btnSave.textContent = 'Saving...';
+            btnSave.disabled = true;
+            errorMsg.style.display = 'none';
+
+            const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ profilePhoto: currentBase64 })
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.error || 'Failed to update photo');
+            }
+
+            btnSave.style.display = 'none';
+            btnSave.textContent = 'Save';
+            btnSave.disabled = false;
+            btnRemove.style.display = 'inline-block';
+            
+            const localUser = JSON.parse(localStorage.getItem('collegeEventAdmin') || '{}');
+            if(localUser.name) {
+                localUser.profilePhoto = currentBase64;
+                localStorage.setItem('collegeEventAdmin', JSON.stringify(localUser));
+            }
+            
+            if (typeof updateAdminProfileHeader === 'function') {
+                updateAdminProfileHeader(currentBase64);
+            }
+
+        } catch (err) {
+            console.error(err);
+            errorMsg.textContent = err.message;
+            errorMsg.style.display = 'block';
+            btnSave.textContent = 'Save';
+            btnSave.disabled = false;
+        }
+    });
+
+    btnRemove.addEventListener('click', async () => {
+        try {
+            btnRemove.textContent = 'Removing...';
+            btnRemove.disabled = true;
+            errorMsg.style.display = 'none';
+
+            const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ profilePhoto: "" })
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.error || 'Failed to remove photo');
+            }
+
+            currentBase64 = "";
+            photoInput.value = "";
+            photoPreview.src = "";
+            photoPreview.style.display = 'none';
+            photoIcon.style.display = 'block';
+            btnRemove.style.display = 'none';
+            btnSave.style.display = 'none';
+            btnRemove.textContent = 'Remove';
+            btnRemove.disabled = false;
+
+            const localUser = JSON.parse(localStorage.getItem('collegeEventAdmin') || '{}');
+            if(localUser.name) {
+                localUser.profilePhoto = "";
+                localStorage.setItem('collegeEventAdmin', JSON.stringify(localUser));
+            }
+            
+            if (typeof updateAdminProfileHeader === 'function') {
+                updateAdminProfileHeader("");
+            }
+
+        } catch (err) {
+            console.error(err);
+            errorMsg.textContent = err.message;
+            errorMsg.style.display = 'block';
+            btnRemove.textContent = 'Remove';
+            btnRemove.disabled = false;
+        }
+    });
 }
 
 /**
@@ -185,6 +333,20 @@ function updateNavbarNameDisplay(newName) {
     const drawerProfileName = document.querySelector('.drawer-user-info .d-name');
     if (drawerProfileName) {
         drawerProfileName.textContent = newName;
+    }
+}
+
+/**
+ * Instantly updates the profile photo globally.
+ */
+function updateAdminProfileHeader(base64Image) {
+    const headerAvatarWrap = document.querySelector('.profile-avatar');
+    if (headerAvatarWrap) {
+        if (base64Image) {
+            headerAvatarWrap.innerHTML = `<img src="${base64Image}" alt="Admin" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+        } else {
+            headerAvatarWrap.innerHTML = `<i class="fa-solid fa-user-shield"></i>`;
+        }
     }
 }
 

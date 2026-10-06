@@ -62,6 +62,10 @@ const userSchema = new mongoose.Schema({
         },
         default: 'student'
     },
+    profilePhoto: {
+        type: String,
+        default: ""
+    },
     bio: {
         type: String,
         trim: true,

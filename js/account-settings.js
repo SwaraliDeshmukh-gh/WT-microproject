@@ -78,6 +78,8 @@ async function fetchAndPopulateUserData(token) {
             studentFields.forEach(el => el.style.display = 'block');
         }
 
+        initPhotoUpload(token, user);
+
     } catch (error) {
         console.error('Account Settings Load Error:', error);
         showProfileAlert('Unable to load your profile information at this time.', 'error');
@@ -207,6 +209,199 @@ function updateNavbarNameDisplay(newName) {
     if (drawerProfileName) {
         drawerProfileName.textContent = newName;
     }
+}
+
+function updateNavbarProfilePhoto(base64Image) {
+    // 1. Navbar Avatar
+    const navProfileBtn = document.getElementById('nav-profile-toggle');
+    if (navProfileBtn) {
+        let existingImg = navProfileBtn.querySelector('.nav-avatar-img');
+        let existingIcon = navProfileBtn.querySelector('i');
+        
+        if (base64Image) {
+            if (!existingImg) {
+                existingImg = document.createElement('img');
+                existingImg.className = 'nav-avatar-img';
+                existingImg.style.width = '20px';
+                existingImg.style.height = '20px';
+                existingImg.style.borderRadius = '50%';
+                existingImg.style.objectFit = 'cover';
+                navProfileBtn.insertBefore(existingImg, navProfileBtn.firstChild);
+            }
+            existingImg.src = base64Image;
+            if (existingIcon) existingIcon.remove();
+        } else {
+            if (existingImg) existingImg.remove();
+            if (!existingIcon) {
+                existingIcon = document.createElement('i');
+                existingIcon.className = 'fa-solid fa-user';
+                navProfileBtn.insertBefore(existingIcon, navProfileBtn.firstChild);
+            }
+        }
+    }
+    
+    // 2. Drawer Avatar
+    const drawerAvatarWrap = document.querySelector('.drawer-avatar');
+    if (drawerAvatarWrap) {
+        if (base64Image) {
+            drawerAvatarWrap.innerHTML = `<img src="${base64Image}" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">`;
+        } else {
+            drawerAvatarWrap.innerHTML = `<i class="fa-solid fa-user"></i>`;
+        }
+    }
+}
+
+/**
+ * Initialize profile photo upload, preview, save, and remove logic
+ */
+function initPhotoUpload(token, user) {
+    const photoInput = document.getElementById('profile-photo-input');
+    const photoPreview = document.getElementById('profile-photo-preview');
+    const photoIcon = document.getElementById('profile-photo-icon');
+    const btnSave = document.getElementById('btn-save-photo');
+    const btnRemove = document.getElementById('btn-remove-photo');
+    const errorMsg = document.getElementById('photo-error-msg');
+    
+    if(!photoInput) return; // Fail gracefully if not found
+    
+    let currentBase64 = user.profilePhoto || "";
+
+    // Show existing photo if any
+    if (currentBase64) {
+        photoPreview.src = currentBase64;
+        photoPreview.style.display = 'block';
+        photoIcon.style.display = 'none';
+        btnRemove.style.display = 'inline-block';
+    }
+
+    // Handle File Selection
+    photoInput.addEventListener('change', function() {
+        errorMsg.style.display = 'none';
+        const file = this.files[0];
+        
+        if (!file) return;
+
+        // Validation
+        const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+        if (!validTypes.includes(file.type)) {
+            errorMsg.textContent = 'Invalid file type. Please upload a JPEG, PNG, or WEBP image.';
+            errorMsg.style.display = 'block';
+            this.value = '';
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) { // 5MB
+            errorMsg.textContent = 'File is too large. Maximum size is 5 MB.';
+            errorMsg.style.display = 'block';
+            this.value = '';
+            return;
+        }
+
+        // Preview and Prepare Base64
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            currentBase64 = e.target.result;
+            photoPreview.src = currentBase64;
+            photoPreview.style.display = 'block';
+            photoIcon.style.display = 'none';
+            btnSave.style.display = 'inline-block';
+        };
+        reader.readAsDataURL(file);
+    });
+
+    // Handle Save
+    btnSave.addEventListener('click', async () => {
+        try {
+            btnSave.textContent = 'Saving...';
+            btnSave.disabled = true;
+            errorMsg.style.display = 'none';
+
+            const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ profilePhoto: currentBase64 })
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.error || 'Failed to update photo');
+            }
+
+            // Success
+            btnSave.style.display = 'none';
+            btnSave.textContent = 'Save';
+            btnSave.disabled = false;
+            btnRemove.style.display = 'inline-block';
+            
+            // Optionally update localStorage if the app relies on it
+            const localUser = JSON.parse(localStorage.getItem('collegeEventUser') || '{}');
+            if(localUser.name) {
+                localUser.profilePhoto = currentBase64;
+                localStorage.setItem('collegeEventUser', JSON.stringify(localUser));
+            }
+            
+            updateNavbarProfilePhoto(currentBase64);
+
+        } catch (err) {
+            console.error(err);
+            errorMsg.textContent = err.message;
+            errorMsg.style.display = 'block';
+            btnSave.textContent = 'Save';
+            btnSave.disabled = false;
+        }
+    });
+
+    // Handle Remove
+    btnRemove.addEventListener('click', async () => {
+        try {
+            btnRemove.textContent = 'Removing...';
+            btnRemove.disabled = true;
+            errorMsg.style.display = 'none';
+
+            const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ profilePhoto: "" })
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.error || 'Failed to remove photo');
+            }
+
+            // Success
+            currentBase64 = "";
+            photoInput.value = "";
+            photoPreview.src = "";
+            photoPreview.style.display = 'none';
+            photoIcon.style.display = 'block';
+            btnRemove.style.display = 'none';
+            btnSave.style.display = 'none';
+            btnRemove.textContent = 'Remove';
+            btnRemove.disabled = false;
+
+            const localUser = JSON.parse(localStorage.getItem('collegeEventUser') || '{}');
+            if(localUser.name) {
+                localUser.profilePhoto = "";
+                localStorage.setItem('collegeEventUser', JSON.stringify(localUser));
+            }
+            
+            updateNavbarProfilePhoto("");
+
+        } catch (err) {
+            console.error(err);
+            errorMsg.textContent = err.message;
+            errorMsg.style.display = 'block';
+            btnRemove.textContent = 'Remove';
+            btnRemove.disabled = false;
+        }
+    });
 }
 
 /**

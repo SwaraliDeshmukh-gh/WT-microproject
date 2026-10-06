@@ -69,6 +69,16 @@ function populateProfile(user) {
     document.getElementById('val-designation').textContent = user.designation || 'Not specified';
     document.getElementById('val-status').textContent = user.accountStatus || 'Active';
     
+    // Display Profile Photo
+    const photoPreview = document.getElementById('profile-photo-preview');
+    const photoIcon = document.getElementById('profile-photo-icon');
+    
+    if (user.profilePhoto && photoPreview && photoIcon) {
+        photoPreview.src = user.profilePhoto;
+        photoPreview.style.display = 'block';
+        photoIcon.style.display = 'none';
+    }
+    
     if (user.createdAt) {
         const createdDate = new Date(user.createdAt);
         document.getElementById('val-created').textContent = createdDate.toLocaleDateString('en-US', {

@@ -64,6 +64,30 @@ function populateProfile(user) {
     
     document.getElementById('val-role').textContent = (user.role || 'Admin').toUpperCase();
     
+    const profileNameEl = document.querySelector('.profile-name');
+    if (profileNameEl && user.name) {
+        profileNameEl.textContent = user.name;
+    }
+
+    const profileAvatarWrap = document.querySelector('.profile-avatar');
+    if (profileAvatarWrap) {
+        if (user.profilePhoto) {
+            profileAvatarWrap.innerHTML = `<img src="${user.profilePhoto}" alt="Admin" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+        } else {
+            profileAvatarWrap.innerHTML = `<i class="fa-solid fa-user-shield"></i>`;
+        }
+    }
+    
+    // Display Profile Photo (large preview)
+    const photoPreview = document.getElementById('profile-photo-preview');
+    const photoIcon = document.getElementById('profile-photo-icon');
+    
+    if (user.profilePhoto && photoPreview && photoIcon) {
+        photoPreview.src = user.profilePhoto;
+        photoPreview.style.display = 'block';
+        photoIcon.style.display = 'none';
+    }
+    
     const createdDate = new Date(user.createdAt);
     document.getElementById('val-created').textContent = !isNaN(createdDate) 
         ? createdDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) 
