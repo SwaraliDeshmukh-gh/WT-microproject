@@ -400,7 +400,7 @@ function handleRoleSelectionChange() {
     
     studentFields.forEach(field => {
         field.style.display = isStudent ? 'flex' : 'none';
-        const input = field.querySelector('input');
+        const input = field.querySelector('input, select, textarea');
         if (input) input.required = isStudent;
     });
 
